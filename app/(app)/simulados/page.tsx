@@ -1,6 +1,8 @@
 "use client";
 
 import { SimuladosHeader } from "@/components/simulados/simulados-header";
+import { SimuladosSetup } from "@/components/simulados/simulados-setup";
+import { SimuladosRunner } from "@/components/simulados/simulados-runner";
 
 import { DATA_KEYS } from "@/lib/data-access/keys";
 
@@ -479,158 +481,21 @@ function responder(altIndex: number) {
         <SimuladosHeader />
 
         {!simulado ? (
-          <section className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_380px]">
-            <div className="rounded-[30px] border border-white/10 bg-white/[0.045] p-5">
-              <span className="cp-os-badge-blue">Modelo de prova</span>
-
-              <h2 className="mt-3 text-2xl font-black text-white">
-                Escolha o simulado
-              </h2>
-
-              <div className="mt-5 grid gap-3">
-                {MODELOS_SIMULADO_PROVA.map((item) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => setModeloId(item.id)}
-                    className={
-                      modeloId === item.id
-                        ? "rounded-[26px] border border-cyan-300/30 bg-cyan-400/10 p-5 text-left"
-                        : "rounded-[26px] border border-white/10 bg-black/15 p-5 text-left transition hover:border-cyan-300/20"
-                    }
-                  >
-                    <h3 className="text-xl font-black text-white">{item.nome}</h3>
-
-                    <p className="mt-2 text-sm text-slate-300">
-                      {item.banca} - {item.cargo}
-                    </p>
-
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      <span className="cp-os-badge-blue">{item.totalQuestoes} questoes</span>
-                      <span className="cp-os-badge-purple">{item.duracaoMinutos}min</span>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <aside className="rounded-[30px] border border-rose-300/20 bg-rose-400/10 p-5">
-              <span className="cp-os-badge-red">Gerador IA</span>
-
-              <h2 className="mt-3 text-2xl font-black text-white">
-                Nova prova inedita
-              </h2>
-
-              <p className="mt-3 text-sm leading-7 text-slate-300">
-                Escolha o modo. A IA deve gerar questoes novas a cada simulado, respeitando a distribuicao por materia.
-              </p>
-
-              <div className="mt-5 grid grid-cols-2 gap-2">
-                <button
-                  type="button"
-                  onClick={() => setModoSelecionado("certo_errado")}
-                  className={modoSelecionado === "certo_errado" ? "rounded-2xl border border-cyan-300/30 bg-cyan-400/10 px-4 py-3 text-sm font-black text-cyan-100" : "rounded-2xl border border-white/10 bg-black/15 px-4 py-3 text-sm font-black text-slate-300"}
-                >
-                  Certo/Errado
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setModoSelecionado("multipla_escolha")}
-                  className={modoSelecionado === "multipla_escolha" ? "rounded-2xl border border-cyan-300/30 bg-cyan-400/10 px-4 py-3 text-sm font-black text-cyan-100" : "rounded-2xl border border-white/10 bg-black/15 px-4 py-3 text-sm font-black text-slate-300"}
-                >
-                  Multipla escolha
-                </button>
-              </div>
-
-              <div className="mt-5 grid grid-cols-2 gap-2">
-                <button
-                  type="button"
-                  onClick={() => setIdiomaSelecionado("Ingles")}
-                  className={idiomaSelecionado === "Ingles" ? "rounded-2xl border border-emerald-300/30 bg-emerald-400/10 px-4 py-3 text-sm font-black text-emerald-100" : "rounded-2xl border border-white/10 bg-black/15 px-4 py-3 text-sm font-black text-slate-300"}
-                >
-                  Ingles
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setIdiomaSelecionado("Espanhol")}
-                  className={idiomaSelecionado === "Espanhol" ? "rounded-2xl border border-emerald-300/30 bg-emerald-400/10 px-4 py-3 text-sm font-black text-emerald-100" : "rounded-2xl border border-white/10 bg-black/15 px-4 py-3 text-sm font-black text-slate-300"}
-                >
-                  Espanhol
-                </button>
-              </div>
-
-              <button
-                type="button"
-                onClick={() => setAdaptativoAtivo((v) => !v)}
-                className={adaptativoAtivo ? "mt-5 w-full rounded-2xl border border-cyan-300/30 bg-cyan-400/10 px-4 py-3 text-sm font-black text-cyan-100" : "mt-5 w-full rounded-2xl border border-white/10 bg-black/15 px-4 py-3 text-sm font-black text-slate-300"}
-              >
-                {adaptativoAtivo ? "Modo adaptativo Lyra ligado" : "Ativar modo adaptativo Lyra"}
-              </button>
-
-              <div className="mt-5 rounded-[24px] border border-white/10 bg-black/15 p-4">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-rose-200">
-                  {adaptativoAtivo ? "Distribuicao adaptativa Lyra" : "Distribuicao padrao da prova"}
-                </p>
-
-                <div className="mt-3 space-y-2">
-                  {distribuicaoPreview.map((item) => (
-                    <div key={item.materia} className="flex items-center justify-between text-sm">
-                      <span className="text-slate-300">{item.materia}</span>
-                      <strong className="text-white">{item.quantidade}</strong>
-                    </div>
-                  ))}
-                </div>
-
-                {adaptativoAtivo ? (
-                  <p className="mt-4 rounded-2xl border border-cyan-300/15 bg-cyan-400/10 p-3 text-xs leading-5 text-cyan-100">
-                    A Lyra vai recalcular a distribuicao no momento da geracao usando simulados anteriores, erros e materias criticas.
-                  </p>
-                ) : null}
-              </div>
-
-              {historicoSimulados.length ? (
-                <div className="mt-5 rounded-[24px] border border-white/10 bg-black/15 p-4">
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-rose-200">
-                    Historico recente
-                  </p>
-
-                  <div className="mt-3 space-y-2">
-                    {historicoSimulados.map((item: any) => {
-                      const total = item?.questoes?.length || 0;
-                      const acertos = item?.questoes?.filter(
-                        (q: any) => item?.respostas?.[q.id] === q.correta
-                      ).length || 0;
-
-                      const taxa = total ? Math.round((acertos / total) * 100) : 0;
-
-                      return (
-                        <div key={item.id} className="flex items-center justify-between rounded-2xl bg-white/[0.04] px-3 py-2 text-sm">
-                          <span className="text-slate-300">
-                            {String(item.finalizadoEm || item.iniciadoEm || "").slice(0, 10)}
-                          </span>
-
-                          <strong className="text-white">{taxa}%</strong>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              ) : null}
-
-              <button type="button" onClick={iniciarSimulado} disabled={gerando} className="cp-os-btn-primary mt-5 w-full">
-                {gerando ? "Gerando prova..." : "Gerar nova prova"}
-              </button>
-
-              {statusIA ? (
-                <p className="mt-3 text-center text-xs font-bold text-slate-300">
-                  {statusIA}
-                </p>
-              ) : null}
-            </aside>
-          </section>
-        ) : finalizado && resultado ? (
+          <SimuladosSetup
+              adaptativoAtivo={adaptativoAtivo}
+              distribuicaoPreview={distribuicaoPreview}
+              gerando={gerando}
+              historicoSimulados={historicoSimulados}
+              idiomaSelecionado={idiomaSelecionado}
+              iniciarSimulado={iniciarSimulado}
+              modeloId={modeloId}
+              modoSelecionado={modoSelecionado}
+              setAdaptativoAtivo={setAdaptativoAtivo}
+              setIdiomaSelecionado={setIdiomaSelecionado}
+              setModeloId={setModeloId}
+              setModoSelecionado={setModoSelecionado}
+              statusIA={statusIA}
+            />) : finalizado && resultado ? (
           <section className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_390px]">
             <div className="rounded-[34px] border border-white/10 bg-white/[0.045] p-6">
               <span className="cp-os-badge-blue">Resultado</span>
@@ -750,107 +615,19 @@ function responder(altIndex: number) {
             </aside>
           </section>
         ) : (
-          <section className="flex flex-col gap-5">
-            <section className="rounded-[30px] border border-white/10 bg-white/[0.045] p-5">
-              <div className="grid gap-3 md:grid-cols-4">
-                <div className="rounded-[22px] border border-cyan-300/20 bg-cyan-400/10 px-4 py-3">
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-200">Tempo</p>
-                  <strong className="mt-1 block text-2xl text-white">{formatTime(secondsLeft)}</strong>
-                </div>
-
-                <div className="rounded-[22px] border border-emerald-300/20 bg-emerald-400/10 px-4 py-3">
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-200">Respondidas</p>
-                  <strong className="mt-1 block text-2xl text-white">{respondidas}/{simulado.questoes.length}</strong>
-                </div>
-
-                <div className="rounded-[22px] border border-violet-300/20 bg-violet-400/10 px-4 py-3">
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-violet-200">Progresso</p>
-                  <strong className="mt-1 block text-2xl text-white">{progresso}%</strong>
-                </div>
-
-                <div className="rounded-[22px] border border-rose-300/20 bg-rose-400/10 px-4 py-3">
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-rose-200">Tempo nesta</p>
-                  <strong className="mt-1 block text-xl text-white">
-                    {questaoAtual && questaoEntrouEm ? formatTime(Number(simulado.temposPorQuestao?.[questaoAtual.id] || 0) + Math.round((Date.now() - questaoEntrouEm) / 1000)) : "00:00"}
-                  </strong>
-                </div>
-              </div>
-
-              <div className="mt-4 flex flex-wrap gap-2">
-                {simulado.questoes.map((q, i) => (
-                  <button
-                    key={q.id}
-                    type="button"
-                    onClick={() => trocarQuestao(i)}
-                    className={
-                      questaoIndex === i
-                        ? "h-9 w-9 rounded-xl bg-cyan-400 text-sm font-black text-slate-950"
-                        : simulado.respostas[q.id] !== undefined
-                        ? "h-9 w-9 rounded-xl bg-emerald-500/70 text-sm font-black text-white"
-                        : "h-9 w-9 rounded-xl bg-white/10 text-sm font-black text-white"
-                    }
-                  >
-                    {i + 1}
-                  </button>
-                ))}
-              </div>
-            </section>
-
-            <section className="rounded-[34px] border border-white/10 bg-white/[0.045] p-6">
-              {questaoAtual ? (
-                <>
-                  <div className="flex flex-wrap items-center justify-between gap-3">
-                    <span className="cp-os-badge-purple">{questaoAtual.materia}</span>
-                    <strong className="text-sm text-slate-300">Questao {questaoIndex + 1}</strong>
-                  </div>
-
-                  <h2 className="mt-6 text-2xl font-black leading-tight text-white">
-                    {questaoAtual.enunciado}
-                  </h2>
-
-                  <div className="mt-6 grid gap-3">
-                    {questaoAtual.alternativas.map((alt, altIndex) => {
-                      const marcada = simulado.respostas[questaoAtual.id] === altIndex;
-
-                      return (
-                        <button
-                          key={altIndex}
-                          type="button"
-                          onClick={() => responder(altIndex)}
-                          className={
-                            marcada
-                              ? "rounded-[22px] border border-cyan-300/30 bg-cyan-500/15 p-4 text-left font-black text-cyan-100"
-                              : "rounded-[22px] border border-white/10 bg-black/15 p-4 text-left font-bold text-slate-200 transition hover:bg-white/[0.06]"
-                          }
-                        >
-                          {alt}
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  <div className="mt-6 flex flex-wrap gap-3">
-                    <button type="button" onClick={() => {
-                        trocarQuestao(Math.max(0, questaoIndex - 1));
-                      }} className="cp-os-btn-soft">
-                      Anterior
-                    </button>
-
-                    <button type="button" onClick={() => {
-                        trocarQuestao(Math.min(simulado.questoes.length - 1, questaoIndex + 1));
-                      }} className="cp-os-btn-primary">
-                      Proxima
-                    </button>
-
-                    <button type="button" onClick={finalizar} className="cp-os-btn-soft">
-                      Finalizar simulado
-                    </button>
-                  </div>
-                </>
-              ) : null}
-            </section>
-          </section>
-        )}
+          <SimuladosRunner
+              finalizar={finalizar}
+              formatTime={formatTime}
+              progresso={progresso}
+              questaoAtual={questaoAtual}
+              questaoEntrouEm={questaoEntrouEm}
+              questaoIndex={questaoIndex}
+              responder={responder}
+              respondidas={respondidas}
+              secondsLeft={secondsLeft}
+              simulado={simulado}
+              trocarQuestao={trocarQuestao}
+            />)}
       </section>
     </main>
   );
