@@ -1,0 +1,1263 @@
+﻿=== AUDITORIA DETALHADA DE LIBS ÓRFÃOS ===
+Gerada em: 22/07/2026 20:00:04
+
+
+==================================================
+ARQUIVO: lib\ai-api.ts
+LINHAS: 12
+TAMANHO: 266 bytes
+SINAIS DE RISCO: Fetch/API
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export async function gerarPlanoIA(prompt: string) {
+
+==================================================
+ARQUIVO: lib\ai-app-context.ts
+LINHAS: 87
+TAMANHO: 3221 bytes
+SINAIS DE RISCO: OpenAI/Gemini
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadAppData } from "@/lib/app-storage";
+import type { AiSnapshot } from "@/lib/gemini-prompts";
+
+--- EXPORTAÇÕES ---
+export function buildAiSnapshot(input?: {
+
+==================================================
+ARQUIVO: lib\ai-features.ts
+LINHAS: 70
+TAMANHO: 2073 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { userHasAI } from "@/lib/subscription";
+
+--- EXPORTAÇÕES ---
+export type StudyAIResult = {
+export function explicarAssunto(topico: string): StudyAIResult {
+export function explicarQuestaoDificil(questao: string): StudyAIResult {
+export function gerarQuestoes(topico: string): StudyAIResult {
+
+==================================================
+ARQUIVO: lib\ai-prompts.ts
+LINHAS: 15
+TAMANHO: 351 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function buildPrompt(type: string, contexto: string) {
+
+==================================================
+ARQUIVO: lib\ai.ts
+LINHAS: 18
+TAMANHO: 451 bytes
+SINAIS DE RISCO: OpenAI/Gemini
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import OpenAI from "openai";
+
+--- EXPORTAÇÕES ---
+export function getOpenAIClient() {
+export function getOpenAIModel() {
+
+==================================================
+ARQUIVO: lib\analytics.ts
+LINHAS: 26
+TAMANHO: 602 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function gerarAnalytics(data: any) {
+
+==================================================
+ARQUIVO: lib\app-action.ts
+LINHAS: 39
+TAMANHO: 1006 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { safeAction } from "@/lib/app-error";
+import { notifyError, notifySuccess, notifyInfo } from "@/lib/app-feedback";
+
+--- EXPORTAÇÕES ---
+export async function runAppAction<T>(
+
+==================================================
+ARQUIVO: lib\app-data-normalizer.ts
+LINHAS: 26
+TAMANHO: 1040 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import type { AppData } from "@/lib/app-types";
+import { DEFAULT_APP_DATA } from "@/lib/app-data-defaults";
+
+--- EXPORTAÇÕES ---
+export function normalizeAppData(input: Partial<AppData> | null | undefined): AppData {
+
+==================================================
+ARQUIVO: lib\app-notify.ts
+LINHAS: 42
+TAMANHO: 1059 bytes
+SINAIS DE RISCO: Window/Document
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+export type NotifyType = "success" | "error" | "info" | "warning";
+export function notify(payload: Omit<NotifyEvent, "id">) {
+
+--- EXPORTAÇÕES ---
+export type NotifyType = "success" | "error" | "info" | "warning";
+export type NotifyEvent = {
+export function notify(payload: Omit<NotifyEvent, "id">) {
+export function subscribeToNotify(
+
+==================================================
+ARQUIVO: lib\app-shell-config.ts
+LINHAS: 15
+TAMANHO: 333 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { APP_NAME, OFFICIAL_APP_NAV } from "@/lib/routes";
+
+--- EXPORTAÇÕES ---
+export type NavItem = {
+export { APP_NAME };
+export const NAV_ITEMS: NavItem[] = OFFICIAL_APP_NAV.map((item) => ({
+
+==================================================
+ARQUIVO: lib\app-ui.ts
+LINHAS: 100
+TAMANHO: 2192 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export const appBg = {
+export const pageWrap: React.CSSProperties = {
+export const sectionCard: React.CSSProperties = {
+export const softCard: React.CSSProperties = {
+export const inputBase: React.CSSProperties = {
+export const textareaBase: React.CSSProperties = {
+export const primaryButton: React.CSSProperties = {
+export const secondaryButton: React.CSSProperties = {
+export const dangerButton: React.CSSProperties = {
+export const pill: React.CSSProperties = {
+export const titleMain: React.CSSProperties = {
+export const subtitle: React.CSSProperties = {
+
+==================================================
+ARQUIVO: lib\auth-service.ts
+LINHAS: 19
+TAMANHO: 496 bytes
+SINAIS DE RISCO: Firebase
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { auth } from "@/lib/firebase";
+
+--- EXPORTAÇÕES ---
+export async function login(email: string, senha: string) {
+export async function registrar(email: string, senha: string) {
+export async function logout() {
+
+==================================================
+ARQUIVO: lib\auto-review.ts
+LINHAS: 13
+TAMANHO: 327 bytes
+SINAIS DE RISCO: Timers
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { enviarSubtopicoParaRevisao } from "@/lib/revisao-sync";
+
+--- EXPORTAÇÕES ---
+export function gerarRevisoesAutomaticas(
+
+==================================================
+ARQUIVO: lib\banca-detector.ts
+LINHAS: 50
+TAMANHO: 1069 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function detectarBanca(texto: string, concursoSelecionado?: string) {
+
+==================================================
+ARQUIVO: lib\billing\plans.ts
+LINHAS: 40
+TAMANHO: 812 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+export type PlanId = "free" | "premium";
+
+--- EXPORTAÇÕES ---
+export type PlanId = "free" | "premium";
+export const PLANS = {
+export function getPlanoAtual(): (typeof PLANS)[PlanId] {
+export function isPremium() {
+
+==================================================
+ARQUIVO: lib\cloud-realtime-sync.ts
+LINHAS: 21
+TAMANHO: 476 bytes
+SINAIS DE RISCO: Firebase
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { db } from "@/lib/firebase";
+import { doc, onSnapshot, setDoc } from "firebase/firestore";
+
+--- EXPORTAÇÕES ---
+export function ouvirSincronizacao(
+export async function sincronizarTempoReal(
+
+==================================================
+ARQUIVO: lib\cn.ts
+LINHAS: 3
+TAMANHO: 127 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function cn(...classes: Array<string | false | null | undefined>) {
+
+==================================================
+ARQUIVO: lib\conteudo.ts
+LINHAS: 10
+TAMANHO: 215 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+export function criarConteudo(titulo: string, texto: string, tipo = "manual") {
+
+--- EXPORTAÇÕES ---
+export function criarConteudo(titulo: string, texto: string, tipo = "manual") {
+
+==================================================
+ARQUIVO: lib\cp-engine.ts
+LINHAS: 291
+TAMANHO: 11557 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import type { Materia, Topico } from "@/lib/app-types";
+
+--- EXPORTAÇÕES ---
+export type CPExplanation = {
+export type CPQuestion = {
+export function gerarExplicacaoModoCP(params: {
+export function explicarQuestaoDificil(params: {
+export function gerarQuestoesCESPE(params: {
+export function getTituloResumoQuestao(question: CPQuestion): string {
+
+==================================================
+ARQUIVO: lib\cp-focus-core.ts
+LINHAS: 764
+TAMANHO: 22551 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { STORAGE_KEYS, loadStorage, saveStorage } from "@/lib/app-storage";
+export function uid(prefix = "id") {
+export function adicionarNotificacao(tipo: NotificacaoInterna["tipo"], titulo: string, mensagem: string) {
+
+--- EXPORTAÇÕES ---
+export function uid(prefix = "id") {
+export function hojeISO() {
+export function defaultConfig(): ConfigData {
+export function defaultAIState(): AIState {
+export function defaultNotificacoes(): NotificacaoInterna[] {
+export function calcularProgressoSubtopico(subtopico: Subtopico) {
+export function calcularProgressoTopico(topico: Topico) {
+export function calcularProgressoMateria(materia: Materia) {
+export function normalizarMaterias(materias: Materia[]): Materia[] {
+export function salvarMaterias(materias: Materia[]) {
+export function carregarMaterias(): Materia[] {
+export function adicionarNotificacao(tipo: NotificacaoInterna["tipo"], titulo: string, mensagem: string) {
+export function setAIState(state: AIState) {
+export function getAIState(): AIState {
+export function parseEditalText(texto: string): EditalMateria[] {
+export function editalExemploBase(): EditalMateria[] {
+export function converterEditalParaMaterias(edital: EditalMateria[]): Materia[] {
+export function importarEdital(texto: string, concurso?: ConcursoInfo) {
+export function gerarConteudoModoCP(params: {
+export function salvarConteudoNoSubtopico(params: {
+export function gerarPlanejamentoAutomatico(params: {
+export function gerarRevisoesAutomaticas() {
+
+==================================================
+ARQUIVO: lib\cp-stats.ts
+LINHAS: 109
+TAMANHO: 2688 bytes
+SINAIS DE RISCO: Window/Document
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadFromStorage, saveToStorage, removeFromStorage } from "@/lib/storage-core";
+
+--- EXPORTAÇÕES ---
+export type CPAttempt = {
+export type CPMateriaResumo = {
+export function carregarTentativasCP(): CPAttempt[] {
+export function salvarTentativasCP(items: CPAttempt[]): void {
+export function registrarTentativaCP(item: CPAttempt): CPAttempt[] {
+export function getResumoGeralCP() {
+export function getResumoPorMateriaCP(): CPMateriaResumo[] {
+export function limparEstatisticasCP(): void {
+
+==================================================
+ARQUIVO: lib\daily-goals.ts
+LINHAS: 34
+TAMANHO: 762 bytes
+SINAIS DE RISCO: Window/Document
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadFromStorage, saveToStorage } from "@/lib/storage-core";
+
+--- EXPORTAÇÕES ---
+export type DailyGoal = {
+export function getDailyGoal(): DailyGoal {
+export function saveDailyGoal(goal: DailyGoal) {
+
+==================================================
+ARQUIVO: lib\data-access\sync.ts
+LINHAS: 25
+TAMANHO: 561 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { DATA_KEYS } from "@/lib/data-access/keys";
+import { readLocalData, writeData } from "@/lib/data-access/provider";
+
+--- EXPORTAÇÕES ---
+export async function syncLocalToCloud() {
+
+==================================================
+ARQUIVO: lib\drag-drop.ts
+LINHAS: 4
+TAMANHO: 79 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function enableDrag(el: HTMLElement) {
+
+==================================================
+ARQUIVO: lib\edital-engine.ts
+LINHAS: 390
+TAMANHO: 13455 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import type { ItemEdital, Materia, Topico } from "@/lib/app-types";
+
+--- EXPORTAÇÕES ---
+export function mergeMaterias(base: Materia[], extra: Materia[]): Materia[] {
+export function generateEditalData(params: {
+
+==================================================
+ARQUIVO: lib\edital-pdf.ts
+LINHAS: 28
+TAMANHO: 941 bytes
+SINAIS DE RISCO: Arquivo/PDF
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export async function extrairTextoDePdf(file: File) {
+
+==================================================
+ARQUIVO: lib\erros.ts
+LINHAS: 12
+TAMANHO: 337 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function criarErro(data: any) {
+
+==================================================
+ARQUIVO: lib\evolucao.ts
+LINHAS: 37
+TAMANHO: 908 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import type { Materia } from "./app-types";
+
+--- EXPORTAÇÕES ---
+export function contarConteudoMateria(materia: Materia) {
+export function percentualMateria(materia: Materia) {
+export function percentualGeral(materias: Materia[]) {
+
+==================================================
+ARQUIVO: lib\export-utils.ts
+LINHAS: 16
+TAMANHO: 426 bytes
+SINAIS DE RISCO: Window/Document, Arquivo/PDF
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadAppData } from "@/lib/app-storage";
+
+--- EXPORTAÇÕES ---
+export function exportarJsonApp() {
+
+==================================================
+ARQUIVO: lib\exportClient.ts
+LINHAS: 71
+TAMANHO: 2196 bytes
+SINAIS DE RISCO: Firebase, Window/Document, Arquivo/PDF
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+
+--- EXPORTAÇÕES ---
+export async function exportUserData(uid: string) {
+export function downloadJSON(filename: string, data: any) {
+export function downloadCSV(filename: string, rows: Record<string, any>[]) {
+
+==================================================
+ARQUIVO: lib\fase4-banco-erros.ts
+LINHAS: 164
+TAMANHO: 4804 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import type { FlashcardItem, Materia, Missao, QuestaoErro, RevisaoItem } from "@/lib/app-types";
+import { updateAppData } from "@/lib/app-storage";
+import { recalcularEstrutura } from "@/lib/app-engine";
+import { getMateriaById } from "@/lib/fase4-materias";
+
+--- EXPORTAÇÕES ---
+export function addQuestaoErradaSubtopico(
+export function removeQuestaoErradaSubtopico(
+
+==================================================
+ARQUIVO: lib\fase4-conteudos.ts
+LINHAS: 71
+TAMANHO: 1677 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadAppData, saveAppData } from "@/lib/app-storage";
+
+--- EXPORTAÇÕES ---
+export function addConteudo(materiaId, topicoId, subId, texto, tipo) {
+export function removeConteudo(materiaId, topicoId, subId, conteudoId) {
+export function addErro(materiaId, topicoId, subId, erro) {
+export function removeErro(materiaId, topicoId, subId, erroId) {
+
+==================================================
+ARQUIVO: lib\fase4-progresso.ts
+LINHAS: 23
+TAMANHO: 587 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function marcarTopicoComoEstudado(materiaId: string, topicoId: string) {
+export function marcarSubtopicoComoEstudado(
+export function calcularProgressoMateriaById(materiaId: string) {
+
+==================================================
+ARQUIVO: lib\fase5-cp.ts
+LINHAS: 233
+TAMANHO: 8136 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import type { FlashcardItem, RevisaoItem } from "@/lib/app-types";
+import { salvarConteudoNoSubtopico } from "@/lib/app-engine";
+import { updateAppData } from "@/lib/app-storage";
+import { iaLigada } from "@/lib/ai-helpers";
+
+--- EXPORTAÇÕES ---
+export type PacoteCP = {
+export function gerarPacoteCP(entrada: string): PacoteCP {
+export function salvarPacoteCPNoSubtopico(input: {
+
+==================================================
+ARQUIVO: lib\fase6-planejamento.ts
+LINHAS: 421
+TAMANHO: 13132 bytes
+SINAIS DE RISCO: Window/Document
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadFromStorage, saveToStorage } from "@/lib/storage-core";
+import type { AppData, Materia, Missao, MissaoTipo, RevisaoItem, Subtopico, Topico } from "@/lib/app-types";
+import { loadAppData, saveAppData } from "@/lib/app-storage";
+
+--- EXPORTAÇÕES ---
+export type Fase6Config = {
+export type DiagnosticoMateria = {
+export type Fase6Resultado = {
+export function loadFase6Config(): Fase6Config {
+export function saveFase6Config(config: Fase6Config) {
+export function gerarPlanejamentoInteligente(configParcial?: Partial<Fase6Config>): Fase6Resultado {
+export function aplicarPlanejamentoInteligente(resultado: Fase6Resultado) {
+export function limparPlanejamentoInteligente() {
+
+==================================================
+ARQUIVO: lib\fcm.ts
+LINHAS: 22
+TAMANHO: 338 bytes
+SINAIS DE RISCO: Firebase
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { getMessaging, getToken } from "firebase/messaging";
+import app from "@/lib/firebase";
+
+--- EXPORTAÇÕES ---
+export async function registrarPush() {
+
+==================================================
+ARQUIVO: lib\fix-ids.ts
+LINHAS: 42
+TAMANHO: 1070 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadAppData, saveAppData } from "@/lib/app-storage";
+
+--- EXPORTAÇÕES ---
+export function garantirIdsApp() {
+
+==================================================
+ARQUIVO: lib\flashcard-sync.ts
+LINHAS: 17
+TAMANHO: 349 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { updateAppData } from "@/lib/app-storage";
+
+--- EXPORTAÇÕES ---
+export function criarFlashcard(frente: string, verso: string) {
+
+==================================================
+ARQUIVO: lib\flashcards-premium.ts
+LINHAS: 115
+TAMANHO: 2415 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function gerarDeckIA(params: {
+export async function getDecks(): Promise<any[]> {
+export async function saveDeck(deck: any): Promise<void> {
+export async function updateDeck(updatedDeck: any): Promise<void> {
+
+==================================================
+ARQUIVO: lib\gamification.ts
+LINHAS: 90
+TAMANHO: 2102 bytes
+SINAIS DE RISCO: Window/Document
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadFromStorage, saveToStorage } from "@/lib/storage-core";
+
+--- EXPORTAÇÕES ---
+export type GamificacaoData = {
+export function getGamificacao(): GamificacaoData {
+export function saveGamificacao(data: GamificacaoData) {
+export function adicionarXP(valor: number) {
+export function atualizarOfensiva(valor: number) {
+export function resetGamificacao() {
+
+==================================================
+ARQUIVO: lib\gemini-actions.ts
+LINHAS: 204
+TAMANHO: 6600 bytes
+SINAIS DE RISCO: OpenAI/Gemini
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import type { GeminiAction, AiSnapshot } from "@/lib/gemini-prompts";
+
+--- EXPORTAÇÕES ---
+export type AiFlashcard = {
+export type AiQuestion = {
+export type AiResponse = {
+export function buildFallbackResponse(action: GeminiAction, userInput: string, snapshot?: AiSnapshot | null): AiResponse {
+export function normalizeAiResponse(input: any, fallback: AiResponse): AiResponse {
+
+==================================================
+ARQUIVO: lib\historico.ts
+LINHAS: 21
+TAMANHO: 502 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadFromStorage, saveToStorage } from "@/lib/storage-core";
+import { registrarEstudoHoje } from "@/lib/progresso";
+
+--- EXPORTAÇÕES ---
+export async function registrarHistoricoSubtopico(subtopicoId: string): Promise<void> {
+
+==================================================
+ARQUIVO: lib\inline-edit.ts
+LINHAS: 15
+TAMANHO: 336 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function enableInlineEdit(el: HTMLElement, onSave: (value:string)=>void) {
+
+==================================================
+ARQUIVO: lib\integrations.ts
+LINHAS: 57
+TAMANHO: 1408 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { createRevisao } from "@/lib/revisao";
+
+--- EXPORTAÇÕES ---
+export async function createRevisaoFromMateria(params: {
+export async function createRevisaoFromSyllabus(params: {
+export async function createRevisaoFromUpload(params: {
+
+==================================================
+ARQUIVO: lib\materiaProgress.ts
+LINHAS: 26
+TAMANHO: 738 bytes
+SINAIS DE RISCO: Firebase
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
+import { db } from "./firebase";
+
+--- EXPORTAÇÕES ---
+export async function recalcMateria(uid: string, materiaId: string) {
+
+==================================================
+ARQUIVO: lib\materias-ia-premium.ts
+LINHAS: 8
+TAMANHO: 404 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export const MateriasIA = {
+
+==================================================
+ARQUIVO: lib\materias-ia.ts
+LINHAS: 26
+TAMANHO: 442 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function montarPromptEstudo(ctx:any){
+
+==================================================
+ARQUIVO: lib\materias-upload.ts
+LINHAS: 9
+TAMANHO: 286 bytes
+SINAIS DE RISCO: Arquivo/PDF
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function handleImageUpload(file: File): Promise<string> {
+
+==================================================
+ARQUIVO: lib\mission-engine.ts
+LINHAS: 28
+TAMANHO: 733 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function getMissionOfDay(app: AnyObj) {
+
+==================================================
+ARQUIVO: lib\mutate.ts
+LINHAS: 8
+TAMANHO: 185 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadAppData, saveAppData } from "./app-storage";
+
+--- EXPORTAÇÕES ---
+export function mutateApp(fn: (app: any) => void) {
+
+==================================================
+ARQUIVO: lib\payment.ts
+LINHAS: 11
+TAMANHO: 131 bytes
+SINAIS DE RISCO: Pagamento
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export async function iniciarCheckoutPremium() {
+
+==================================================
+ARQUIVO: lib\perfil\engine.ts
+LINHAS: 97
+TAMANHO: 2725 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export type PerfilUsuarioCP = {
+export async function carregarPerfilUsuario(): Promise<PerfilUsuarioCP> {
+export async function salvarPerfilUsuario(
+export function gerarPerfilAdaptativo(params: {
+
+==================================================
+ARQUIVO: lib\planejamento-inteligente-storage.ts
+LINHAS: 695
+TAMANHO: 21870 bytes
+SINAIS DE RISCO: Window/Document
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadAppData, saveAppData } from "@/lib/app-storage";
+import { loadFromStorage, saveToStorage } from "@/lib/storage-core";
+export type PrioridadePlanejamento = "baixa" | "media" | "alta";
+export type HumorDoDia = "leve" | "normal" | "pesado";
+
+--- EXPORTAÇÕES ---
+export type PrioridadePlanejamento = "baixa" | "media" | "alta";
+export type HumorDoDia = "leve" | "normal" | "pesado";
+export type MissaoPlanejamento = {
+export type TopicoPlanejamento = {
+export type MateriaPlanejamento = {
+export type SessaoPlanejamento = {
+export type PlanejamentoInteligenteData = {
+export function getPlanejamentoInicial(): PlanejamentoInteligenteData {
+export function carregarPlanejamento(): PlanejamentoInteligenteData {
+export function salvarPlanejamento(data: PlanejamentoInteligenteData) {
+export function sincronizarResumoPlanejamentoNoApp(data: PlanejamentoInteligenteData) {
+export function calcularPrioridadeTopico(topico: TopicoPlanejamento): number {
+export function criarMissaoInteligente(data: PlanejamentoInteligenteData): PlanejamentoInteligenteData {
+export function criarMissaoManual(
+export function editarMissao(
+export function excluirMissao(data: PlanejamentoInteligenteData, id: string): PlanejamentoInteligenteData {
+export function alternarMissao(data: PlanejamentoInteligenteData, id: string): PlanejamentoInteligenteData {
+export function criarMateriaManual(
+export function editarMateria(
+export function excluirMateria(data: PlanejamentoInteligenteData, id: string): PlanejamentoInteligenteData {
+export function criarTopicoManual(
+export function editarTopico(
+export function excluirTopico(data: PlanejamentoInteligenteData, id: string): PlanejamentoInteligenteData {
+export function importarEditalTexto(data: PlanejamentoInteligenteData, texto: string): PlanejamentoInteligenteData {
+export function registrarSessaoPlanejamento(params: {
+export function aplicarPlanoDiario(data: PlanejamentoInteligenteData): PlanejamentoInteligenteData {
+export function gerarPlanoDiarioLocal(data: PlanejamentoInteligenteData): PlanejamentoInteligenteData {
+export function obterErrosDoAppParaIA() {
+export function limparSessoesPlanejamento(data: PlanejamentoInteligenteData): PlanejamentoInteligenteData {
+export function resetarPlanejamentoInteligente(): PlanejamentoInteligenteData {
+export function integrarComAppGlobal(sessao: SessaoPlanejamento) {
+export function calcularPerfilCognitivo(data: PlanejamentoInteligenteData) {
+export function gerarRankingGamificacao(data: PlanejamentoInteligenteData) {
+export function ordenarTopicosPorPrioridade(topicos: TopicoPlanejamento[]): TopicoPlanejamento[] {
+export function gerarPlanoAdaptativoAvancado(data: PlanejamentoInteligenteData): PlanejamentoInteligenteData {
+
+==================================================
+ARQUIVO: lib\planner-ai-advanced.ts
+LINHAS: 164
+TAMANHO: 4790 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadAppData } from "@/lib/app-storage";
+
+--- EXPORTAÇÕES ---
+export function gerarCronogramaInteligenteAvancado(): RankingItem[] {
+export function gerarSugestaoInteligenteAvancada(materiaNome: string): SuggestionResult {
+
+==================================================
+ARQUIVO: lib\planner-ai.ts
+LINHAS: 56
+TAMANHO: 1389 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadAppData } from "@/lib/app-storage";
+
+--- EXPORTAÇÕES ---
+export function gerarSugestaoInteligente(materiaNome: string) {
+
+==================================================
+ARQUIVO: lib\planner-engine.ts
+LINHAS: 134
+TAMANHO: 3897 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import type { PlannerConfig, MateriaPlanejamento } from "@/lib/planner-storage";
+import { ensureMateriaColors, getMateriaColor } from "@/lib/planner-colors";
+
+--- EXPORTAÇÕES ---
+export type StudyBlock = {
+export type StudyDay = {
+export function generateWeeklyPlan(config: PlannerConfig): StudyDay[] {
+export function buildDistribution(days: StudyDay[]) {
+
+==================================================
+ARQUIVO: lib\planner-smart.ts
+LINHAS: 60
+TAMANHO: 1732 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import type { PlannerConfig, MateriaPlanejamento } from "@/lib/planner-storage";
+import type { PlannerAiResult } from "@/lib/planner-ai-real";
+
+--- EXPORTAÇÕES ---
+export function reorderMateriasBySmartPriority(
+export function generateSmartPlannerConfig(
+
+==================================================
+ARQUIVO: lib\planner-sync.ts
+LINHAS: 25
+TAMANHO: 574 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { updateAppData } from "@/lib/app-storage";
+
+--- EXPORTAÇÕES ---
+export function enviarParaPlanner(payload: {
+
+==================================================
+ARQUIVO: lib\planner.ts
+LINHAS: 22
+TAMANHO: 542 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadPlanningBrain } from "@/lib/planning-state";
+
+--- EXPORTAÇÕES ---
+export async function loadPlanner(): Promise<PlannerConfig> {
+export async function savePlanner(
+export async function getPlanner(): Promise<any> {
+
+==================================================
+ARQUIVO: lib\pomodoro-notify.ts
+LINHAS: 9
+TAMANHO: 220 bytes
+SINAIS DE RISCO: Notificações
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { enviarNotificacao } from "@/lib/notifications";
+
+--- EXPORTAÇÕES ---
+export function notificarFimPomodoro() {
+
+==================================================
+ARQUIVO: lib\pomodoro-sync.ts
+LINHAS: 14
+TAMANHO: 318 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { updateAppData } from "@/lib/app-storage";
+
+--- EXPORTAÇÕES ---
+export function concluirMissaoPomodoro(missaoId: number) {
+
+==================================================
+ARQUIVO: lib\premium-access.ts
+LINHAS: 4
+TAMANHO: 86 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function podeUsarPremium(user: any) {
+
+==================================================
+ARQUIVO: lib\premium-colors.ts
+LINHAS: 47
+TAMANHO: 1134 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function getPremiumColor(name?: string) {
+export function hexToRgba(hex: string, alpha: number) {
+
+==================================================
+ARQUIVO: lib\priority-engine.ts
+LINHAS: 29
+TAMANHO: 802 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function getPriorityTopics(app: AnyObj) {
+
+==================================================
+ARQUIVO: lib\progress-utils.ts
+LINHAS: 18
+TAMANHO: 399 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function calcularProgressoMateria(materia: any) {
+
+==================================================
+ARQUIVO: lib\progress.ts
+LINHAS: 54
+TAMANHO: 1278 bytes
+SINAIS DE RISCO: Firebase
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { doc, getDoc, setDoc, updateDoc, increment } from "firebase/firestore";
+import { db } from "./firebase";
+
+--- EXPORTAÇÕES ---
+export async function ensureProgress(uid: string) {
+export async function addXP(uid: string, xp: number) {
+export async function incrementQuestionStats(
+
+==================================================
+ARQUIVO: lib\progresso-core.ts
+LINHAS: 12
+TAMANHO: 372 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { asArray } from "./safe-array";
+
+--- EXPORTAÇÕES ---
+export function calcularProgressoMateria(materia: any) {
+
+==================================================
+ARQUIVO: lib\push.ts
+LINHAS: 13
+TAMANHO: 306 bytes
+SINAIS DE RISCO: Firebase
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { getMessaging, getToken } from "firebase/messaging";
+import app from "@/lib/firebase";
+
+--- EXPORTAÇÕES ---
+export async function ativarPush() {
+
+==================================================
+ARQUIVO: lib\questions.ts
+LINHAS: 43
+TAMANHO: 1172 bytes
+SINAIS DE RISCO: Firebase
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { db } from "@/lib/firebase";
+import { addDoc, collection, deleteDoc, doc, serverTimestamp } from "firebase/firestore";
+
+--- EXPORTAÇÕES ---
+export type WrongQuestion = {
+export async function addWrongQuestion(params: {
+export async function deleteWrongQuestion(uid: string, id: string) {
+
+==================================================
+ARQUIVO: lib\report-builder.ts
+LINHAS: 12
+TAMANHO: 341 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function gerarRelatorioProfissional(data: any) {
+
+==================================================
+ARQUIVO: lib\review-calendar.ts
+LINHAS: 42
+TAMANHO: 1034 bytes
+SINAIS DE RISCO: Window/Document
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadFromStorage, saveToStorage } from "@/lib/storage-core";
+
+--- EXPORTAÇÕES ---
+export type ReviewCalendarItem = {
+export function getReviewCalendar(): ReviewCalendarItem[] {
+export function saveReviewCalendar(items: ReviewCalendarItem[]) {
+export function addReviewCalendarItem(item: ReviewCalendarItem) {
+export function removeReviewCalendarItem(id: string) {
+
+==================================================
+ARQUIVO: lib\reviewEngine.ts
+LINHAS: 128
+TAMANHO: 3334 bytes
+SINAIS DE RISCO: Firebase
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { db } from "@/lib/firebase";
+
+--- EXPORTAÇÕES ---
+export type ErrorItem = {
+export function generateSimilarQuestion(materia: string, enunciado: string) {
+export async function addWrongAnswer(params: {
+export async function listDueReviews(uid: string) {
+export async function listAllErrors(uid: string) {
+export async function markReviewResultWithState(params: {
+
+==================================================
+ARQUIVO: lib\safe-data.ts
+LINHAS: 7
+TAMANHO: 201 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function safeArray(value: any): any[] {
+export function safeString(value: any): string {
+
+==================================================
+ARQUIVO: lib\settings.ts
+LINHAS: 38
+TAMANHO: 883 bytes
+SINAIS DE RISCO: Window/Document
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadFromStorage, saveToStorage } from "@/lib/storage-core";
+
+--- EXPORTAÇÕES ---
+export type AppSettings = {
+export function getSettings(): AppSettings {
+export function saveSettings(settings: AppSettings) {
+
+==================================================
+ARQUIVO: lib\simulados-prova\recomendacao.ts
+LINHAS: 43
+TAMANHO: 1128 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function recomendarSimulado(params: {
+
+==================================================
+ARQUIVO: lib\stats.ts
+LINHAS: 69
+TAMANHO: 1777 bytes
+SINAIS DE RISCO: Firebase
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { doc, getDoc, runTransaction, setDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+
+--- EXPORTAÇÕES ---
+export type UserStats = {
+export const DEFAULT_STATS: UserStats = {
+export async function getStats(uid: string): Promise<UserStats> {
+export async function resetStats(uid: string): Promise<void> {
+export async function incrementStats(uid: string, args: IncrementArgs): Promise<void> {
+
+==================================================
+ARQUIVO: lib\storage-client.ts
+LINHAS: 72
+TAMANHO: 1760 bytes
+SINAIS DE RISCO: Window/Document, localStorage
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import type { EstatisticasGerais, Flashcard, Materia, Missao, RevisaoItem } from "./app-types";
+
+--- EXPORTAÇÕES ---
+export function lerMaterias(): Materia[] {
+export function salvarMaterias(materias: Materia[]) {
+export function lerFlashcards(): Flashcard[] {
+export function salvarFlashcards(cards: Flashcard[]) {
+export function lerMissoes(): Missao[] {
+export function salvarMissoes(missoes: Missao[]) {
+export function lerRevisoes(): RevisaoItem[] {
+export function salvarRevisoes(revisoes: RevisaoItem[]) {
+export function lerStats(): EstatisticasGerais {
+export function salvarStats(stats: EstatisticasGerais) {
+
+==================================================
+ARQUIVO: lib\streak-utils.ts
+LINHAS: 32
+TAMANHO: 653 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+(nenhuma)
+
+--- EXPORTAÇÕES ---
+export function calcularStreak(datas: string[] = []) {
+export function gerarMapaConstancia(datas: string[] = []) {
+
+==================================================
+ARQUIVO: lib\study-history.ts
+LINHAS: 36
+TAMANHO: 841 bytes
+SINAIS DE RISCO: Window/Document
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadFromStorage, saveToStorage, removeFromStorage } from "@/lib/storage-core";
+
+--- EXPORTAÇÕES ---
+export type StudySession = {
+export function getStudyHistory(): StudySession[] {
+export function saveStudySession(session: StudySession) {
+export function clearStudyHistory() {
+
+==================================================
+ARQUIVO: lib\study.ts
+LINHAS: 90
+TAMANHO: 1634 bytes
+SINAIS DE RISCO: Window/Document
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadFromStorage, saveToStorage } from "@/lib/storage-core";
+
+--- EXPORTAÇÕES ---
+export async function startStudy(uid: string) {
+export async function endStudy(
+export async function saveStudySession(data: {
+
+==================================================
+ARQUIVO: lib\sugestoes-ia.ts
+LINHAS: 127
+TAMANHO: 3606 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadFromStorage, saveToStorage } from "@/lib/storage-core";
+
+--- EXPORTAÇÕES ---
+export function gerarSugestoesIA(app: any, planner: any) {
+export function saveSugestoesIA(sugestoes: any[]) {
+export function getSugestoesIA() {
+export function buildGraficoPizzaData(sugestoes: any[]) {
+export function buildConicGradient(sugestoes: any[]) {
+
+==================================================
+ARQUIVO: lib\uid.ts
+LINHAS: 4
+TAMANHO: 141 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+export function uid(prefix = "id") {
+
+--- EXPORTAÇÕES ---
+export function uid(prefix = "id") {
+
+==================================================
+ARQUIVO: lib\uploads.ts
+LINHAS: 66
+TAMANHO: 1989 bytes
+SINAIS DE RISCO: Firebase
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { db, storage } from "@/lib/firebase";
+import { addDoc, collection, deleteDoc, doc, getDocs, query, serverTimestamp, where } from "firebase/firestore";
+import { deleteObject, getDownloadURL, ref, uploadBytes } from "firebase/storage";
+
+--- EXPORTAÇÕES ---
+export type UploadItem = {
+export async function uploadFileForUser(params: {
+export async function deleteUploadForUser(uid: string, uploadId: string, storagePath: string) {
+export async function backfillMateriaNome(uid: string, materiaId: string, materiaNome: string) {
+
+==================================================
+ARQUIVO: lib\use-app-loading.ts
+LINHAS: 28
+TAMANHO: 623 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { useCallback, useState } from "react";
+
+--- EXPORTAÇÕES ---
+export function useAppLoading(initialValue = false) {
+
+==================================================
+ARQUIVO: lib\userOpenai.ts
+LINHAS: 22
+TAMANHO: 437 bytes
+SINAIS DE RISCO: OpenAI/Gemini, Firebase
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import OpenAI from "openai";
+import { doc,getDoc } from "firebase/firestore";
+import { db } from "./firebase";
+
+--- EXPORTAÇÕES ---
+export async function getUserOpenAI(uid:string){
+
+==================================================
+ARQUIVO: lib\users.ts
+LINHAS: 14
+TAMANHO: 299 bytes
+SINAIS DE RISCO: Firebase
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { db } from "@/lib/firebase";
+import { doc, setDoc } from "firebase/firestore";
+
+--- EXPORTAÇÕES ---
+export async function criarPerfilUsuario(
+
+==================================================
+ARQUIVO: lib\withAppMutation.ts
+LINHAS: 8
+TAMANHO: 202 bytes
+SINAIS DE RISCO: Nenhum detectado
+
+--- IMPORTAÇÕES / REEXPORTAÇÕES ---
+import { loadAppData, saveAppData } from "@/lib/app-storage";
+
+--- EXPORTAÇÕES ---
+export function withAppMutation(fn: (app: any) => void) {

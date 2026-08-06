@@ -1,0 +1,365 @@
+﻿=== AUDITORIA DE USO REAL ===
+Gerada em: 22/07/2026 19:18:18
+
+=== CONTEÚDO DOS SCRIPTS RESTANTES ===
+
+----- scripts\backup-project.ps1 -----
+$origem = "C:\Users\Maria Eduarda\Desktop\cp-focus-rebuild"
+$destino = "C:\Users\Maria Eduarda\Desktop\cp-focus-backup-$(Get-Date -Format yyyyMMdd-HHmm)"
+
+Copy-Item $origem $destino -Recurse
+
+Write-Host "Backup criado em: $destino"
+
+----- scripts\integrar-revisao-real.cjs -----
+const fs = require("fs");
+const path = require("path");
+
+const file = path.join(process.cwd(), "app/(app)/revisao-inteligente/page.tsx");
+
+if (!fs.existsSync(file)) {
+  throw new Error("Arquivo nÃ£o encontrado: " + file);
+}
+
+let text = fs.readFileSync(file, "utf8");
+
+if (!text.includes('@/lib/fase2-service')) {
+  text = text.replace(
+    'import { useEffect, useMemo, useState } from "react";',
+    'import { useEffect, useMemo, useState } from "react";\nimport { getTodayReviewQueue, getFase2State } from "@/lib/fase2-service";'
+  );
+}
+
+text = text.replace(
+  /const revisoesBase: RevisaoItem\[\] = \[[\s\S]*?\];\n\nfunction dificuldadeCor/,
+  `function dificuldadeCor`
+);
+
+text = text.replace(
+  /  const \[segundos, setSegundos\] = useState\(25 \* 60\);\n  const \[rodando, setRodando\] = useState\(false\);/,
+  `  const [segundos, setSegundos] = useState(25 * 60);
+  const [rodando, setRodando] = useState(false);
+  const [revisoesReais, setRevisoesReais] = useState<any[]>([]);
+  const [metricasReais, setMetricasReais] = useState<any>(null);`
+);
+
+text = text.replace(
+  /  useEffect\(\(\) => \{\n    if \(!rodando\) return;/,
+  `  useEffect(() => {
+    const estado = getFase2State();
+    const fila = getTodayReviewQueue();
+
+    setRevisoesReais(fila);
+    setMetricasReais(estado.metrics);
+  }, []);
+
+  useEffect(() => {
+    if (!rodando) return;`
+);
+
+text = text.replace(
+  /  const revisoes = useMemo\(\(\) => \{\n    let lista = \[\.\.\.revisoesBase\];[\s\S]*?\n  \}, \[ordem, materiaFiltro, topicoFiltro\]\);/,
+  `  const revisoes = useMemo(() => {
+    let lista = revisoesReais.map((item) => ({
+      id: item.id,
+      materia: item.materiaNome || "Sem matÃ©ria",
+      topico: item.topicoNome || "Sem tÃ³pico",
+      subtitulo: item.subtopicoNome || item.titulo || "Item de revisÃ£o",
+      dificuldade: item.erros > 2 ? "Alta" : item.erros > 0 ? "MÃ©dia" : "Baixa",
+      revisaoEm: item.intervaloDias <= 1 ? "24h" : item.intervaloDias + " dias",
+      quando: item.proximaRevisaoEm || "Sem data",
+      status: item.erros > 0 ? "Errei " + item.erros + "x" : item.acertos > 0 ? "Acertei " + item.acertos + "x" : "Novo item",
+      tag: item.status === "nova" ? "Novo" : item.erros > 0 ? "ReforÃ§ar" : "Bom",
+      icone: "â–£",
+      cor: item.erros > 2 ? "from-rose-600 to-orange-500" : item.erros > 0 ? "from-orange-500 to-amber-400" : "from-violet-600 to-fuchsia-500",
+      erros: item.erros || 0,
+      acertos: item.acertos || 0,
+      raw: item,
+    })) as RevisaoItem[];
+
+    if (materiaFiltro !== "Todas as matÃ©rias") {
+      lista = lista.filter((item) => item.materia === materiaFiltro);
+    }
+
+    if (topicoFiltro !== "Todos os tÃ³picos") {
+      lista = lista.filter((item) => item.topico === topicoFiltro);
+    }
+
+    if (ordem === "Dificuldade") {
+      lista.sort((a, b) => {
+        const peso = { Alta: 3, MÃ©dia: 2, Baixa: 1 };
+        return peso[b.dificuldade] - peso[a.dificuldade];
+      });
+    }
+
+    if (ordem === "Prazo") {
+      lista.sort((a, b) => a.quando.localeCompare(b.quando));
+    }
+
+    return lista;
+  }, [ordem, materiaFiltro, topicoFiltro, revisoesReais]);`
+);
+
+text = text.replace(
+  /\{revisoesBase\.map\(\(item\) => \(\n\s+<option key=\{item\.id\}>\{item\.topico\}<\/option>\n\s+\)\)\}/,
+  `{Array.from(new Set(revisoesReais.map((item) => item.topicoNome || "Sem tÃ³pico"))).map((topico) => (
+                  <option key={topico}>{topico}</option>
+                ))}`
+);
+
+text = text.replace(
+  /<option>Todas as matÃ©rias<\/option>\n\s+<option>Direito Constitucional<\/option>\n\s+<option>Direito Administrativo<\/option>\n\s+<option>Direito Penal<\/option>\n\s+<option>MatemÃ¡tica<\/option>\n\s+<option>PortuguÃªs<\/option>/,
+  `<option>Todas as matÃ©rias</option>
+                {Array.from(new Set(revisoesReais.map((item) => item.materiaNome || "Sem matÃ©ria"))).map((materia) => (
+                  <option key={materia}>{materia}</option>
+                ))}`
+);
+
+text = text.replace(
+  /\["âŸ³", "18", "Itens para revisar", "Hoje", "text-violet-300"\],\n\s+\["â—·", "7", "Vencem hoje", "Prioridade alta", "text-orange-300"\],\n\s+\["â–£", "23", "Vencem esta semana", "Mantenha o ritmo!", "text-sky-300"\],\n\s+\["âœ“", "92%", "Taxa de acertos", "Excelente!", "text-emerald-300"\],/,
+  `["âŸ³", String(revisoesReais.length), "Itens para revisar", "Hoje", "text-violet-300"],
+              ["â—·", String(metricasReais?.revisoesAtrasadas ?? 0), "RevisÃµes atrasadas", "Prioridade alta", "text-orange-300"],
+              ["â–£", String(metricasReais?.totalReviews ?? 0), "Total no sistema", "Base real", "text-sky-300"],
+              ["âœ“", String(metricasReais?.taxaAcerto ?? 0) + "%", "Taxa de acertos", "Desempenho", "text-emerald-300"],`
+);
+
+text = text.replace(
+  /<div className=\{visual === "cards" \? "grid gap-4 md:grid-cols-2" : "space-y-3"\}>\n\s+\{revisoes\.map\(\(item\) => \(/,
+  `<div className={visual === "cards" ? "grid gap-4 md:grid-cols-2" : "space-y-3"}>
+            {revisoes.length === 0 && (
+              <div className="rounded-3xl border border-white/10 bg-[#080d21]/90 p-8 text-center shadow-xl shadow-black/20">
+                <p className="text-xl font-black text-white">Nenhuma revisÃ£o pendente hoje</p>
+                <p className="mt-2 text-sm text-slate-400">
+                  Quando vocÃª salvar conteÃºdos, erros ou subtÃ³picos para revisÃ£o, eles aparecerÃ£o aqui automaticamente.
+                </p>
+              </div>
+            )}
+
+            {revisoes.map((item) => (`
+);
+
+fs.writeFileSync(file, text, "utf8");
+console.log("RevisÃ£o Inteligente integrada aos dados reais da Fase 2.");
+
+----- scripts\remover-modo-cp.cjs -----
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+
+const files = [
+  "lib/menu.ts",
+  "lib/routes.ts",
+  "components/app-menu.tsx",
+  "components/AppNav.tsx",
+  "components/app-shell.tsx",
+  "app/(app)/dashboard/page.tsx",
+];
+
+function removeObjectEntriesContaining(text, needles) {
+  let out = "";
+  let i = 0;
+
+  while (i < text.length) {
+    const open = text.indexOf("{", i);
+    if (open === -1) {
+      out += text.slice(i);
+      break;
+    }
+
+    out += text.slice(i, open);
+
+    let depth = 0;
+    let j = open;
+    let inString = false;
+    let quote = "";
+    let escaped = false;
+
+    for (; j < text.length; j++) {
+      const ch = text[j];
+
+      if (inString) {
+        if (escaped) {
+          escaped = false;
+        } else if (ch === "\\") {
+          escaped = true;
+        } else if (ch === quote) {
+          inString = false;
+          quote = "";
+        }
+        continue;
+      }
+
+      if (ch === '"' || ch === "'" || ch === "`") {
+        inString = true;
+        quote = ch;
+        continue;
+      }
+
+      if (ch === "{") depth++;
+      if (ch === "}") {
+        depth--;
+        if (depth === 0) {
+          j++;
+          break;
+        }
+      }
+    }
+
+    const block = text.slice(open, j);
+    const hasNeedle = needles.some((n) => block.includes(n));
+
+    if (hasNeedle) {
+      let k = j;
+      while (k < text.length && /\s/.test(text[k])) k++;
+      if (text[k] === ",") k++;
+      i = k;
+    } else {
+      out += block;
+      i = j;
+    }
+  }
+
+  return out;
+}
+
+function removeJsxLinksContaining(text, needles) {
+  let result = text;
+
+  for (const needle of needles) {
+    result = result.replace(
+      new RegExp(`<Link[\\s\\S]{0,900}${needle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}[\\s\\S]{0,900}<\\/Link>`, "g"),
+      ""
+    );
+
+    result = result.replace(
+      new RegExp(`<a[\\s\\S]{0,900}${needle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}[\\s\\S]{0,900}<\\/a>`, "g"),
+      ""
+    );
+  }
+
+  return result;
+}
+
+for (const relative of files) {
+  const file = path.join(root, relative);
+  if (!fs.existsSync(file)) continue;
+
+  let text = fs.readFileSync(file, "utf8");
+  const before = text;
+
+  text = removeObjectEntriesContaining(text, [
+    "/modo-cp",
+    "modo-cp",
+    "Modo CP",
+    "ModoCP",
+  ]);
+
+  text = removeJsxLinksContaining(text, [
+    "/modo-cp",
+    "modo-cp",
+    "Modo CP",
+    "ModoCP",
+  ]);
+
+  text = text
+    .replace(/^\s*.*["'`]\/modo-cp["'`].*\r?\n/gm, "")
+    .replace(/^\s*.*modo-cp.*\r?\n/gim, "")
+    .replace(/^\s*.*Modo CP.*\r?\n/gm, "");
+
+  if (text !== before) {
+    fs.writeFileSync(file, text, "utf8");
+    console.log("Atualizado:", relative);
+  } else {
+    console.log("Sem alteraÃ§Ã£o:", relative);
+  }
+}
+
+const modoCpPageDir = path.join(root, "app/(app)/modo-cp");
+fs.mkdirSync(modoCpPageDir, { recursive: true });
+
+const modoCpPage = `"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+export default function ModoCpDesativadoPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/dashboard");
+  }, [router]);
+
+  return (
+    <main className="min-h-screen p-6 text-white">
+      <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
+        <p className="text-sm text-white/70">
+          O Modo CP foi incorporado ao motor inteligente do app. Redirecionando para o Dashboard...
+        </p>
+      </div>
+    </main>
+  );
+}
+`;
+
+fs.writeFileSync(path.join(modoCpPageDir, "page.tsx"), modoCpPage, "utf8");
+console.log("Rota /modo-cp neutralizada com redirect para /dashboard.");
+
+const nextDir = path.join(root, ".next");
+if (fs.existsSync(nextDir)) {
+  fs.rmSync(nextDir, { recursive: true, force: true });
+  console.log("Cache .next removido.");
+}
+
+=== REFERÊNCIAS AOS SCRIPTS NO PROJETO ===
+
+--- backup-project ---
+AUDITORIA_ATUAL.txt:249: scripts\backup-project.ps1
+
+--- integrar-revisao-real ---
+AUDITORIA_ATUAL.txt:255: scripts\integrar-revisao-real.cjs
+
+--- remover-modo-cp ---
+AUDITORIA_ATUAL.txt:266: scripts\remover-modo-cp.cjs
+
+=== POSSÍVEIS COMPONENTES DUPLICADOS POR NOME ===
+
+Nome duplicado: page-transition
+  components\layout\page-transition.tsx
+  components\ui\page-transition.tsx
+
+=== IMPORTAÇÕES DOS COMPONENTES SUSPEITOS ===
+
+--- AppShell ---
+app\(app)\layout.tsx:1: import AppShell from "@/components/app-shell";
+app\(app)\layout.tsx:11: <AppShell>{children}</AppShell>
+components\app-shell.tsx:32: export default function AppShell({ children }: { children: React.ReactNode }) {
+components\AppShell.tsx:4: import AppShellColorido from "@/components/app-shell";
+components\AppShell.tsx:6: export default function AppShell({
+components\AppShell.tsx:18: <AppShellColorido>
+components\AppShell.tsx:33: </AppShellColorido>
+
+--- AppNav ---
+components\AppNav.tsx:7: export default function AppNav({ title }: { title?: string }) {
+components\ShellClient.tsx:4: import AppNav from "@/components/AppNav";
+components\ShellClient.tsx:13: {!hideNav && <AppNav title={path === "/dashboard" ? "Dashboard" : "CP Focus"} />}
+lib\routes.ts:1: export type AppNavItem = {
+lib\routes.ts:24: export const OFFICIAL_APP_NAV: AppNavItem[] = [
+
+--- ShellClient ---
+components\ShellClient.tsx:6: export default function ShellClient({ children }: { children: React.ReactNode }) {
+
+--- page-transition ---
+
+--- ThemeProvider ---
+app\providers.tsx:146: export function ThemeProvider({ children }: { children: React.ReactNode }) {
+app\providers.tsx:187: <ThemeProvider>
+app\providers.tsx:189: </ThemeProvider>
+app\providers.tsx:204: throw new Error("useTheme deve ser usado dentro de ThemeProvider");
+components\ThemeProvider.tsx:23: export function ThemeProvider({ children }: { children: React.ReactNode }) {
+components\ThemeProvider.tsx:60: if (!ctx) throw new Error("useTheme must be used within ThemeProvider");
+
+--- ThemeToggle ---
+app\(app)\layout.tsx:2: import ThemeToggle from "@/components/ui/ThemeToggle";
+app\(app)\layout.tsx:8: <ThemeToggle />
+components\ui\ThemeToggle.tsx:13: export default function ThemeToggle() {

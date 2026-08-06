@@ -1,0 +1,276 @@
+=== AUDITORIA DE ARQUIVOS POSSIVELMENTE ORFAOS ===
+Gerada em: 22/07/2026, 19:27:56
+
+Total de arquivos analisados: 237
+Arquivos sem importacao encontrada: 122
+
+IMPORTANTE:
+Um arquivo nesta lista nao deve ser apagado automaticamente.
+Ele pode ser carregado por convencao, string dinamica ou mecanismo externo.
+
+=== POSSIVELMENTE ORFAOS ===
+components/AppShell.tsx
+components/ShellClient.tsx
+components/StudyChart.tsx
+components/StudyTimer.tsx
+components/StudyTotals.tsx
+components/ThemeProvider.tsx
+components/TimerProvider.tsx
+components/cloud/cloud-sync-btn.tsx
+components/dashboard/advanced-analytics.tsx
+components/dashboard/live-dashboard.tsx
+components/dashboard/metric-card.tsx
+components/evolucao/heatmap.tsx
+components/flashcards/flashcard-player.tsx
+components/ia/ia-actions.tsx
+components/layout/PageLayout.tsx
+components/layout/page-transition.tsx
+components/materia-card.tsx
+components/materias/banco-erros.tsx
+components/materias/materia-core.tsx
+components/materias/materia-fase4-client.tsx
+components/onboarding/OnboardingWizard.tsx
+components/planning/OnboardingPlanningBridge.tsx
+components/progress/bar-chart.tsx
+components/progress/pie-chart.tsx
+components/progress/progress-chart.tsx
+components/progress/study-heatmap.tsx
+components/reports/export-report-btn.tsx
+components/tutorial/quick-tutorial.tsx
+components/ui/app-card.tsx
+components/ui/empty-state.tsx
+components/ui/focus-mode.tsx
+components/ui/page-header.tsx
+components/ui/page-transition.tsx
+components/ui/skeleton.tsx
+hooks/use-app-data.ts
+lib/ai-api.ts
+lib/ai-app-context.ts
+lib/ai-features.ts
+lib/ai-prompts.ts
+lib/ai.ts
+lib/analytics.ts
+lib/app-action.ts
+lib/app-data-normalizer.ts
+lib/app-notify.ts
+lib/app-shell-config.ts
+lib/app-ui.ts
+lib/auth-service.ts
+lib/auto-review.ts
+lib/banca-detector.ts
+lib/billing/plans.ts
+lib/cloud-realtime-sync.ts
+lib/cn.ts
+lib/conteudo.ts
+lib/cp-engine.ts
+lib/cp-focus-core.ts
+lib/cp-stats.ts
+lib/daily-goals.ts
+lib/data-access/sync.ts
+lib/drag-drop.ts
+lib/edital-engine.ts
+lib/edital-pdf.ts
+lib/erros.ts
+lib/evolucao.ts
+lib/export-utils.ts
+lib/exportClient.ts
+lib/fase4-banco-erros.ts
+lib/fase4-conteudos.ts
+lib/fase4-progresso.ts
+lib/fase5-cp.ts
+lib/fase6-planejamento.ts
+lib/fcm.ts
+lib/fix-ids.ts
+lib/flashcard-sync.ts
+lib/flashcards-premium.ts
+lib/gamification.ts
+lib/gemini-actions.ts
+lib/historico.ts
+lib/inline-edit.ts
+lib/integrations.ts
+lib/materiaProgress.ts
+lib/materias-ia-premium.ts
+lib/materias-ia.ts
+lib/materias-upload.ts
+lib/mission-engine.ts
+lib/mutate.ts
+lib/payment.ts
+lib/perfil/engine.ts
+lib/planejamento-inteligente-storage.ts
+lib/planner-ai-advanced.ts
+lib/planner-ai.ts
+lib/planner-engine.ts
+lib/planner-smart.ts
+lib/planner-sync.ts
+lib/planner.ts
+lib/pomodoro-notify.ts
+lib/pomodoro-sync.ts
+lib/premium-access.ts
+lib/premium-colors.ts
+lib/priority-engine.ts
+lib/progress-utils.ts
+lib/progress.ts
+lib/progresso-core.ts
+lib/push.ts
+lib/questions.ts
+lib/report-builder.ts
+lib/review-calendar.ts
+lib/reviewEngine.ts
+lib/safe-data.ts
+lib/settings.ts
+lib/simulados-prova/recomendacao.ts
+lib/stats.ts
+lib/storage-client.ts
+lib/streak-utils.ts
+lib/study-history.ts
+lib/study.ts
+lib/sugestoes-ia.ts
+lib/uid.ts
+lib/uploads.ts
+lib/use-app-loading.ts
+lib/userOpenai.ts
+lib/users.ts
+lib/withAppMutation.ts
+
+=== NOMES DE ARQUIVO DUPLICADOS ===
+
+--- auth-service ---
+lib/auth/auth-service.ts
+lib/auth-service.ts
+
+--- engine ---
+lib/adaptive/engine.ts
+lib/perfil/engine.ts
+lib/simulados-prova/engine.ts
+
+--- index ---
+lib/capabilities/index.ts
+lib/concursos/index.ts
+lib/gamificacao/index.ts
+lib/sessoes/index.ts
+
+--- layout ---
+app/(app)/dashboard/layout.tsx
+app/(app)/layout.tsx
+app/layout.tsx
+
+--- page ---
+app/(app)/ajuda/page.tsx
+app/(app)/banco-de-erros/page.tsx
+app/(app)/dashboard/page.tsx
+app/(app)/evolucao/page.tsx
+app/(app)/flashcards/page.tsx
+app/(app)/ia/page.tsx
+app/(app)/inteligencia/page.tsx
+app/(app)/materias/page.tsx
+app/(app)/materias/[materiaId]/page.tsx
+app/(app)/materias/[materiaId]/[topicoId]/page.tsx
+app/(app)/materias/[materiaId]/[topicoId]/[subtopicoId]/page.tsx
+app/(app)/modo-foco/page.tsx
+app/(app)/onboarding/page.tsx
+app/(app)/perfil/page.tsx
+app/(app)/planejamento-inteligente/page.tsx
+app/(app)/planos/page.tsx
+app/(app)/questoes/page.tsx
+app/(app)/recuperacao/page.tsx
+app/(app)/revisao-inteligente/page.tsx
+app/(app)/simulados/page.tsx
+app/login/page.tsx
+app/page.tsx
+
+--- page-transition ---
+components/layout/page-transition.tsx
+components/ui/page-transition.tsx
+
+--- plans ---
+lib/billing/plans.ts
+lib/plans.ts
+
+--- route ---
+app/api/billing/checkout/route.ts
+app/api/diagnostics/route.ts
+app/api/gemini/route.ts
+app/api/ia/route.ts
+
+=== ARQUIVOS IMPORTADOS E QUANTIDADE DE REFERENCIAS ===
+  3  app/providers.tsx
+  1  app/types.ts
+  2  components/app-shell.tsx
+  1  components/AppNav.tsx
+  1  components/guided-flow-widget.tsx
+  1  components/study/DigitalNotebook.tsx
+  1  components/ui/ThemeToggle.tsx
+  4  lib/adaptive/engine.ts
+  1  lib/ai-engine.ts
+  2  lib/ai-helpers.ts
+  1  lib/ai-study-engine.ts
+  1  lib/app-data-defaults.ts
+  2  lib/app-engine.ts
+  1  lib/app-error.ts
+  1  lib/app-feedback.ts
+ 42  lib/app-storage.ts
+ 13  lib/app-types.ts
+  1  lib/auth/auth-service.ts
+  1  lib/capabilities/index.ts
+  1  lib/cespe-generator.ts
+  1  lib/cloud-sync.ts
+  1  lib/concursos/index.ts
+  1  lib/concursos/pf.ts
+  1  lib/concursos/prf.ts
+  1  lib/concursos/service.ts
+ 24  lib/data-access/app-repository.ts
+ 11  lib/data-access/keys.ts
+  3  lib/data-access/provider.ts
+  1  lib/error-messages.ts
+  1  lib/fase2-service.ts
+  4  lib/fase2-storage.ts
+  7  lib/fase2-types.ts
+  2  lib/fase4-materias.ts
+  1  lib/fase7-revisao.ts
+ 20  lib/firebase.ts
+  4  lib/flashcards-core.ts
+  5  lib/gamificacao/index.ts
+  2  lib/gemini-prompts.ts
+  1  lib/guided-flow.ts
+  1  lib/ia-core.ts
+  1  lib/materias-core.ts
+  1  lib/notifications.ts
+  1  lib/onboarding-storage.ts
+  1  lib/performance-metrics.ts
+  1  lib/planner-ai-real.ts
+  2  lib/planner-colors.ts
+  1  lib/planner-core.ts
+  4  lib/planner-storage.ts
+  1  lib/planner-ui-storage.ts
+  7  lib/planning-state.ts
+  4  lib/plans.ts
+  1  lib/profile/behavior-engine.ts
+  1  lib/profile/planner-profile-adapter.ts
+  1  lib/profile/preferences-engine.ts
+  1  lib/profile/profile-engine.ts
+  1  lib/profile/timeline-engine.ts
+  1  lib/progresso.ts
+  1  lib/questoes-history.ts
+  1  lib/questoes/integracao-banco-erros.ts
+  1  lib/review-sync.ts
+  1  lib/revisao-core.ts
+  3  lib/revisao-inteligente-adapter.ts
+  1  lib/revisao-sync.ts
+  1  lib/revisao.ts
+  2  lib/routes.ts
+  2  lib/safe-array.ts
+  1  lib/sessoes/index.ts
+  1  lib/sidebar.ts
+  1  lib/simulado-loop.ts
+  1  lib/simulados-prova/adaptive.ts
+  2  lib/simulados-prova/engine.ts
+  1  lib/simulados-prova/procedural.ts
+  3  lib/spaced-repetition.ts
+  1  lib/spaced.ts
+ 22  lib/storage-core.ts
+  1  lib/studySessions.ts
+  1  lib/subscription.ts
+  5  lib/supabase/client.ts
+  1  lib/theme-storage.ts
+  1  lib/timerStore.ts
+  1  lib/xp-system.ts

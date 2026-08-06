@@ -1,0 +1,524 @@
+=== AUDITORIA DO GRAFO REAL DE DEPENDÊNCIAS ===
+Gerada em: 2026-07-23T14:58:18.266Z
+
+Arquivos do projeto analisados: 110
+Entradas Next.js detectadas: 33
+Arquivos alcançáveis pelas entradas: 80
+Arquivos existentes em lib: 66
+Libs alcançáveis: 43
+Libs não alcançáveis: 23
+
+=== ENTRADAS DETECTADAS ===
+- app/(app)/ajuda/page.tsx
+- app/(app)/banco-de-erros/page.tsx
+- app/(app)/dashboard/layout.tsx
+- app/(app)/dashboard/page.tsx
+- app/(app)/evolucao/page.tsx
+- app/(app)/flashcards/page.tsx
+- app/(app)/ia/page.tsx
+- app/(app)/inteligencia/page.tsx
+- app/(app)/layout.tsx
+- app/(app)/materias/[materiaid]/[topicoid]/[subtopicoid]/page.tsx
+- app/(app)/materias/[materiaid]/[topicoid]/page.tsx
+- app/(app)/materias/[materiaid]/page.tsx
+- app/(app)/materias/page.tsx
+- app/(app)/modo-foco/page.tsx
+- app/(app)/onboarding/page.tsx
+- app/(app)/perfil/page.tsx
+- app/(app)/planejamento-inteligente/page.tsx
+- app/(app)/planos/page.tsx
+- app/(app)/questoes/page.tsx
+- app/(app)/recuperacao/page.tsx
+- app/(app)/revisao-inteligente/page.tsx
+- app/(app)/simulados/page.tsx
+- app/api/billing/checkout/route.ts
+- app/api/diagnostics/route.ts
+- app/api/gemini/route.ts
+- app/api/ia/route.ts
+- app/global-error.tsx
+- app/layout.tsx
+- app/loading.tsx
+- app/login/page.tsx
+- app/not-found.tsx
+- app/page.tsx
+- proxy.ts
+
+=== LIBS ALCANÇÁVEIS ===
+
+ARQUIVO: lib/adaptive/engine.ts
+IMPORTADORES: 4
+DEPENDÊNCIAS: 0
+  <- app/(app)/dashboard/page.tsx
+  <- app/(app)/inteligencia/page.tsx
+  <- app/(app)/perfil/page.tsx
+  <- app/(app)/simulados/page.tsx
+
+ARQUIVO: lib/ai-engine.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 0
+  <- app/(app)/ia/page.tsx
+
+ARQUIVO: lib/ai-helpers.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 1
+  <- lib/ai-study-engine.ts
+  -> lib/storage-core.ts
+
+ARQUIVO: lib/ai-study-engine.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 2
+  <- lib/fase2-service.ts
+  -> lib/ai-helpers.ts
+  -> lib/fase2-types.ts
+
+ARQUIVO: lib/app-storage.ts
+IMPORTADORES: 18
+DEPENDÊNCIAS: 2
+  <- app/(app)/banco-de-erros/page.tsx
+  <- app/(app)/dashboard/page.tsx
+  <- app/(app)/ia/page.tsx
+  <- app/(app)/inteligencia/page.tsx
+  <- app/(app)/materias/[materiaid]/[topicoid]/[subtopicoid]/page.tsx
+  <- app/(app)/materias/[materiaid]/[topicoid]/page.tsx
+  <- app/(app)/materias/[materiaid]/page.tsx
+  <- app/(app)/materias/page.tsx
+  <- app/(app)/perfil/page.tsx
+  <- app/(app)/planejamento-inteligente/page.tsx
+  <- app/(app)/recuperacao/page.tsx
+  <- app/(app)/revisao-inteligente/page.tsx
+  <- app/(app)/simulados/page.tsx
+  <- hooks/use-app-data.ts
+  <- lib/concursos/service.ts
+  <- lib/export-utils.ts
+  <- lib/questoes/integracao-banco-erros.ts
+  <- lib/review-sync.ts
+  -> lib/data-access/app-repository.ts
+  -> lib/storage-core.ts
+
+ARQUIVO: lib/auth/auth-service.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 1
+  <- app/login/page.tsx
+  -> lib/supabase/client.ts
+
+ARQUIVO: lib/cespe-generator.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 1
+  <- lib/fase2-service.ts
+  -> lib/fase2-types.ts
+
+ARQUIVO: lib/concursos/index.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 2
+  <- app/(app)/onboarding/page.tsx
+  -> lib/concursos/pf.ts
+  -> lib/concursos/prf.ts
+
+ARQUIVO: lib/concursos/pf.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 0
+  <- lib/concursos/index.ts
+
+ARQUIVO: lib/concursos/prf.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 0
+  <- lib/concursos/index.ts
+
+ARQUIVO: lib/concursos/service.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 1
+  <- app/(app)/onboarding/page.tsx
+  -> lib/app-storage.ts
+
+ARQUIVO: lib/data-access/app-repository.ts
+IMPORTADORES: 15
+DEPENDÊNCIAS: 2
+  <- app/(app)/dashboard/page.tsx
+  <- app/(app)/evolucao/page.tsx
+  <- app/(app)/flashcards/page.tsx
+  <- app/(app)/inteligencia/page.tsx
+  <- app/(app)/onboarding/page.tsx
+  <- app/(app)/perfil/page.tsx
+  <- app/(app)/planejamento-inteligente/page.tsx
+  <- lib/app-storage.ts
+  <- lib/flashcards-core.ts
+  <- lib/gamificacao/index.ts
+  <- lib/planning-state.ts
+  <- lib/profile/timeline-engine.ts
+  <- lib/questoes-history.ts
+  <- lib/sessoes/index.ts
+  <- lib/simulados-prova/engine.ts
+  -> lib/data-access/keys.ts
+  -> lib/data-access/provider.ts
+
+ARQUIVO: lib/data-access/keys.ts
+IMPORTADORES: 9
+DEPENDÊNCIAS: 0
+  <- app/(app)/banco-de-erros/page.tsx
+  <- app/(app)/modo-foco/page.tsx
+  <- app/(app)/perfil/page.tsx
+  <- app/(app)/planejamento-inteligente/page.tsx
+  <- app/(app)/revisao-inteligente/page.tsx
+  <- app/(app)/simulados/page.tsx
+  <- app/api/diagnostics/route.ts
+  <- lib/data-access/app-repository.ts
+  <- lib/questoes-history.ts
+
+ARQUIVO: lib/data-access/provider.ts
+IMPORTADORES: 2
+DEPENDÊNCIAS: 1
+  <- app/api/diagnostics/route.ts
+  <- lib/data-access/app-repository.ts
+  -> lib/supabase/client.ts
+
+ARQUIVO: lib/error-messages.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 0
+  <- lib/storage-core.ts
+
+ARQUIVO: lib/fase2-service.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 7
+  <- lib/revisao-inteligente-adapter.ts
+  -> lib/ai-study-engine.ts
+  -> lib/cespe-generator.ts
+  -> lib/fase2-storage.ts
+  -> lib/fase2-types.ts
+  -> lib/performance-metrics.ts
+  -> lib/review-sync.ts
+  -> lib/spaced-repetition.ts
+
+ARQUIVO: lib/fase2-storage.ts
+IMPORTADORES: 4
+DEPENDÊNCIAS: 2
+  <- app/(app)/dashboard/page.tsx
+  <- app/(app)/inteligencia/page.tsx
+  <- app/(app)/revisao-inteligente/page.tsx
+  <- lib/fase2-service.ts
+  -> lib/fase2-types.ts
+  -> lib/storage-core.ts
+
+ARQUIVO: lib/fase2-types.ts
+IMPORTADORES: 7
+DEPENDÊNCIAS: 0
+  <- lib/ai-study-engine.ts
+  <- lib/cespe-generator.ts
+  <- lib/fase2-service.ts
+  <- lib/fase2-storage.ts
+  <- lib/performance-metrics.ts
+  <- lib/review-sync.ts
+  <- lib/spaced-repetition.ts
+
+ARQUIVO: lib/flashcards-core.ts
+IMPORTADORES: 3
+DEPENDÊNCIAS: 1
+  <- app/(app)/flashcards/page.tsx
+  <- app/(app)/materias/[materiaid]/[topicoid]/[subtopicoid]/page.tsx
+  <- app/(app)/simulados/page.tsx
+  -> lib/data-access/app-repository.ts
+
+ARQUIVO: lib/gamificacao/index.ts
+IMPORTADORES: 5
+DEPENDÊNCIAS: 1
+  <- app/(app)/evolucao/page.tsx
+  <- app/(app)/materias/[materiaid]/[topicoid]/[subtopicoid]/page.tsx
+  <- app/(app)/modo-foco/page.tsx
+  <- components/app-shell.tsx
+  <- lib/xp-system.ts
+  -> lib/data-access/app-repository.ts
+
+ARQUIVO: lib/guided-flow.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 1
+  <- components/guided-flow-widget.tsx
+  -> lib/storage-core.ts
+
+ARQUIVO: lib/performance-metrics.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 2
+  <- lib/fase2-service.ts
+  -> lib/fase2-types.ts
+  -> lib/spaced-repetition.ts
+
+ARQUIVO: lib/planner-ui-storage.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 1
+  <- components/guided-flow-widget.tsx
+  -> lib/storage-core.ts
+
+ARQUIVO: lib/planning-state.ts
+IMPORTADORES: 6
+DEPENDÊNCIAS: 1
+  <- app/(app)/dashboard/page.tsx
+  <- app/(app)/materias/[materiaid]/[topicoid]/[subtopicoid]/page.tsx
+  <- app/(app)/modo-foco/page.tsx
+  <- app/(app)/onboarding/page.tsx
+  <- app/(app)/planejamento-inteligente/page.tsx
+  <- app/(app)/recuperacao/page.tsx
+  -> lib/data-access/app-repository.ts
+
+ARQUIVO: lib/plans.ts
+IMPORTADORES: 4
+DEPENDÊNCIAS: 0
+  <- app/(app)/planos/page.tsx
+  <- app/api/billing/checkout/route.ts
+  <- lib/capabilities/index.ts
+  <- lib/subscription.ts
+
+ARQUIVO: lib/profile/behavior-engine.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 0
+  <- app/(app)/perfil/page.tsx
+
+ARQUIVO: lib/profile/planner-profile-adapter.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 1
+  <- app/(app)/planejamento-inteligente/page.tsx
+  -> lib/profile/preferences-engine.ts
+
+ARQUIVO: lib/profile/preferences-engine.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 0
+  <- lib/profile/planner-profile-adapter.ts
+
+ARQUIVO: lib/profile/profile-engine.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 0
+  <- app/(app)/perfil/page.tsx
+
+ARQUIVO: lib/profile/timeline-engine.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 1
+  <- app/(app)/perfil/page.tsx
+  -> lib/data-access/app-repository.ts
+
+ARQUIVO: lib/questoes-history.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 2
+  <- app/(app)/questoes/page.tsx
+  -> lib/data-access/app-repository.ts
+  -> lib/data-access/keys.ts
+
+ARQUIVO: lib/questoes/integracao-banco-erros.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 1
+  <- app/(app)/questoes/page.tsx
+  -> lib/app-storage.ts
+
+ARQUIVO: lib/review-sync.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 3
+  <- lib/fase2-service.ts
+  -> lib/app-storage.ts
+  -> lib/fase2-types.ts
+  -> lib/spaced-repetition.ts
+
+ARQUIVO: lib/revisao-inteligente-adapter.ts
+IMPORTADORES: 3
+DEPENDÊNCIAS: 1
+  <- app/(app)/banco-de-erros/page.tsx
+  <- app/(app)/materias/[materiaid]/[topicoid]/[subtopicoid]/page.tsx
+  <- app/(app)/simulados/page.tsx
+  -> lib/fase2-service.ts
+
+ARQUIVO: lib/sessoes/index.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 1
+  <- app/(app)/modo-foco/page.tsx
+  -> lib/data-access/app-repository.ts
+
+ARQUIVO: lib/sidebar.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 1
+  <- components/app-shell.tsx
+  -> lib/storage-core.ts
+
+ARQUIVO: lib/simulados-prova/adaptive.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 0
+  <- app/(app)/simulados/page.tsx
+
+ARQUIVO: lib/simulados-prova/engine.ts
+IMPORTADORES: 2
+DEPENDÊNCIAS: 1
+  <- app/(app)/perfil/page.tsx
+  <- app/(app)/simulados/page.tsx
+  -> lib/data-access/app-repository.ts
+
+ARQUIVO: lib/simulados-prova/procedural.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 0
+  <- app/(app)/simulados/page.tsx
+
+ARQUIVO: lib/spaced-repetition.ts
+IMPORTADORES: 3
+DEPENDÊNCIAS: 1
+  <- lib/fase2-service.ts
+  <- lib/performance-metrics.ts
+  <- lib/review-sync.ts
+  -> lib/fase2-types.ts
+
+ARQUIVO: lib/storage-core.ts
+IMPORTADORES: 10
+DEPENDÊNCIAS: 1
+  <- lib/ai-helpers.ts
+  <- lib/app-storage.ts
+  <- lib/fase2-storage.ts
+  <- lib/gamification.ts
+  <- lib/guided-flow.ts
+  <- lib/planner-ui-storage.ts
+  <- lib/sidebar.ts
+  <- lib/subscription.ts
+  <- lib/theme-storage.ts
+  <- lib/xp-system.ts
+  -> lib/error-messages.ts
+
+ARQUIVO: lib/supabase/client.ts
+IMPORTADORES: 5
+DEPENDÊNCIAS: 0
+  <- app/api/diagnostics/route.ts
+  <- app/login/page.tsx
+  <- app/providers.tsx
+  <- lib/auth/auth-service.ts
+  <- lib/data-access/provider.ts
+
+ARQUIVO: lib/xp-system.ts
+IMPORTADORES: 1
+DEPENDÊNCIAS: 2
+  <- components/guided-flow-widget.tsx
+  -> lib/gamificacao/index.ts
+  -> lib/storage-core.ts
+
+=== LIBS NÃO ALCANÇÁVEIS ===
+
+ARQUIVO: lib/auth-service.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 1
+  -> lib/firebase.ts
+
+ARQUIVO: lib/capabilities/index.ts
+IMPORTADORES INTERNOS: 1
+DEPENDÊNCIAS: 1
+  <- lib/subscription.ts
+  -> lib/plans.ts
+
+ARQUIVO: lib/cloud-realtime-sync.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 1
+  -> lib/firebase.ts
+
+ARQUIVO: lib/cloud-sync.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 1
+  -> lib/firebase.ts
+
+ARQUIVO: lib/edital-pdf.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 0
+
+ARQUIVO: lib/export-utils.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 1
+  -> lib/app-storage.ts
+
+ARQUIVO: lib/exportclient.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 1
+  -> lib/firebase.ts
+
+ARQUIVO: lib/fcm.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 1
+  -> lib/firebase.ts
+
+ARQUIVO: lib/firebase.ts
+IMPORTADORES INTERNOS: 14
+DEPENDÊNCIAS: 0
+  <- app/firestore.ts
+  <- app/providers.tsx
+  <- lib/auth-service.ts
+  <- lib/cloud-realtime-sync.ts
+  <- lib/cloud-sync.ts
+  <- lib/exportclient.ts
+  <- lib/fcm.ts
+  <- lib/push.ts
+  <- lib/questions.ts
+  <- lib/reviewengine.ts
+  <- lib/stats.ts
+  <- lib/studysessions.ts
+  <- lib/uploads.ts
+  <- lib/users.ts
+
+ARQUIVO: lib/gamification.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 1
+  -> lib/storage-core.ts
+
+ARQUIVO: lib/materias-upload.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 0
+
+ARQUIVO: lib/notifications.ts
+IMPORTADORES INTERNOS: 1
+DEPENDÊNCIAS: 0
+  <- lib/pomodoro-notify.ts
+
+ARQUIVO: lib/payment.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 0
+
+ARQUIVO: lib/pomodoro-notify.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 1
+  -> lib/notifications.ts
+
+ARQUIVO: lib/push.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 1
+  -> lib/firebase.ts
+
+ARQUIVO: lib/questions.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 1
+  -> lib/firebase.ts
+
+ARQUIVO: lib/reviewengine.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 1
+  -> lib/firebase.ts
+
+ARQUIVO: lib/stats.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 1
+  -> lib/firebase.ts
+
+ARQUIVO: lib/studysessions.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 1
+  -> lib/firebase.ts
+
+ARQUIVO: lib/subscription.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 3
+  -> lib/capabilities/index.ts
+  -> lib/plans.ts
+  -> lib/storage-core.ts
+
+ARQUIVO: lib/theme-storage.ts
+IMPORTADORES INTERNOS: 1
+DEPENDÊNCIAS: 1
+  <- app/providers.tsx
+  -> lib/storage-core.ts
+
+ARQUIVO: lib/uploads.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 1
+  -> lib/firebase.ts
+
+ARQUIVO: lib/users.ts
+IMPORTADORES INTERNOS: 0
+DEPENDÊNCIAS: 1
+  -> lib/firebase.ts
+
+=== IMPORTAÇÕES LOCAIS NÃO RESOLVIDAS ===
+app/layout.tsx:1 -> ./globals.css

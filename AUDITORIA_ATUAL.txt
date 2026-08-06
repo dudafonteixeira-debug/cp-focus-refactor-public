@@ -1,0 +1,664 @@
+﻿=== AUDITORIA DO CP FOCUS ===
+Gerada em: 22/07/2026 18:33:19
+
+=== ROTAS DO APP ===
+app\(app)\ajuda\page.tsx
+app\(app)\banco-de-erros\page.tsx
+app\(app)\dashboard\page.tsx
+app\(app)\evolucao\page.tsx
+app\(app)\flashcards\page.tsx
+app\(app)\ia\page.tsx
+app\(app)\inteligencia\page.tsx
+app\(app)\materias\[materiaId]\[topicoId]\[subtopicoId]\page.tsx
+app\(app)\materias\[materiaId]\[topicoId]\page.tsx
+app\(app)\materias\[materiaId]\page.tsx
+app\(app)\materias\page.tsx
+app\(app)\modo-foco\page.tsx
+app\(app)\onboarding\page.tsx
+app\(app)\perfil\page.tsx
+app\(app)\planejamento-inteligente\page.tsx
+app\(app)\planos\page.tsx
+app\(app)\questoes\page.tsx
+app\(app)\recuperacao\page.tsx
+app\(app)\revisao-inteligente\page.tsx
+app\(app)\simulados\page.tsx
+app\login\page.tsx
+app\page.tsx
+
+=== ROTAS DE API ===
+app\api\billing\checkout\route.ts
+app\api\diagnostics\route.ts
+app\api\gemini\route.ts
+app\api\ia\route.ts
+
+=== COMPONENTES ===
+components\AppNav.tsx
+components\AppShell.tsx
+components\app-shell.tsx
+components\cloud\cloud-sync-btn.tsx
+components\dashboard\advanced-analytics.tsx
+components\dashboard\live-dashboard.tsx
+components\dashboard\metric-card.tsx
+components\evolucao\heatmap.tsx
+components\flashcards\flashcard-player.tsx
+components\guided-flow-widget.tsx
+components\ia\ia-actions.tsx
+components\layout\PageLayout.tsx
+components\layout\page-transition.tsx
+components\materia-card.tsx
+components\materias\banco-erros.tsx
+components\materias\materia-core.tsx
+components\materias\materia-fase4-client.tsx
+components\onboarding\OnboardingWizard.tsx
+components\planning\OnboardingPlanningBridge.tsx
+components\progress\bar-chart.tsx
+components\progress\pie-chart.tsx
+components\progress\progress-chart.tsx
+components\progress\study-heatmap.tsx
+components\reports\export-report-btn.tsx
+components\ShellClient.tsx
+components\study\DigitalNotebook.tsx
+components\StudyChart.tsx
+components\StudyTimer.tsx
+components\StudyTotals.tsx
+components\ThemeProvider.tsx
+components\TimerProvider.tsx
+components\tutorial\quick-tutorial.tsx
+components\ui\app-card.tsx
+components\ui\empty-state.tsx
+components\ui\focus-mode.tsx
+components\ui\page-header.tsx
+components\ui\page-transition.tsx
+components\ui\skeleton.tsx
+components\ui\ThemeToggle.tsx
+
+=== HOOKS ===
+hooks\use-app-data.ts
+
+=== ARQUIVOS LIB ===
+lib\adaptive\engine.ts
+lib\ai.ts
+lib\ai-api.ts
+lib\ai-app-context.ts
+lib\ai-engine.ts
+lib\ai-features.ts
+lib\ai-helpers.ts
+lib\ai-prompts.ts
+lib\ai-study-engine.ts
+lib\analytics.ts
+lib\app-action.ts
+lib\app-data-defaults.ts
+lib\app-data-normalizer.ts
+lib\app-engine.ts
+lib\app-error.ts
+lib\app-feedback.ts
+lib\app-notify.ts
+lib\app-shell-config.ts
+lib\app-storage.ts
+lib\app-types.ts
+lib\app-ui.ts
+lib\auth\auth-service.ts
+lib\auth-service.ts
+lib\auto-review.ts
+lib\banca-detector.ts
+lib\billing\plans.ts
+lib\capabilities\index.ts
+lib\cespe-generator.ts
+lib\cloud-realtime-sync.ts
+lib\cloud-sync.ts
+lib\cn.ts
+lib\concursos\index.ts
+lib\concursos\pf.ts
+lib\concursos\prf.ts
+lib\concursos\service.ts
+lib\conteudo.ts
+lib\cp-engine.ts
+lib\cp-focus-core.ts
+lib\cp-stats.ts
+lib\daily-goals.ts
+lib\data-access\app-repository.ts
+lib\data-access\keys.ts
+lib\data-access\provider.ts
+lib\data-access\sync.ts
+lib\drag-drop.ts
+lib\edital-engine.ts
+lib\edital-pdf.ts
+lib\error-messages.ts
+lib\erros.ts
+lib\evolucao.ts
+lib\exportClient.ts
+lib\export-utils.ts
+lib\fase2-service.ts
+lib\fase2-storage.ts
+lib\fase2-types.ts
+lib\fase4-banco-erros.ts
+lib\fase4-conteudos.ts
+lib\fase4-materias.ts
+lib\fase4-progresso.ts
+lib\fase5-cp.ts
+lib\fase6-planejamento.ts
+lib\fase7-revisao.ts
+lib\fcm.ts
+lib\firebase.ts
+lib\fix-ids.ts
+lib\flashcards-core.ts
+lib\flashcards-premium.ts
+lib\flashcard-sync.ts
+lib\gamificacao\index.ts
+lib\gamification.ts
+lib\gemini-actions.ts
+lib\gemini-prompts.ts
+lib\guided-flow.ts
+lib\historico.ts
+lib\ia-core.ts
+lib\inline-edit.ts
+lib\integrations.ts
+lib\materiaProgress.ts
+lib\materias-core.ts
+lib\materias-ia.ts
+lib\materias-ia-premium.ts
+lib\materias-upload.ts
+lib\mission-engine.ts
+lib\mutate.ts
+lib\notifications.ts
+lib\onboarding-storage.ts
+lib\payment.ts
+lib\perfil\engine.ts
+lib\performance-metrics.ts
+lib\planejamento-inteligente-storage.ts
+lib\planner.ts
+lib\planner-ai.ts
+lib\planner-ai-advanced.ts
+lib\planner-ai-real.ts
+lib\planner-colors.ts
+lib\planner-core.ts
+lib\planner-engine.ts
+lib\planner-smart.ts
+lib\planner-storage.ts
+lib\planner-sync.ts
+lib\planner-ui-storage.ts
+lib\planning-state.ts
+lib\plans.ts
+lib\pomodoro-notify.ts
+lib\pomodoro-sync.ts
+lib\premium-access.ts
+lib\premium-colors.ts
+lib\priority-engine.ts
+lib\profile\behavior-engine.ts
+lib\profile\planner-profile-adapter.ts
+lib\profile\preferences-engine.ts
+lib\profile\profile-engine.ts
+lib\profile\timeline-engine.ts
+lib\progress.ts
+lib\progresso.ts
+lib\progresso-core.ts
+lib\progress-utils.ts
+lib\push.ts
+lib\questions.ts
+lib\questoes\integracao-banco-erros.ts
+lib\questoes-history.ts
+lib\report-builder.ts
+lib\review-calendar.ts
+lib\reviewEngine.ts
+lib\review-sync.ts
+lib\revisao.ts
+lib\revisao-core.ts
+lib\revisao-inteligente-adapter.ts
+lib\revisao-sync.ts
+lib\routes.ts
+lib\safe-array.ts
+lib\safe-data.ts
+lib\sessoes\index.ts
+lib\settings.ts
+lib\sidebar.ts
+lib\simulado-loop.ts
+lib\simulados-prova\adaptive.ts
+lib\simulados-prova\engine.ts
+lib\simulados-prova\procedural.ts
+lib\simulados-prova\recomendacao.ts
+lib\spaced.ts
+lib\spaced-repetition.ts
+lib\stats.ts
+lib\storage-client.ts
+lib\storage-core.ts
+lib\streak-utils.ts
+lib\study.ts
+lib\study-history.ts
+lib\studySessions.ts
+lib\subscription.ts
+lib\sugestoes-ia.ts
+lib\supabase\client.ts
+lib\theme-storage.ts
+lib\timerStore.ts
+lib\uid.ts
+lib\uploads.ts
+lib\use-app-loading.ts
+lib\userOpenai.ts
+lib\users.ts
+lib\withAppMutation.ts
+lib\xp-system.ts
+
+=== PASTA SCRIPTS ===
+scripts\.env.example
+scripts\.env.local
+scripts\.env.local.example
+scripts\.gitignore
+scripts\_diagnostico-design-app.zip
+scripts\1
+scripts\ALTERACOES_REALIZADAS.md
+scripts\backup-project.ps1
+scripts\build-log.txt
+scripts\checagem_final_base.txt
+scripts\dev.log
+scripts\eslint.config.mjs
+scripts\firebase.json
+scripts\integrar-revisao-real.cjs
+scripts\levantamento_texto_quebrado.txt
+scripts\middleware.ts
+scripts\migracao-lote-1.txt
+scripts\migracao-lote-2.txt
+scripts\next.config.ts
+scripts\next-env.d.ts
+scripts\package.json
+scripts\package-lock.json
+scripts\postcss.config.mjs
+scripts\README.md
+scripts\remover-modo-cp.cjs
+scripts\restos_telas_prioritarias.txt
+scripts\restos_texto_quebrado.txt
+scripts\tailwind.config.ts
+scripts\tsconfig.json
+scripts\tsconfig.tsbuildinfo
+scripts\vercel.json
+
+=== REFERÊNCIAS A ROTAS ANTIGAS ===
+app\page.tsx:36: Monte sua base inicial, organize sua semana e transforme sua rotina em um plano que faça sentido de verdade.
+app\types.ts:8: pomodoroFocusMin: number;
+app\types.ts:9: pomodoroBreakMin: number;
+app\types.ts:15: // ===== TASKS (Planner + Revisão Inteligente) =====
+app\types.ts:33: // ===== SESSIONS (Pomodoro) =====
+app\(app)\ajuda\page.tsx:11: texto: "O planejamento decide o que estudar, revisar ou corrigir com base no seu perfil, erros, simulados e progresso.",
+app\(app)\ajuda\page.tsx:70: Entenda como usar o CP Focus como um sistema completo de estudo, nao apenas como um planner.
+app\(app)\dashboard\page.tsx:128: progressoDia: tasks.length ? Math.round((concluidas.length / tasks.length) * 100) : 0,
+app\(app)\dashboard\page.tsx:299: ? "Todas as tarefas planejadas foram finalizadas. Voce pode revisar o progresso ou recalcular um novo plano."
+app\(app)\dashboard\page.tsx:327: <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Progresso do dia</p>
+app\(app)\dashboard\page.tsx:328: <strong className="mt-1 block text-2xl text-white">{stats.progressoDia}%</strong>
+app\(app)\evolucao\page.tsx:94: const totalSemana = ultimos7.reduce((acc, item) => acc + item.minutos, 0);
+app\(app)\evolucao\page.tsx:96: const diasAtivosSemana = ultimos7.filter((item) => item.minutos > 0).length;
+app\(app)\evolucao\page.tsx:98: const mediaSemana = diasAtivosSemana ? Math.round(totalSemana / diasAtivosSemana) : 0;
+app\(app)\evolucao\page.tsx:121: totalSemana === 0
+app\(app)\evolucao\page.tsx:122: ? "A Lyra ainda nao encontrou estudo registrado nesta semana. Inicie uma sessao no Modo Foco para alimentar sua evolucao."
+app\(app)\evolucao\page.tsx:123: : diasAtivosSemana >= 5
+app\(app)\evolucao\page.tsx:124: ? "Sua consistencia semanal esta forte. Mantenha o ritmo e use revisoes para proteger a memoria."
+app\(app)\evolucao\page.tsx:125: : diasAtivosSemana >= 3
+app\(app)\evolucao\page.tsx:126: ? "Voce estudou em alguns dias da semana, mas ainda pode aumentar a regularidade para consolidar o habito."
+app\(app)\evolucao\page.tsx:127: : "A semana esta com baixa consistencia. A Lyra recomenda sessoes curtas de foco para recuperar ritmo sem sobrecarga.";
+app\(app)\evolucao\page.tsx:163: <p className="text-[10px] font-black uppercase tracking-[0.2em] text-violet-200">Semana</p>
+app\(app)\evolucao\page.tsx:164: <strong className="mt-1 block text-2xl text-white">{totalSemana}min</strong>
+app\(app)\evolucao\page.tsx:182: <h2 className="mt-3 text-2xl font-black text-white">Leitura da semana</h2>
+app\(app)\evolucao\page.tsx:188: <strong className="mt-1 block text-2xl text-white">{mediaSemana}min</strong>
+app\(app)\materias\[materiaId]\[topicoId]\page.tsx:188: const progressoTopico = useMemo(() => {
+app\(app)\materias\[materiaId]\[topicoId]\page.tsx:535: <span>{progressoTopico}%</span>
+app\(app)\materias\[materiaId]\[topicoId]\page.tsx:541: width: `${progressoTopico}%`,
+app\(app)\materias\[materiaId]\[topicoId]\[subtopicoId]\page.tsx:36: const [progressoFluxo, setProgressoFluxo] = useState({ feitas: 0, total: 0 });
+app\(app)\materias\[materiaId]\[topicoId]\[subtopicoId]\page.tsx:176: setProgressoFluxo({ feitas, total });
+app\(app)\materias\[materiaId]\[topicoId]\[subtopicoId]\page.tsx:429: <span className="text-sm font-bold text-slate-300">Progresso do dia</span>
+app\(app)\materias\[materiaId]\[topicoId]\[subtopicoId]\page.tsx:431: {progressoFluxo.feitas}/{progressoFluxo.total}
+app\(app)\materias\[materiaId]\[topicoId]\[subtopicoId]\page.tsx:439: width: progressoFluxo.total
+app\(app)\materias\[materiaId]\[topicoId]\[subtopicoId]\page.tsx:440: ? `${Math.round((progressoFluxo.feitas / progressoFluxo.total) * 100)}%`
+app\(app)\modo-foco\page.tsx:56: const progresso = tasks.length ? Math.round((concluidas.length / tasks.length) * 100) : 0;
+app\(app)\modo-foco\page.tsx:281: <span className="text-sm font-bold text-slate-300">Progresso do dia</span>
+app\(app)\modo-foco\page.tsx:282: <strong className="text-cyan-200">{progresso}%</strong>
+app\(app)\modo-foco\page.tsx:288: style={{ width: `${progresso}%` }}
+app\(app)\modo-foco\page.tsx:321: O plano do dia foi atualizado e seu progresso foi registrado.
+app\(app)\onboarding\page.tsx:19: diasSemana: string[];
+app\(app)\onboarding\page.tsx:31: diasSemana: ["Seg", "Ter", "Qua", "Qui", "Sex"],
+app\(app)\onboarding\page.tsx:68: const atual = data.diasSemana.includes(dia)
+app\(app)\onboarding\page.tsx:69: ? data.diasSemana.filter((item) => item !== dia)
+app\(app)\onboarding\page.tsx:70: : [...data.diasSemana, dia];
+app\(app)\onboarding\page.tsx:72: update("diasSemana", atual);
+app\(app)\onboarding\page.tsx:84: diasSemana: data.diasSemana,
+app\(app)\onboarding\page.tsx:194: className={data.diasSemana.includes(dia) ? "cp-os-btn-primary" : "cp-os-btn-soft"}
+app\(app)\planejamento-inteligente\page.tsx:6: import { aplicarPerfilNoPlanejamento } from "@/lib/profile/planner-profile-adapter";
+app\(app)\planejamento-inteligente\page.tsx:32: diasSemana: string[];
+app\(app)\planejamento-inteligente\page.tsx:85: diasSemana: ["Seg", "Ter", "Qua", "Qui", "Sex"],
+app\(app)\planejamento-inteligente\page.tsx:102: diasSemana: arr(saved.diasSemana).length
+app\(app)\planejamento-inteligente\page.tsx:103: ? arr(saved.diasSemana)
+app\(app)\planejamento-inteligente\page.tsx:104: : base.diasSemana,
+app\(app)\planejamento-inteligente\page.tsx:175: const progressoDia = tasks.length ? Math.round((concluidas.length / tasks.length) * 100) : 0;
+app\(app)\planejamento-inteligente\page.tsx:198: diasSemana: brain.diasSemana.includes(dia)
+app\(app)\planejamento-inteligente\page.tsx:199: ? brain.diasSemana.filter((d) => d !== dia)
+app\(app)\planejamento-inteligente\page.tsx:200: : [...brain.diasSemana, dia],
+app\(app)\planejamento-inteligente\page.tsx:277: router.push(`/questoes?materia=${encodeURIComponent(task.materia || "")}&topico=${encodeURIComponent(task.topico || "")}&origem=planner`);
+app\(app)\planejamento-inteligente\page.tsx:282: router.push(`/revisao-inteligente?materia=${encodeURIComponent(task.materia || "")}&topico=${encodeURIComponent(task.topico || "")}&origem=planner`);
+app\(app)\planejamento-inteligente\page.tsx:393: ? `${brain.horasDia || "2"}h por dia - ${arr(brain.diasSemana).join(", ") || "dias livres"} - periodo: ${brain.periodo || "variavel"} - ${materiasAtivas.length} materia(s) ativa(s)`
+app\(app)\planejamento-inteligente\page.tsx:437: <strong className="mt-1 block text-2xl text-white">{progressoDia}%</strong>
+app\(app)\planejamento-inteligente\page.tsx:611: <button key={dia} type="button" onClick={() => toggleDia(dia)} className={brain.diasSemana.includes(dia) ? "cp-os-btn-primary" : "cp-os-btn-soft"}>
+app\(app)\questoes\page.tsx:67: const progresso = Math.round(((index + 1) / questoesFiltradas.length) * 100);
+app\(app)\questoes\page.tsx:138: <p className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-200">Progresso</p>
+app\(app)\questoes\page.tsx:139: <strong className="mt-1 block text-2xl text-white">{progresso}%</strong>
+app\(app)\simulados\page.tsx:472: const progresso = simulado ? Math.round((respondidas / Math.max(1, simulado.questoes.length)) * 100) : 0;
+app\(app)\simulados\page.tsx:777: <p className="text-[10px] font-black uppercase tracking-[0.2em] text-violet-200">Progresso</p>
+app\(app)\simulados\page.tsx:778: <strong className="mt-1 block text-2xl text-white">{progresso}%</strong>
+app\login\page.tsx:69: Sua conta vai permitir salvar progresso, sincronizar dados, usar IA com controle de plano e acessar o CP Focus em outros dispositivos.
+app\login\page.tsx:75: <p className="mt-2 text-sm text-slate-400">Dashboard, Planner e Lyra conectados.</p>
+components\app-shell.tsx:94: <span className="text-xs font-bold text-slate-300">Progresso diario</span>
+components\guided-flow-widget.tsx:12: import { loadPlannerUI, savePlannerUI } from "@/lib/planner-ui-storage";
+components\guided-flow-widget.tsx:20: function markPlannerTaskDone(step: any) {
+components\guided-flow-widget.tsx:21: if (!step?.sourceId || step?.sourceType !== "planner-block") return;
+components\guided-flow-widget.tsx:24: const ui = loadPlannerUI();
+components\guided-flow-widget.tsx:28: savePlannerUI({
+components\guided-flow-widget.tsx:33: window.dispatchEvent(new Event("cp-focus-planner-updated"));
+components\guided-flow-widget.tsx:80: markPlannerTaskDone(current);
+components\StudyTimer.tsx:55: await saveStudySession({ uid: user.uid, seconds, source: "pomodoro" });
+components\StudyTimer.tsx:69: <div className="text-sm text-gray-500">Pomodoro</div>
+components\materias\materia-core.tsx:9: calcularProgressoMateria,
+components\materias\materia-core.tsx:17: import { salvarMissao } from "@/lib/planner-core";
+components\materias\materia-core.tsx:58: const progresso = useMemo(() => calcularProgressoMateria(materia), [materia]);
+components\materias\materia-core.tsx:79: subtitle={"Progresso geral: " + progresso + "%"}
+components\onboarding\OnboardingWizard.tsx:11: savePlannerRepo,
+components\onboarding\OnboardingWizard.tsx:12: type PlannerConfig,
+components\onboarding\OnboardingWizard.tsx:13: } from "@/lib/planner-storage";
+components\onboarding\OnboardingWizard.tsx:14: import { getPlannerConfig } from "@/lib/data-access/app-repository";
+components\onboarding\OnboardingWizard.tsx:15: import { ensureMateriaColors } from "@/lib/planner-colors";
+components\onboarding\OnboardingWizard.tsx:32: const diasSemanaBase = [
+components\onboarding\OnboardingWizard.tsx:64: function buildPlannerFromAnswers(params: {
+components\onboarding\OnboardingWizard.tsx:65: horasSemana: number;
+components\onboarding\OnboardingWizard.tsx:66: diasSemana: string[];
+components\onboarding\OnboardingWizard.tsx:68: }): PlannerConfig {
+components\onboarding\OnboardingWizard.tsx:70: horasSemana: params.horasSemana,
+components\onboarding\OnboardingWizard.tsx:71: diasEstudo: params.diasSemana.length > 0 ? params.diasSemana : ["seg", "ter", "qua", "qui", "sex"],
+components\onboarding\OnboardingWizard.tsx:246: const [horasSemana, setHorasSemana] = useState(20);
+components\onboarding\OnboardingWizard.tsx:247: const [diasSemana, setDiasSemana] = useState<string[]>(["seg", "ter", "qua", "qui", "sex"]);
+components\onboarding\OnboardingWizard.tsx:260: if (typeof salvo.horasSemana === "number") setHorasSemana(salvo.horasSemana);
+components\onboarding\OnboardingWizard.tsx:261: if (Array.isArray(salvo.diasSemana) && salvo.diasSemana.length > 0) {
+components\onboarding\OnboardingWizard.tsx:262: setDiasSemana(salvo.diasSemana);
+components\onboarding\OnboardingWizard.tsx:290: horasSemana,
+components\onboarding\OnboardingWizard.tsx:291: diasSemana,
+components\onboarding\OnboardingWizard.tsx:302: horasSemana,
+components\onboarding\OnboardingWizard.tsx:303: diasSemana,
+components\onboarding\OnboardingWizard.tsx:342: horasSemana,
+components\onboarding\OnboardingWizard.tsx:343: diasSemana,
+components\onboarding\OnboardingWizard.tsx:349: const plannerExistente =
+components\onboarding\OnboardingWizard.tsx:350: await getPlannerConfig<PlannerConfig | null>(null);
+components\onboarding\OnboardingWizard.tsx:352: if (!plannerExistente) {
+components\onboarding\OnboardingWizard.tsx:355: await savePlannerRepo(
+components\onboarding\OnboardingWizard.tsx:356: buildPlannerFromAnswers({
+components\onboarding\OnboardingWizard.tsx:357: horasSemana,
+components\onboarding\OnboardingWizard.tsx:358: diasSemana,
+components\onboarding\OnboardingWizard.tsx:407: Organize a semana com base no que você consegue manter.
+components\onboarding\OnboardingWizard.tsx:530: subtitle="Escolha uma meta semanal realista. O app vai usar isso para distribuir sua semana."
+components\onboarding\OnboardingWizard.tsx:540: Meta semanal
+components\onboarding\OnboardingWizard.tsx:543: {horasSemana}h
+components\onboarding\OnboardingWizard.tsx:551: por semana
+components\onboarding\OnboardingWizard.tsx:560: value={horasSemana}
+components\onboarding\OnboardingWizard.tsx:561: onChange={(e) => setHorasSemana(Number(e.target.value))}
+components\onboarding\OnboardingWizard.tsx:586: {diasSemanaBase.map((dia) => {
+components\onboarding\OnboardingWizard.tsx:587: const ativo = diasSemana.includes(dia.id);
+components\onboarding\OnboardingWizard.tsx:592: onClick={() => setDiasSemana((prev) => toggleItem(prev, dia.id))}
+components\onboarding\OnboardingWizard.tsx:607: <FooterButtons onBack={goBack} onNext={goNext} nextDisabled={diasSemana.length === 0} />
+components\onboarding\OnboardingWizard.tsx:688: subtitle="Agora o app já tem contexto suficiente para abrir sua semana inicial com muito mais direção."
+components\onboarding\OnboardingWizard.tsx:708: <div className="text-sm font-semibold" style={{ color: "#64748b" }}>Carga semanal</div>
+components\onboarding\OnboardingWizard.tsx:710: {horasSemana} horas
+components\onboarding\OnboardingWizard.tsx:717: {diasSemana.length} dias
+components\planning\OnboardingPlanningBridge.tsx:13: diasSemana?: string[];
+components\planning\OnboardingPlanningBridge.tsx:30: const pronto = Boolean(data?.concurso || data?.horasDia || data?.diasSemana?.length);
+components\planning\OnboardingPlanningBridge.tsx:42: const dias = data?.diasSemana?.join(", ") || "dias não definidos";
+components\progress\bar-chart.tsx:10: <h3>Estudos da Semana</h3>
+components\progress\progress-chart.tsx:10: <h3>Progresso Geral</h3>
+components\tutorial\quick-tutorial.tsx:26: 2. Monte o planner
+lib\ai-helpers.ts:59: `Meta sugerida: 2 horas semanais para ${texto}.`,
+lib\analytics.ts:4: const planner = data?.planner || [];
+lib\analytics.ts:8: const totalMissoes = planner.length;
+lib\analytics.ts:10: const concluidas = planner.filter(
+lib\app-engine.ts:52: diasSemana: ["seg", "ter", "qua", "qui", "sex"],
+lib\app-engine.ts:70: export function calcularProgressoMateria(materia: Materia): number {
+lib\app-engine.ts:73: const soma = subtopicos.reduce((acc, st) => acc + (st.estudado ? 100 : st.progresso || 0), 0);
+lib\app-engine.ts:82: progresso: st.estudado ? 100 : st.progresso || 0,
+lib\app-engine.ts:85: const progressoTopico =
+lib\app-engine.ts:88: subtopicos.reduce((acc, st) => acc + (st.estudado ? 100 : st.progresso || 0), 0) /
+lib\app-engine.ts:96: progresso: progressoTopico,
+lib\app-engine.ts:97: estudado: progressoTopico === 100,
+lib\app-engine.ts:108: progresso: calcularProgressoMateria(materiaAtualizada),
+lib\app-engine.ts:123: progresso: 0,
+lib\app-engine.ts:129: progresso: 0,
+lib\app-engine.ts:139: progresso: 0,
+lib\app-engine.ts:149: progresso: 0,
+lib\app-engine.ts:181: ? { ...st, estudado: !st.estudado, progresso: st.estudado ? 0 : 100 }
+lib\app-engine.ts:305: if (subtopico.estudado || (subtopico.progresso ?? 0) >= 60) {
+lib\app-types.ts:27: progresso?: number;
+lib\app-types.ts:41: progresso?: number;
+lib\app-types.ts:52: progresso?: number;
+lib\app-types.ts:68: export type MissaoPlanner = {
+lib\app-types.ts:96: planner: MissaoPlanner[];
+lib\app-types.ts:102: planner?: MissaoPlanner[];
+lib\app-types.ts:130: export type ItemEdital = any;
+lib\app-types.ts:132: export type EditalMateria = any;
+lib\app-types.ts:133: export type EditalTopico = any;
+lib\app-types.ts:134: export type EditalSubtopico = any;
+lib\cp-focus-core.ts:7: EditalMateria,
+lib\cp-focus-core.ts:54: export function calcularProgressoSubtopico(subtopico: Subtopico) {
+lib\cp-focus-core.ts:58: export function calcularProgressoTopico(topico: Topico) {
+lib\cp-focus-core.ts:62: const soma = subtopicos.reduce((acc, sub) => acc + calcularProgressoSubtopico(sub), 0);
+lib\cp-focus-core.ts:66: export function calcularProgressoMateria(materia: Materia) {
+lib\cp-focus-core.ts:70: const soma = topicos.reduce((acc, topico) => acc + calcularProgressoTopico(topico), 0);
+lib\cp-focus-core.ts:94: progresso: 0,
+lib\cp-focus-core.ts:100: progresso: 0,
+lib\cp-focus-core.ts:103: progresso: calcularProgressoSubtopico(sub),
+lib\cp-focus-core.ts:114: progresso: calcularProgressoTopico(top),
+lib\cp-focus-core.ts:116: progresso: 0,
+lib\cp-focus-core.ts:121: progresso: calcularProgressoMateria(materia),
+lib\cp-focus-core.ts:155: function limparTextoEdital(texto: string) {
+lib\cp-focus-core.ts:182: const linhasBrutas = limparTextoEdital(texto)
+lib\cp-focus-core.ts:211: export function parseEditalText(texto: string): EditalMateria[] {
+lib\cp-focus-core.ts:213: const materias: EditalMateria[] = [];
+lib\cp-focus-core.ts:214: let materiaAtual: EditalMateria | null = null;
+lib\cp-focus-core.ts:308: export function editalExemploBase(): EditalMateria[] {
+lib\cp-focus-core.ts:350: export function converterEditalParaMaterias(edital: EditalMateria[]): Materia[] {
+lib\cp-focus-core.ts:351: if (!Array.isArray(edital)) return [];
+lib\cp-focus-core.ts:353: const materiasAgrupadas = new Map<string, EditalMateria>();
+lib\cp-focus-core.ts:355: for (const materia of edital) {
+lib\cp-focus-core.ts:394: progresso: 0,
+lib\cp-focus-core.ts:400: progresso: 0,
+lib\cp-focus-core.ts:410: progresso: 0,
+lib\cp-focus-core.ts:419: export function importarEdital(texto: string, concurso?: ConcursoInfo) {
+lib\cp-focus-core.ts:420: const editalEstruturado = texto.trim() ? parseEditalText(texto) : editalExemploBase();
+lib\cp-focus-core.ts:421: const materias = converterEditalParaMaterias(editalEstruturado);
+lib\cp-focus-core.ts:431: "Edital importado",
+lib\cp-focus-core.ts:630: const missoesSemanais: MissaoPlanejamento[] = [];
+lib\cp-focus-core.ts:661: missoesSemanais.push({
+lib\cp-focus-core.ts:662: id: uid("missao-semana"),
+lib\cp-focus-core.ts:663: titulo: `Missão semanal: ${materia.nome}${subtopico ? ` — ${subtopico.nome}` : ""}`,
+lib\cp-focus-core.ts:679: missoesSemanais,
+lib\cp-focus-core.ts:684: adicionarNotificacao("success", "Planejamento gerado", "Missões diárias e semanais foram criadas.");
+lib\edital-engine.ts:2: import type { ItemEdital, Materia, Topico } from "@/lib/app-types";
+lib\edital-engine.ts:176: function parseEditalFromText(texto: string): Materia[] {
+lib\edital-engine.ts:367: export function generateEditalData(params: {
+lib\edital-engine.ts:373: }): ItemEdital {
+lib\edital-engine.ts:374: const materiasDoTexto = parseEditalFromText(params.texto);
+lib\fase4-progresso.ts:20: export function calcularProgressoMateriaById(materiaId: string) {
+lib\fase4-progresso.ts:21: return getMateriaById(materiaId)?.progresso ?? 0;
+lib\fase6-planejamento.ts:11: diasPorSemana: number;
+lib\fase6-planejamento.ts:20: progresso: number;
+lib\fase6-planejamento.ts:32: missaoSemanal: Missao[];
+lib\fase6-planejamento.ts:36: cargaSemanalMinutos: number;
+lib\fase6-planejamento.ts:39: totalMissoesSemana: number;
+lib\fase6-planejamento.ts:69: diasPorSemana: clamp((data.programacaoEstudo?.diasSemana ?? []).length || 5, 1, 7),
+lib\fase6-planejamento.ts:92: diasPorSemana: clamp(toNumber(parsed?.diasPorSemana, 5), 1, 7),
+lib\fase6-planejamento.ts:128: return subtopicos.filter((item) => !item.estudado && (item.progresso ?? 0) < 100).length;
+lib\fase6-planejamento.ts:147: const progresso = Number(materia.progresso ?? 0);
+lib\fase6-planejamento.ts:150: (100 - progresso) * 0.6 +
+lib\fase6-planejamento.ts:160: if (progresso < 50) motivoPartes.push("progresso baixo");
+lib\fase6-planejamento.ts:169: progresso,
+lib\fase6-planejamento.ts:185: const scoreA = (100 - (a.progresso ?? 0)) + (a.subtopicos ?? []).length;
+lib\fase6-planejamento.ts:186: const scoreB = (100 - (b.progresso ?? 0)) + (b.subtopicos ?? []).length;
+lib\fase6-planejamento.ts:199: const scoreA = (100 - (a.progresso ?? 0)) + contarErrosDoSubtopico(a) * 20;
+lib\fase6-planejamento.ts:200: const scoreB = (100 - (b.progresso ?? 0)) + contarErrosDoSubtopico(b) * 20;
+lib\fase6-planejamento.ts:214: if (diagnostico.progresso < 45) return "teoria";
+lib\fase6-planejamento.ts:304: diasPorSemana: clamp(toNumber(configParcial?.diasPorSemana ?? base.diasPorSemana, 5), 1, 7),
+lib\fase6-planejamento.ts:329: const missoesPorSemana = clamp(missoesPorDia * config.diasPorSemana, 6, 30);
+lib\fase6-planejamento.ts:332: const cicloSemana = gerarCicloAlternado(materiasOrdenadas, missoesPorSemana);
+lib\fase6-planejamento.ts:349: const missaoSemanal = cicloSemana.map((entry, index) => {
+lib\fase6-planejamento.ts:351: diasRestantes !== null && diasRestantes <= 30 && index === cicloSemana.length - 1
+lib\fase6-planejamento.ts:370: missaoSemanal,
+lib\fase6-planejamento.ts:374: cargaSemanalMinutos: config.horasPorDia * 60 * config.diasPorSemana,
+lib\fase6-planejamento.ts:377: totalMissoesSemana: missaoSemanal.length,
+lib\fase6-planejamento.ts:389: missoes: [...resultado.missaoDiaria, ...resultado.missaoSemanal],
+lib\fase6-planejamento.ts:393: diasSemana: ["seg", "ter", "qua", "qui", "sex"],
+lib\fase6-planejamento.ts:398: diasSemana: ["seg", "ter", "qua", "qui", "sex", "sab", "dom"].slice(0, resultado.config.diasPorSemana),
+lib\fase6-planejamento.ts:401: "Programacao atualizada pelo Planejamento Inteligente com base no edital, no tempo disponivel e no desempenho.",
+lib\fase7-revisao.ts:70: item.status = acertou ? "em_progresso" : "reforco";
+lib\historico.ts:3: import { registrarEstudoHoje } from "@/lib/progresso";
+lib\integrations.ts:30: titulo: `Edital: ${syllabusPath}`,
+lib\integrations.ts:36: source: source ?? "edital",
+lib\materias-core.ts:16: export function calcularProgressoMateria(materia: any) {
+lib\onboarding-storage.ts:12: horasSemana?: number;
+lib\onboarding-storage.ts:13: diasSemana?: string[];
+lib\planejamento-inteligente-storage.ts:23: progresso: number;
+lib\planejamento-inteligente-storage.ts:36: progresso: number;
+lib\planejamento-inteligente-storage.ts:55: metaSemanalMinutos: number;
+lib\planejamento-inteligente-storage.ts:91: metaSemanalMinutos: 600,
+lib\planejamento-inteligente-storage.ts:96: { id: "mat_const", nome: "Direito Constitucional", cor: "#8b5cf6", progresso: 80, importancia: 6 },
+lib\planejamento-inteligente-storage.ts:97: { id: "mat_port", nome: "Língua Portuguesa", cor: "#38bdf8", progresso: 65, importancia: 5 },
+lib\planejamento-inteligente-storage.ts:98: { id: "mat_mat", nome: "Matemática", cor: "#f59e0b", progresso: 30, importancia: 5 },
+lib\planejamento-inteligente-storage.ts:99: { id: "mat_penal", nome: "Direito Penal", cor: "#10b981", progresso: 60, importancia: 6 },
+lib\planejamento-inteligente-storage.ts:102: { id: "top_interpretacao", titulo: "Interpretação de texto", materia: "Língua Portuguesa", progresso: 0, importancia: 5, questoes: 10, acertos: 0, tempoMinutos: 0, proximaRevisao: "+1 dia" },
+lib\planejamento-inteligente-storage.ts:103: { id: "top_art5", titulo: "Artigos 5º ao 17 da Constituição", materia: "Direito Constitucional", progresso: 80, importancia: 6, questoes: 40, acertos: 32, tempoMinutos: 125, ultimaRevisao: "Hoje", proximaRevisao: "+15 dias" },
+lib\planejamento-inteligente-storage.ts:104: { id: "top_geo", titulo: "Geometria básica", materia: "Matemática", progresso: 30, importancia: 5, questoes: 20, acertos: 8, tempoMinutos: 70, proximaRevisao: "+30 dias" },
+lib\planejamento-inteligente-storage.ts:121: progresso: Number(m?.progresso ?? 0),
+lib\planejamento-inteligente-storage.ts:138: progresso: Number(topico?.progresso ?? 0),
+lib\planejamento-inteligente-storage.ts:152: progresso: Number(sub?.progresso ?? 0),
+lib\planejamento-inteligente-storage.ts:206: return Number((topico.importancia * 1.4 + erro * 0.5 + (100 - topico.progresso) / 20).toFixed(1));
+lib\planejamento-inteligente-storage.ts:309: progresso: 0,
+lib\planejamento-inteligente-storage.ts:356: progresso: 0,
+lib\planejamento-inteligente-storage.ts:395: export function importarEditalTexto(data: PlanejamentoInteligenteData, texto: string): PlanejamentoInteligenteData {
+lib\planejamento-inteligente-storage.ts:407: novasMaterias.push({ id: uid(), nome: nomeMateria, cor, progresso: 0, importancia: 5 });
+lib\planejamento-inteligente-storage.ts:418: progresso: 0,
+lib\planejamento-inteligente-storage.ts:483: progresso: Math.min(100, t.progresso + 15),
+lib\planejamento-inteligente-storage.ts:635: const progressoNivel = Math.min(100, Math.round((pontos / proximoNivel) * 100));
+lib\planejamento-inteligente-storage.ts:648: progressoNivel,
+lib\planner-ai-real.ts:3: export type PlannerAiPriority = {
+lib\planner-ai-real.ts:11: export type PlannerAiResult = {
+lib\planner-ai-real.ts:12: priorities: PlannerAiPriority[];
+lib\planner-ai-real.ts:37: function normalizePriorities(items: any[]): PlannerAiPriority[] {
+lib\planner-ai-real.ts:49: export async function gerarCronogramaIAReal(): Promise<PlannerAiResult> {
+lib\planner-ai-real.ts:87: "Quanto maior a prioridade, mais cedo a matéria deve aparecer na semana.",
+lib\planner-ai-real.ts:99: action: "planner_week",
+lib\planner-colors.ts:3: const STORAGE_KEY = "cp-focus-planner-colors-v1";
+lib\planner-core.ts:2: getPlannerMissoes,
+lib\planner-core.ts:3: savePlannerMissoes,
+lib\planner-core.ts:21: const lista = arr(await getPlannerMissoes<any[]>([]));
+lib\planner-core.ts:32: await savePlannerMissoes(atualizado);
+lib\planner-core.ts:38: const lista = await getPlannerMissoes<any[]>([]);
+lib\planner-engine.ts:1: import type { PlannerConfig, MateriaPlanejamento } from "@/lib/planner-storage";
+lib\planner-engine.ts:2: import { ensureMateriaColors, getMateriaColor } from "@/lib/planner-colors";
+lib\planner-engine.ts:50: export function generateWeeklyPlan(config: PlannerConfig): StudyDay[] {
+lib\planner-engine.ts:64: const totalMinutosSemana = config.horasSemana * 60;
+lib\planner-engine.ts:65: const minutosPorDia = Math.max(50, Math.floor(totalMinutosSemana / dias.length));
+lib\planner-smart.ts:1: import type { PlannerConfig, MateriaPlanejamento } from "@/lib/planner-storage";
+lib\planner-smart.ts:2: import type { PlannerAiResult } from "@/lib/planner-ai-real";
+lib\planner-smart.ts:10: aiResult?: PlannerAiResult
+lib\planner-smart.ts:42: export function generateSmartPlannerConfig(
+lib\planner-smart.ts:43: config: PlannerConfig,
+lib\planner-smart.ts:44: aiResult?: PlannerAiResult
+lib\planner-smart.ts:45: ): PlannerConfig {
+lib\planner-storage.ts:2: getPlannerConfig,
+lib\planner-storage.ts:3: savePlannerConfig,
+lib\planner-storage.ts:16: export type PlannerAiMeta = {
+lib\planner-storage.ts:23: export type PlannerConfig = {
+lib\planner-storage.ts:24: horasSemana: number;
+lib\planner-storage.ts:29: aiMeta?: PlannerAiMeta;
+lib\planner-storage.ts:69: export function defaultPlannerConfig(): PlannerConfig {
+lib\planner-storage.ts:71: horasSemana: 15,
+lib\planner-storage.ts:119: function normalizePlanner(
+lib\planner-storage.ts:121: ): PlannerConfig {
+lib\planner-storage.ts:128: horasSemana:
+lib\planner-storage.ts:129: typeof parsed.horasSemana === "number"
+lib\planner-storage.ts:130: ? parsed.horasSemana
+lib\planner-storage.ts:141: : defaultPlannerConfig().materias,
+lib\planner-storage.ts:171: export async function loadPlannerRepo(): Promise<PlannerConfig> {
+lib\planner-storage.ts:173: await getPlannerConfig<PlannerConfig | null>(null);
+lib\planner-storage.ts:176: ? normalizePlanner(saved)
+lib\planner-storage.ts:177: : defaultPlannerConfig();
+lib\planner-storage.ts:180: export async function savePlannerRepo(
+lib\planner-storage.ts:181: data: PlannerConfig
+lib\planner-storage.ts:182: ): Promise<PlannerConfig> {
+lib\planner-storage.ts:183: const normalized = normalizePlanner({
+lib\planner-storage.ts:188: await savePlannerConfig(normalized);
+lib\planner-sync.ts:3: export function enviarParaPlanner(payload: {
+lib\planner-sync.ts:10: data.planner = data.planner || [];
+lib\planner-sync.ts:12: data.planner.push({
+lib\planner-ui-storage.ts:3: export type PlannerBlockOverride = {
+lib\planner-ui-storage.ts:22: export type PlannerUIState = {
+lib\planner-ui-storage.ts:23: overrides: Record<string, PlannerBlockOverride>;
+lib\planner-ui-storage.ts:28: const KEY = "cp-focus-planner-ui";
+lib\planner-ui-storage.ts:30: function baseState(): PlannerUIState {
+lib\planner-ui-storage.ts:38: export function loadPlannerUI(): PlannerUIState {
+lib\planner-ui-storage.ts:39: const parsed = loadFromStorage<Partial<PlannerUIState>>(KEY, baseState());
+lib\planner-ui-storage.ts:55: export function savePlannerUI(data: PlannerUIState) {
+lib\planner.ts:2: loadPlannerRepo,
+lib\planner.ts:3: savePlannerRepo,
+lib\planner.ts:4: type PlannerConfig,
+lib\planner.ts:5: } from "@/lib/planner-storage";
+lib\planner.ts:9: export async function loadPlanner(): Promise<PlannerConfig> {
+lib\planner.ts:10: return loadPlannerRepo();
+lib\planner.ts:13: export async function savePlanner(
+lib\planner.ts:14: data: PlannerConfig
+lib\planner.ts:15: ): Promise<PlannerConfig> {
+lib\planner.ts:16: return savePlannerRepo(data);
+lib\planner.ts:19: export async function getPlanner(): Promise<any> {
+lib\planner.ts:20: const planner = await loadPlanningBrain({});
+lib\planner.ts:21: return planner && typeof planner === "object" ? planner : {};
+lib\plans.ts:64: "Pomodoro premium",
+lib\pomodoro-notify.ts:3: export function notificarFimPomodoro() {
+lib\pomodoro-notify.ts:5: "Pomodoro concluído",
+lib\pomodoro-sync.ts:3: export function concluirMissaoPomodoro(missaoId: number) {
+lib\pomodoro-sync.ts:5: data.planner = (data.planner || []).map((m: any) =>
+lib\progress-utils.ts:1: export function calcularProgressoMateria(materia: any) {
+lib\progresso-core.ts:3: export function calcularProgressoMateria(materia: any) {
+lib\progresso.ts:4: getProgresso as getProgressoRepo,
+lib\progresso.ts:5: saveProgresso,
+lib\progresso.ts:8: type ProgressoDia = {
+lib\progresso.ts:12: type ProgressoData = Record<string, ProgressoDia>;
+lib\progresso.ts:16: const data = await getProgresso();
+lib\progresso.ts:23: await saveProgresso(data);
+lib\progresso.ts:26: export async function getProgresso(): Promise<ProgressoData> {
+lib\progresso.ts:27: return getProgressoRepo<ProgressoData>({});
+lib\progresso.ts:30: export async function getResumoProgresso() {
+lib\progresso.ts:31: const progresso = await getProgresso();
+lib\progresso.ts:53: const dias = Object.keys(progresso);
+lib\progresso.ts:55: (d) => (progresso[d]?.quantidade || 0) > 0
+lib\progresso.ts:58: const progressoPorDia = dias
+lib\progresso.ts:62: quantidade: progresso[data]?.quantidade || 0,
+lib\progresso.ts:78: progressoPorDia,
+lib\report-builder.ts:7: planner: data?.planner?.length || 0,
+lib\settings.ts:7: tempoPadraoPomodoro: number;
+lib\settings.ts:16: tempoPadraoPomodoro: 25,
+lib\sugestoes-ia.ts:28: export function gerarSugestoesIA(app: any, planner: any) {
+lib\sugestoes-ia.ts:30: const pesos = Array.isArray(planner?.materias) ? planner.materias : [];
+lib\timerStore.ts:7: // Pomodoro config
+lib\timerStore.ts:70: // parado: worked = target - remaining (progresso atual)
+lib\capabilities\index.ts:7: | "use_adaptive_planner"
+lib\capabilities\index.ts:30: missoes: ["use_adaptive_planner"],
+lib\capabilities\index.ts:31: modo_cp: ["use_adaptive_planner"],
+lib\capabilities\index.ts:48: "use_adaptive_planner",
+lib\capabilities\index.ts:88: export function canUseAdaptivePlanner(context?: CapabilityContext) {
+lib\capabilities\index.ts:89: return can(context, "use_adaptive_planner");
+lib\data-access\app-repository.ts:69: export async function getProgresso<T = any>(fallback: T): Promise<T> {
+lib\data-access\app-repository.ts:70: return readData<T>(DATA_KEYS.progresso, fallback);
+lib\data-access\app-repository.ts:73: export async function saveProgresso<T = any>(data: T): Promise<void> {
+lib\data-access\app-repository.ts:74: return writeData<T>(DATA_KEYS.progresso, data);
+lib\data-access\app-repository.ts:160: export async function getPlannerConfig<T = any>(
+lib\data-access\app-repository.ts:163: return readData<T>(DATA_KEYS.plannerConfig, fallback);
+lib\data-access\app-repository.ts:166: export async function savePlannerConfig<T = any>(
+lib\data-access\app-repository.ts:169: return writeData<T>(DATA_KEYS.plannerConfig, data);
+lib\data-access\app-repository.ts:171: export async function getPlannerMissoes<T = any[]>(
+lib\data-access\app-repository.ts:174: return readData<T>(DATA_KEYS.plannerMissoes, fallback);
+lib\data-access\app-repository.ts:177: export async function savePlannerMissoes<T = any[]>(
+lib\data-access\app-repository.ts:180: return writeData<T>(DATA_KEYS.plannerMissoes, data);
+lib\data-access\app-repository.ts:204: await removeData(DATA_KEYS.progresso);
+lib\data-access\app-repository.ts:211: await removeData(DATA_KEYS.plannerConfig);
+lib\data-access\app-repository.ts:213: await removeData(DATA_KEYS.plannerMissoes);
+lib\data-access\keys.ts:14: progresso: "cp_focus_progresso_v1",
+lib\data-access\keys.ts:18: plannerConfig: "cp_focus_planner_config_v1",
+lib\data-access\keys.ts:20: plannerMissoes: "cp-focus-missoes",

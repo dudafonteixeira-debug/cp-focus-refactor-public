@@ -1,0 +1,1089 @@
+﻿=== AUDITORIA DOS ARQUIVOS RESTANTES DE LIB ===
+Gerada em: 22/07/2026 20:28:14
+Arquivos de lib analisados: 108
+Arquivos-fonte pesquisados: 151
+
+============================================================
+ARQUIVO: lib\adaptive\engine.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 156
+TAMANHO: 3981 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\ai.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 18
+TAMANHO: 451 bytes
+SINAIS DE RISCO: IA externa, Variáveis ambiente
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\ai-api.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 12
+TAMANHO: 266 bytes
+SINAIS DE RISCO: Requisição HTTP
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\ai-app-context.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 87
+TAMANHO: 3221 bytes
+SINAIS DE RISCO: IA externa
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\ai-engine.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 32
+TAMANHO: 632 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\ai-helpers.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 73
+TAMANHO: 1926 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\ai-study-engine.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 44
+TAMANHO: 1433 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\app-data-defaults.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 23
+TAMANHO: 449 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\app-engine.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 636
+TAMANHO: 18731 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\app-error.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 36
+TAMANHO: 1062 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\app-feedback.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 32
+TAMANHO: 720 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\app-notify.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 42
+TAMANHO: 1059 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\app-storage.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 185
+TAMANHO: 4147 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\app-types.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 140
+TAMANHO: 3077 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\auth\auth-service.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 35
+TAMANHO: 736 bytes
+SINAIS DE RISCO: Supabase
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\auth-service.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 19
+TAMANHO: 496 bytes
+SINAIS DE RISCO: Firebase
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\auto-review.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 13
+TAMANHO: 327 bytes
+SINAIS DE RISCO: Temporizadores
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\capabilities\index.ts
+REFERÊNCIAS ENCONTRADAS: 1
+LINHAS: 94
+TAMANHO: 2516 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  - lib\subscription.ts
+
+============================================================
+ARQUIVO: lib\cespe-generator.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 25
+TAMANHO: 1042 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\cloud-realtime-sync.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 21
+TAMANHO: 476 bytes
+SINAIS DE RISCO: Firebase
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\cloud-sync.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 19
+TAMANHO: 496 bytes
+SINAIS DE RISCO: Firebase
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\concursos\index.ts
+REFERÊNCIAS ENCONTRADAS: 1
+LINHAS: 13
+TAMANHO: 259 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  - app\(app)\onboarding\page.tsx
+
+============================================================
+ARQUIVO: lib\concursos\pf.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 39
+TAMANHO: 672 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\concursos\prf.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 53
+TAMANHO: 997 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\concursos\service.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 61
+TAMANHO: 1655 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\cp-stats.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 109
+TAMANHO: 2688 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\daily-goals.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 34
+TAMANHO: 762 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\data-access\app-repository.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 215
+TAMANHO: 6198 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\data-access\keys.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 30
+TAMANHO: 960 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\data-access\provider.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 121
+TAMANHO: 2530 bytes
+SINAIS DE RISCO: localStorage, Supabase, Navegador/DOM, Variáveis ambiente
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\edital-pdf.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 28
+TAMANHO: 941 bytes
+SINAIS DE RISCO: Arquivos/PDF
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\error-messages.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 13
+TAMANHO: 570 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\exportClient.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 71
+TAMANHO: 2196 bytes
+SINAIS DE RISCO: Firebase, Navegador/DOM, Arquivos/PDF
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\export-utils.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 16
+TAMANHO: 426 bytes
+SINAIS DE RISCO: Navegador/DOM, Arquivos/PDF
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\fase2-service.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 201
+TAMANHO: 5269 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\fase2-storage.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 63
+TAMANHO: 1617 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\fase2-types.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 88
+TAMANHO: 1923 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\fase4-materias.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 122
+TAMANHO: 4034 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\fase6-planejamento.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 421
+TAMANHO: 13132 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\fase7-revisao.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 103
+TAMANHO: 2762 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\fcm.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 22
+TAMANHO: 338 bytes
+SINAIS DE RISCO: Firebase, Variáveis ambiente
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\firebase.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 21
+TAMANHO: 823 bytes
+SINAIS DE RISCO: Firebase, Variáveis ambiente
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\flashcards-core.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 51
+TAMANHO: 980 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\gamificacao\index.ts
+REFERÊNCIAS ENCONTRADAS: 5
+LINHAS: 94
+TAMANHO: 1690 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  - app\(app)\evolucao\page.tsx
+  - app\(app)\materias\[materiaId]\[topicoId]\[subtopicoId]\page.tsx
+  - app\(app)\modo-foco\page.tsx
+  - components\app-shell.tsx
+  - lib\xp-system.ts
+
+============================================================
+ARQUIVO: lib\gamification.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 90
+TAMANHO: 2102 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\gemini-actions.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 204
+TAMANHO: 6600 bytes
+SINAIS DE RISCO: IA externa
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\gemini-prompts.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 188
+TAMANHO: 7566 bytes
+SINAIS DE RISCO: IA externa
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\guided-flow.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 95
+TAMANHO: 2104 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\ia-core.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 25
+TAMANHO: 787 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\materiaProgress.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 26
+TAMANHO: 738 bytes
+SINAIS DE RISCO: Firebase
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\materias-core.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 246
+TAMANHO: 9464 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\materias-upload.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 9
+TAMANHO: 286 bytes
+SINAIS DE RISCO: Arquivos/PDF
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\notifications.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 15
+TAMANHO: 393 bytes
+SINAIS DE RISCO: Notificações, Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\onboarding-storage.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 79
+TAMANHO: 1729 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\payment.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 11
+TAMANHO: 131 bytes
+SINAIS DE RISCO: Pagamento
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\performance-metrics.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 69
+TAMANHO: 2171 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\planejamento-inteligente-storage.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 695
+TAMANHO: 21870 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\planner-ai-real.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 124
+TAMANHO: 3551 bytes
+SINAIS DE RISCO: Requisição HTTP
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\planner-colors.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 91
+TAMANHO: 1727 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\planner-core.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 40
+TAMANHO: 841 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\planner-storage.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 191
+TAMANHO: 4198 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\planner-ui-storage.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 57
+TAMANHO: 1308 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\planning-state.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 68
+TAMANHO: 1420 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\plans.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 115
+TAMANHO: 2522 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\pomodoro-notify.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 9
+TAMANHO: 220 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\profile\behavior-engine.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 92
+TAMANHO: 2285 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\profile\planner-profile-adapter.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 46
+TAMANHO: 1243 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\profile\preferences-engine.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 71
+TAMANHO: 1921 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\profile\profile-engine.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 94
+TAMANHO: 2422 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\profile\timeline-engine.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 133
+TAMANHO: 2887 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\progress.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 54
+TAMANHO: 1278 bytes
+SINAIS DE RISCO: Firebase
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\progresso.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 80
+TAMANHO: 2053 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\push.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 13
+TAMANHO: 306 bytes
+SINAIS DE RISCO: Firebase, Variáveis ambiente
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\questions.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 43
+TAMANHO: 1172 bytes
+SINAIS DE RISCO: Firebase
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\questoes\integracao-banco-erros.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 127
+TAMANHO: 3060 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\questoes-history.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 52
+TAMANHO: 1259 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\review-calendar.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 42
+TAMANHO: 1034 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\reviewEngine.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 128
+TAMANHO: 3334 bytes
+SINAIS DE RISCO: Firebase
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\review-sync.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 97
+TAMANHO: 3119 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\revisao.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 64
+TAMANHO: 1916 bytes
+SINAIS DE RISCO: Firebase
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\revisao-core.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 50
+TAMANHO: 848 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\revisao-inteligente-adapter.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 40
+TAMANHO: 1148 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\revisao-sync.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 21
+TAMANHO: 428 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\routes.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 35
+TAMANHO: 1801 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\safe-array.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 4
+TAMANHO: 92 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\sessoes\index.ts
+REFERÊNCIAS ENCONTRADAS: 1
+LINHAS: 37
+TAMANHO: 833 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  - app\(app)\modo-foco\page.tsx
+
+============================================================
+ARQUIVO: lib\settings.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 38
+TAMANHO: 883 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\sidebar.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 13
+TAMANHO: 402 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\simulado-loop.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 175
+TAMANHO: 5118 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\simulados-prova\adaptive.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 54
+TAMANHO: 1398 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\simulados-prova\engine.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 225
+TAMANHO: 7101 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\simulados-prova\procedural.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 99
+TAMANHO: 4251 bytes
+SINAIS DE RISCO: Pagamento, IA externa
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\spaced.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 34
+TAMANHO: 819 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\spaced-repetition.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 54
+TAMANHO: 1582 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\stats.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 69
+TAMANHO: 1777 bytes
+SINAIS DE RISCO: Firebase
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\storage-client.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 72
+TAMANHO: 1760 bytes
+SINAIS DE RISCO: localStorage, Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\storage-core.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 46
+TAMANHO: 1215 bytes
+SINAIS DE RISCO: localStorage, Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\study.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 90
+TAMANHO: 1634 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\study-history.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 36
+TAMANHO: 841 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\studySessions.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 25
+TAMANHO: 772 bytes
+SINAIS DE RISCO: Firebase
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\subscription.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 61
+TAMANHO: 1343 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\supabase\client.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 16
+TAMANHO: 378 bytes
+SINAIS DE RISCO: Supabase, Variáveis ambiente
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\theme-storage.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 21
+TAMANHO: 550 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\timerStore.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 111
+TAMANHO: 3347 bytes
+SINAIS DE RISCO: Nenhum
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\uploads.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 66
+TAMANHO: 1989 bytes
+SINAIS DE RISCO: Firebase
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\userOpenai.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 22
+TAMANHO: 437 bytes
+SINAIS DE RISCO: Firebase, IA externa
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\users.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 14
+TAMANHO: 299 bytes
+SINAIS DE RISCO: Firebase
+
+IMPORTADORES:
+  (nenhum encontrado)
+
+============================================================
+ARQUIVO: lib\xp-system.ts
+REFERÊNCIAS ENCONTRADAS: 0
+LINHAS: 123
+TAMANHO: 2480 bytes
+SINAIS DE RISCO: Navegador/DOM
+
+IMPORTADORES:
+  (nenhum encontrado)
+

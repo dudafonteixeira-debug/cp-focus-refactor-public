@@ -1,0 +1,689 @@
+{
+  "geradoEm": "2026-07-23T14:58:18.266Z",
+  "raizProjeto": "C:\\Users\\Maria Eduarda\\Desktop\\cp_focus_pronto\\cp_focus_work",
+  "totalArquivosProjeto": 110,
+  "totalEntradas": 33,
+  "entradas": [
+    "app/(app)/ajuda/page.tsx",
+    "app/(app)/banco-de-erros/page.tsx",
+    "app/(app)/dashboard/layout.tsx",
+    "app/(app)/dashboard/page.tsx",
+    "app/(app)/evolucao/page.tsx",
+    "app/(app)/flashcards/page.tsx",
+    "app/(app)/ia/page.tsx",
+    "app/(app)/inteligencia/page.tsx",
+    "app/(app)/layout.tsx",
+    "app/(app)/materias/[materiaid]/[topicoid]/[subtopicoid]/page.tsx",
+    "app/(app)/materias/[materiaid]/[topicoid]/page.tsx",
+    "app/(app)/materias/[materiaid]/page.tsx",
+    "app/(app)/materias/page.tsx",
+    "app/(app)/modo-foco/page.tsx",
+    "app/(app)/onboarding/page.tsx",
+    "app/(app)/perfil/page.tsx",
+    "app/(app)/planejamento-inteligente/page.tsx",
+    "app/(app)/planos/page.tsx",
+    "app/(app)/questoes/page.tsx",
+    "app/(app)/recuperacao/page.tsx",
+    "app/(app)/revisao-inteligente/page.tsx",
+    "app/(app)/simulados/page.tsx",
+    "app/api/billing/checkout/route.ts",
+    "app/api/diagnostics/route.ts",
+    "app/api/gemini/route.ts",
+    "app/api/ia/route.ts",
+    "app/global-error.tsx",
+    "app/layout.tsx",
+    "app/loading.tsx",
+    "app/login/page.tsx",
+    "app/not-found.tsx",
+    "app/page.tsx",
+    "proxy.ts"
+  ],
+  "totalAlcancaveis": 80,
+  "totalLibs": 66,
+  "totalLibsAlcancaveis": 43,
+  "totalLibsNaoAlcancaveis": 23,
+  "libsAlcancaveis": [
+    {
+      "arquivo": "lib/adaptive/engine.ts",
+      "importadores": [
+        "app/(app)/dashboard/page.tsx",
+        "app/(app)/inteligencia/page.tsx",
+        "app/(app)/perfil/page.tsx",
+        "app/(app)/simulados/page.tsx"
+      ],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/ai-engine.ts",
+      "importadores": [
+        "app/(app)/ia/page.tsx"
+      ],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/ai-helpers.ts",
+      "importadores": [
+        "lib/ai-study-engine.ts"
+      ],
+      "dependencias": [
+        "lib/storage-core.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/ai-study-engine.ts",
+      "importadores": [
+        "lib/fase2-service.ts"
+      ],
+      "dependencias": [
+        "lib/ai-helpers.ts",
+        "lib/fase2-types.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/app-storage.ts",
+      "importadores": [
+        "app/(app)/banco-de-erros/page.tsx",
+        "app/(app)/dashboard/page.tsx",
+        "app/(app)/ia/page.tsx",
+        "app/(app)/inteligencia/page.tsx",
+        "app/(app)/materias/[materiaid]/[topicoid]/[subtopicoid]/page.tsx",
+        "app/(app)/materias/[materiaid]/[topicoid]/page.tsx",
+        "app/(app)/materias/[materiaid]/page.tsx",
+        "app/(app)/materias/page.tsx",
+        "app/(app)/perfil/page.tsx",
+        "app/(app)/planejamento-inteligente/page.tsx",
+        "app/(app)/recuperacao/page.tsx",
+        "app/(app)/revisao-inteligente/page.tsx",
+        "app/(app)/simulados/page.tsx",
+        "hooks/use-app-data.ts",
+        "lib/concursos/service.ts",
+        "lib/export-utils.ts",
+        "lib/questoes/integracao-banco-erros.ts",
+        "lib/review-sync.ts"
+      ],
+      "dependencias": [
+        "lib/data-access/app-repository.ts",
+        "lib/storage-core.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/auth/auth-service.ts",
+      "importadores": [
+        "app/login/page.tsx"
+      ],
+      "dependencias": [
+        "lib/supabase/client.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/cespe-generator.ts",
+      "importadores": [
+        "lib/fase2-service.ts"
+      ],
+      "dependencias": [
+        "lib/fase2-types.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/concursos/index.ts",
+      "importadores": [
+        "app/(app)/onboarding/page.tsx"
+      ],
+      "dependencias": [
+        "lib/concursos/pf.ts",
+        "lib/concursos/prf.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/concursos/pf.ts",
+      "importadores": [
+        "lib/concursos/index.ts"
+      ],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/concursos/prf.ts",
+      "importadores": [
+        "lib/concursos/index.ts"
+      ],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/concursos/service.ts",
+      "importadores": [
+        "app/(app)/onboarding/page.tsx"
+      ],
+      "dependencias": [
+        "lib/app-storage.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/data-access/app-repository.ts",
+      "importadores": [
+        "app/(app)/dashboard/page.tsx",
+        "app/(app)/evolucao/page.tsx",
+        "app/(app)/flashcards/page.tsx",
+        "app/(app)/inteligencia/page.tsx",
+        "app/(app)/onboarding/page.tsx",
+        "app/(app)/perfil/page.tsx",
+        "app/(app)/planejamento-inteligente/page.tsx",
+        "lib/app-storage.ts",
+        "lib/flashcards-core.ts",
+        "lib/gamificacao/index.ts",
+        "lib/planning-state.ts",
+        "lib/profile/timeline-engine.ts",
+        "lib/questoes-history.ts",
+        "lib/sessoes/index.ts",
+        "lib/simulados-prova/engine.ts"
+      ],
+      "dependencias": [
+        "lib/data-access/keys.ts",
+        "lib/data-access/provider.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/data-access/keys.ts",
+      "importadores": [
+        "app/(app)/banco-de-erros/page.tsx",
+        "app/(app)/modo-foco/page.tsx",
+        "app/(app)/perfil/page.tsx",
+        "app/(app)/planejamento-inteligente/page.tsx",
+        "app/(app)/revisao-inteligente/page.tsx",
+        "app/(app)/simulados/page.tsx",
+        "app/api/diagnostics/route.ts",
+        "lib/data-access/app-repository.ts",
+        "lib/questoes-history.ts"
+      ],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/data-access/provider.ts",
+      "importadores": [
+        "app/api/diagnostics/route.ts",
+        "lib/data-access/app-repository.ts"
+      ],
+      "dependencias": [
+        "lib/supabase/client.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/error-messages.ts",
+      "importadores": [
+        "lib/storage-core.ts"
+      ],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/fase2-service.ts",
+      "importadores": [
+        "lib/revisao-inteligente-adapter.ts"
+      ],
+      "dependencias": [
+        "lib/ai-study-engine.ts",
+        "lib/cespe-generator.ts",
+        "lib/fase2-storage.ts",
+        "lib/fase2-types.ts",
+        "lib/performance-metrics.ts",
+        "lib/review-sync.ts",
+        "lib/spaced-repetition.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/fase2-storage.ts",
+      "importadores": [
+        "app/(app)/dashboard/page.tsx",
+        "app/(app)/inteligencia/page.tsx",
+        "app/(app)/revisao-inteligente/page.tsx",
+        "lib/fase2-service.ts"
+      ],
+      "dependencias": [
+        "lib/fase2-types.ts",
+        "lib/storage-core.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/fase2-types.ts",
+      "importadores": [
+        "lib/ai-study-engine.ts",
+        "lib/cespe-generator.ts",
+        "lib/fase2-service.ts",
+        "lib/fase2-storage.ts",
+        "lib/performance-metrics.ts",
+        "lib/review-sync.ts",
+        "lib/spaced-repetition.ts"
+      ],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/flashcards-core.ts",
+      "importadores": [
+        "app/(app)/flashcards/page.tsx",
+        "app/(app)/materias/[materiaid]/[topicoid]/[subtopicoid]/page.tsx",
+        "app/(app)/simulados/page.tsx"
+      ],
+      "dependencias": [
+        "lib/data-access/app-repository.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/gamificacao/index.ts",
+      "importadores": [
+        "app/(app)/evolucao/page.tsx",
+        "app/(app)/materias/[materiaid]/[topicoid]/[subtopicoid]/page.tsx",
+        "app/(app)/modo-foco/page.tsx",
+        "components/app-shell.tsx",
+        "lib/xp-system.ts"
+      ],
+      "dependencias": [
+        "lib/data-access/app-repository.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/guided-flow.ts",
+      "importadores": [
+        "components/guided-flow-widget.tsx"
+      ],
+      "dependencias": [
+        "lib/storage-core.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/performance-metrics.ts",
+      "importadores": [
+        "lib/fase2-service.ts"
+      ],
+      "dependencias": [
+        "lib/fase2-types.ts",
+        "lib/spaced-repetition.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/planner-ui-storage.ts",
+      "importadores": [
+        "components/guided-flow-widget.tsx"
+      ],
+      "dependencias": [
+        "lib/storage-core.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/planning-state.ts",
+      "importadores": [
+        "app/(app)/dashboard/page.tsx",
+        "app/(app)/materias/[materiaid]/[topicoid]/[subtopicoid]/page.tsx",
+        "app/(app)/modo-foco/page.tsx",
+        "app/(app)/onboarding/page.tsx",
+        "app/(app)/planejamento-inteligente/page.tsx",
+        "app/(app)/recuperacao/page.tsx"
+      ],
+      "dependencias": [
+        "lib/data-access/app-repository.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/plans.ts",
+      "importadores": [
+        "app/(app)/planos/page.tsx",
+        "app/api/billing/checkout/route.ts",
+        "lib/capabilities/index.ts",
+        "lib/subscription.ts"
+      ],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/profile/behavior-engine.ts",
+      "importadores": [
+        "app/(app)/perfil/page.tsx"
+      ],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/profile/planner-profile-adapter.ts",
+      "importadores": [
+        "app/(app)/planejamento-inteligente/page.tsx"
+      ],
+      "dependencias": [
+        "lib/profile/preferences-engine.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/profile/preferences-engine.ts",
+      "importadores": [
+        "lib/profile/planner-profile-adapter.ts"
+      ],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/profile/profile-engine.ts",
+      "importadores": [
+        "app/(app)/perfil/page.tsx"
+      ],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/profile/timeline-engine.ts",
+      "importadores": [
+        "app/(app)/perfil/page.tsx"
+      ],
+      "dependencias": [
+        "lib/data-access/app-repository.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/questoes-history.ts",
+      "importadores": [
+        "app/(app)/questoes/page.tsx"
+      ],
+      "dependencias": [
+        "lib/data-access/app-repository.ts",
+        "lib/data-access/keys.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/questoes/integracao-banco-erros.ts",
+      "importadores": [
+        "app/(app)/questoes/page.tsx"
+      ],
+      "dependencias": [
+        "lib/app-storage.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/review-sync.ts",
+      "importadores": [
+        "lib/fase2-service.ts"
+      ],
+      "dependencias": [
+        "lib/app-storage.ts",
+        "lib/fase2-types.ts",
+        "lib/spaced-repetition.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/revisao-inteligente-adapter.ts",
+      "importadores": [
+        "app/(app)/banco-de-erros/page.tsx",
+        "app/(app)/materias/[materiaid]/[topicoid]/[subtopicoid]/page.tsx",
+        "app/(app)/simulados/page.tsx"
+      ],
+      "dependencias": [
+        "lib/fase2-service.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/sessoes/index.ts",
+      "importadores": [
+        "app/(app)/modo-foco/page.tsx"
+      ],
+      "dependencias": [
+        "lib/data-access/app-repository.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/sidebar.ts",
+      "importadores": [
+        "components/app-shell.tsx"
+      ],
+      "dependencias": [
+        "lib/storage-core.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/simulados-prova/adaptive.ts",
+      "importadores": [
+        "app/(app)/simulados/page.tsx"
+      ],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/simulados-prova/engine.ts",
+      "importadores": [
+        "app/(app)/perfil/page.tsx",
+        "app/(app)/simulados/page.tsx"
+      ],
+      "dependencias": [
+        "lib/data-access/app-repository.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/simulados-prova/procedural.ts",
+      "importadores": [
+        "app/(app)/simulados/page.tsx"
+      ],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/spaced-repetition.ts",
+      "importadores": [
+        "lib/fase2-service.ts",
+        "lib/performance-metrics.ts",
+        "lib/review-sync.ts"
+      ],
+      "dependencias": [
+        "lib/fase2-types.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/storage-core.ts",
+      "importadores": [
+        "lib/ai-helpers.ts",
+        "lib/app-storage.ts",
+        "lib/fase2-storage.ts",
+        "lib/gamification.ts",
+        "lib/guided-flow.ts",
+        "lib/planner-ui-storage.ts",
+        "lib/sidebar.ts",
+        "lib/subscription.ts",
+        "lib/theme-storage.ts",
+        "lib/xp-system.ts"
+      ],
+      "dependencias": [
+        "lib/error-messages.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/supabase/client.ts",
+      "importadores": [
+        "app/api/diagnostics/route.ts",
+        "app/login/page.tsx",
+        "app/providers.tsx",
+        "lib/auth/auth-service.ts",
+        "lib/data-access/provider.ts"
+      ],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/xp-system.ts",
+      "importadores": [
+        "components/guided-flow-widget.tsx"
+      ],
+      "dependencias": [
+        "lib/gamificacao/index.ts",
+        "lib/storage-core.ts"
+      ]
+    }
+  ],
+  "libsNaoAlcancaveis": [
+    {
+      "arquivo": "lib/auth-service.ts",
+      "importadores": [],
+      "dependencias": [
+        "lib/firebase.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/capabilities/index.ts",
+      "importadores": [
+        "lib/subscription.ts"
+      ],
+      "dependencias": [
+        "lib/plans.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/cloud-realtime-sync.ts",
+      "importadores": [],
+      "dependencias": [
+        "lib/firebase.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/cloud-sync.ts",
+      "importadores": [],
+      "dependencias": [
+        "lib/firebase.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/edital-pdf.ts",
+      "importadores": [],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/export-utils.ts",
+      "importadores": [],
+      "dependencias": [
+        "lib/app-storage.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/exportclient.ts",
+      "importadores": [],
+      "dependencias": [
+        "lib/firebase.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/fcm.ts",
+      "importadores": [],
+      "dependencias": [
+        "lib/firebase.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/firebase.ts",
+      "importadores": [
+        "app/firestore.ts",
+        "app/providers.tsx",
+        "lib/auth-service.ts",
+        "lib/cloud-realtime-sync.ts",
+        "lib/cloud-sync.ts",
+        "lib/exportclient.ts",
+        "lib/fcm.ts",
+        "lib/push.ts",
+        "lib/questions.ts",
+        "lib/reviewengine.ts",
+        "lib/stats.ts",
+        "lib/studysessions.ts",
+        "lib/uploads.ts",
+        "lib/users.ts"
+      ],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/gamification.ts",
+      "importadores": [],
+      "dependencias": [
+        "lib/storage-core.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/materias-upload.ts",
+      "importadores": [],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/notifications.ts",
+      "importadores": [
+        "lib/pomodoro-notify.ts"
+      ],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/payment.ts",
+      "importadores": [],
+      "dependencias": []
+    },
+    {
+      "arquivo": "lib/pomodoro-notify.ts",
+      "importadores": [],
+      "dependencias": [
+        "lib/notifications.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/push.ts",
+      "importadores": [],
+      "dependencias": [
+        "lib/firebase.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/questions.ts",
+      "importadores": [],
+      "dependencias": [
+        "lib/firebase.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/reviewengine.ts",
+      "importadores": [],
+      "dependencias": [
+        "lib/firebase.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/stats.ts",
+      "importadores": [],
+      "dependencias": [
+        "lib/firebase.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/studysessions.ts",
+      "importadores": [],
+      "dependencias": [
+        "lib/firebase.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/subscription.ts",
+      "importadores": [],
+      "dependencias": [
+        "lib/capabilities/index.ts",
+        "lib/plans.ts",
+        "lib/storage-core.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/theme-storage.ts",
+      "importadores": [
+        "app/providers.tsx"
+      ],
+      "dependencias": [
+        "lib/storage-core.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/uploads.ts",
+      "importadores": [],
+      "dependencias": [
+        "lib/firebase.ts"
+      ]
+    },
+    {
+      "arquivo": "lib/users.ts",
+      "importadores": [],
+      "dependencias": [
+        "lib/firebase.ts"
+      ]
+    }
+  ],
+  "resolucoesNaoEncontradas": [
+    {
+      "origem": "app/layout.tsx",
+      "linha": 1,
+      "especificador": "./globals.css"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+﻿=== COMPONENTES RESTANTES ===
+Gerado em: 22/07/2026 19:37:48
+
+components\app-shell.tsx
+components\evolucao\heatmap.tsx
+components\flashcards\flashcard-player.tsx
+components\guided-flow-widget.tsx
+components\ia\ia-actions.tsx
+components\materia-card.tsx
+components\materias\banco-erros.tsx
+components\materias\materia-core.tsx
+components\materias\materia-fase4-client.tsx
+components\onboarding\OnboardingWizard.tsx
+components\planning\OnboardingPlanningBridge.tsx
+components\study\DigitalNotebook.tsx
+components\TimerProvider.tsx
+components\ui\ThemeToggle.tsx

@@ -1,0 +1,73 @@
+<svg width="420" height="520" viewBox="0 0 420 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGlow" x1="210" y1="0" x2="210" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A9C7FF"/>
+      <stop offset="1" stop-color="#6B7DFF"/>
+    </linearGradient>
+    <linearGradient id="bodyGrad" x1="210" y1="150" x2="210" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#CBE8FF"/>
+      <stop offset="1" stop-color="#91AEFF"/>
+    </linearGradient>
+    <linearGradient id="hairGrad" x1="210" y1="60" x2="210" y2="210" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EDF7FF"/>
+      <stop offset="1" stop-color="#A5BFFF"/>
+    </linearGradient>
+    <linearGradient id="dressGrad" x1="210" y1="250" x2="210" y2="450" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7E8DFF"/>
+      <stop offset="1" stop-color="#4E5FE0"/>
+    </linearGradient>
+    <filter id="softGlow" x="-80" y="-80" width="580" height="680" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="24" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <ellipse cx="210" cy="468" rx="116" ry="22" fill="#27346F" opacity="0.38"/>
+
+  <g filter="url(#softGlow)">
+    <circle cx="210" cy="122" r="86" fill="url(#bgGlow)" opacity="0.18"/>
+  </g>
+
+  <path d="M140 157C140 106.19 181.19 65 232 65C282.81 65 324 106.19 324 157V178C324 228.81 282.81 270 232 270H220C175.82 270 140 234.18 140 190V157Z" fill="url(#hairGrad)"/>
+  <path d="M127 163C127 111.64 168.64 70 220 70H230C281.36 70 323 111.64 323 163V190C323 140 290 111 246 111H202C158 111 127 140 127 190V163Z" fill="#DDEBFF"/>
+
+  <ellipse cx="213" cy="175" rx="74" ry="83" fill="#F8FBFF"/>
+  <path d="M172 162C178 154 188 149 198 149C208 149 217 154 222 162" stroke="#6279D8" stroke-width="8" stroke-linecap="round"/>
+  <path d="M233 162C239 154 249 149 259 149C269 149 278 154 283 162" stroke="#6279D8" stroke-width="8" stroke-linecap="round"/>
+
+  <ellipse cx="194" cy="178" rx="9" ry="13" fill="#2F3F91"/>
+  <ellipse cx="259" cy="178" rx="9" ry="13" fill="#2F3F91"/>
+  <circle cx="191" cy="173" r="3" fill="white"/>
+  <circle cx="256" cy="173" r="3" fill="white"/>
+
+  <path d="M224 184C224 191.18 219.3 198 213.5 198C207.7 198 203 191.18 203 184" stroke="#8DA1F7" stroke-width="5" stroke-linecap="round"/>
+  <path d="M196 220C208 229 220 233 235 233C250 233 263 229 275 220" stroke="#7287E9" stroke-width="7" stroke-linecap="round"/>
+
+  <path d="M162 119C176 100 201 87 228 87C257 87 283 102 297 123" stroke="#FFFFFF" stroke-opacity="0.65" stroke-width="10" stroke-linecap="round"/>
+  <path d="M151 123C162 104 181 88 205 79" stroke="#B9D2FF" stroke-width="8" stroke-linecap="round"/>
+  <path d="M308 130C299 111 285 96 267 86" stroke="#B9D2FF" stroke-width="8" stroke-linecap="round"/>
+
+  <path d="M189 263C189 250.85 198.85 241 211 241H228C240.15 241 250 250.85 250 263V284H189V263Z" fill="#E8F3FF"/>
+  <rect x="146" y="281" width="128" height="123" rx="34" fill="url(#bodyGrad)"/>
+  <path d="M146 322C168 310 188 305 210 305C232 305 252 310 274 322V372C274 393.539 256.539 411 235 411H185C163.461 411 146 393.539 146 372V322Z" fill="url(#dressGrad)"/>
+
+  <path d="M146 303C126 314 113 334 113 357C113 369 118 380 126 389L151 366L146 303Z" fill="#A7B8FF"/>
+  <path d="M274 303C294 314 307 334 307 357C307 369 302 380 294 389L269 366L274 303Z" fill="#A7B8FF"/>
+
+  <rect x="105" y="352" width="56" height="28" rx="14" fill="#DDE9FF"/>
+  <rect x="259" y="352" width="56" height="28" rx="14" fill="#DDE9FF"/>
+
+  <path d="M185 404H236L252 455C236 463 223 467 210 467C197 467 184 463 168 455L185 404Z" fill="#D9E8FF"/>
+  <rect x="175" y="449" width="24" height="42" rx="12" fill="#EEF5FF"/>
+  <rect x="223" y="449" width="24" height="42" rx="12" fill="#EEF5FF"/>
+  <rect x="164" y="487" width="48" height="14" rx="7" fill="#CCD9FF"/>
+  <rect x="212" y="487" width="48" height="14" rx="7" fill="#CCD9FF"/>
+
+  <g>
+    <circle cx="305" cy="104" r="18" fill="#EAF6FF"/>
+    <path d="M305 89L308.8 99.2L319 103L308.8 106.8L305 117L301.2 106.8L291 103L301.2 99.2L305 89Z" fill="#6E84F1"/>
+  </g>
+</svg>
