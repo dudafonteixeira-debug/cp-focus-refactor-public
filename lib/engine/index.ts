@@ -8,3 +8,4 @@ export type {
   MissionOrigin,
   MissionStatus,
 } from "@/lib/engine/types";
+export { buildEngineContext } from "@/lib/engine/context-engine";

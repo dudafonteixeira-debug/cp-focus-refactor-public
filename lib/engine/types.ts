@@ -1,4 +1,5 @@
-﻿import type { PlanoTask } from "@/lib/planning/types";
+﻿import type { AdaptiveMateriaScore } from "@/lib/adaptive/engine";
+import type { PlanoTask } from "@/lib/planning/types";
 
 export type MissionCategory =
   | "estudo"
@@ -49,6 +50,13 @@ export type EngineContext = {
   data: string;
   tempoDisponivelMinutos?: number;
   energia?: EnergyLevel;
+  sessoes?: any[];
+  revisoes?: any[];
+  erros?: any[];
+  flashcards?: any[];
+  questoes?: any[];
+  simulados?: any[];
+  radar?: AdaptiveMateriaScore[];
 };
 
 export type EngineResult = {
