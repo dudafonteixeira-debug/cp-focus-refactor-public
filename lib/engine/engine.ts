@@ -1,11 +1,15 @@
-﻿import { getNextMission, selectMissionsForToday } from "@/lib/engine/mission-engine";
+﻿import { buildEngineContext } from "@/lib/engine/context-engine";
+import {
+  getNextMission,
+  selectMissionsForToday,
+} from "@/lib/engine/mission-engine";
 import type {
   EngineContext,
   EngineMission,
   EngineResult,
   MissionCategory,
 } from "@/lib/engine/types";
-import { loadPlanoDia, todayKey } from "@/lib/planning-state";
+import { loadPlanoDia } from "@/lib/planning-state";
 import type { PlanoTask } from "@/lib/planning/types";
 
 function inferCategory(task: PlanoTask): MissionCategory {
@@ -14,7 +18,10 @@ function inferCategory(task: PlanoTask): MissionCategory {
   return "estudo";
 }
 
-function normalizeMission(task: PlanoTask, index: number): EngineMission {
+function normalizeMission(
+  task: PlanoTask,
+  index: number
+): EngineMission {
   return {
     ...task,
     categoria: inferCategory(task),
@@ -24,8 +31,13 @@ function normalizeMission(task: PlanoTask, index: number): EngineMission {
   };
 }
 
-function buildLyraMessage(missions: EngineMission[]): string {
-  const pendentes = missions.filter((mission) => !mission.concluida);
+function buildLyraMessage(
+  missions: EngineMission[],
+  context: EngineContext
+): string {
+  const pendentes = missions.filter(
+    (mission) => mission.status !== "concluida"
+  );
 
   if (!missions.length) {
     return "Seu dia ainda nao foi planejado. Vou organizar suas proximas missoes.";
@@ -35,29 +47,42 @@ function buildLyraMessage(missions: EngineMission[]): string {
     return "Missoes concluidas. Seu ciclo de estudos de hoje foi finalizado.";
   }
 
+  const critica = context.radar?.find(
+    (item) => item.nivel === "critica"
+  );
+
+  if (critica) {
+    return `Hoje vamos dar atencao especial a ${critica.materia}, que aparece como materia critica no seu desempenho recente.`;
+  }
+
   const minutos = pendentes.reduce(
     (total, mission) => total + Number(mission.minutos || 0),
     0
   );
 
-  return `Hoje temos ${pendentes.length} missoes pendentes, com aproximadamente ${minutos} minutos de estudo.`;
+  return `Organizei ${pendentes.length} missoes para hoje, totalizando aproximadamente ${minutos} minutos.`;
 }
 
 export async function getTodayMissions(
-  context: Partial<EngineContext> = {}
+  input: Partial<EngineContext> = {}
 ): Promise<EngineResult> {
+  const context = await buildEngineContext(input);
+
   const tasks = await loadPlanoDia<PlanoTask>();
   const normalized = tasks.map(normalizeMission);
 
-  const resolvedContext: EngineContext = {
-    data: context.data || todayKey(),
-    tempoDisponivelMinutos: context.tempoDisponivelMinutos,
-    energia: context.energia,
-  };
+  const missions = selectMissionsForToday(
+    normalized,
+    context
+  );
 
-  const missions = selectMissionsForToday(normalized, resolvedContext);
-  const pendentes = missions.filter((mission) => !mission.concluida);
-  const concluidas = missions.filter((mission) => mission.concluida);
+  const pendentes = missions.filter(
+    (mission) => mission.status !== "concluida"
+  );
+
+  const concluidas = missions.filter(
+    (mission) => mission.status === "concluida"
+  );
 
   const minutosPlanejados = missions.reduce(
     (total, mission) => total + Number(mission.minutos || 0),
@@ -74,7 +99,7 @@ export async function getTodayMissions(
     : 0;
 
   return {
-    data: resolvedContext.data,
+    data: context.data,
     missions,
     pendentes,
     concluidas,
@@ -82,6 +107,6 @@ export async function getTodayMissions(
     minutosPlanejados,
     minutosPendentes,
     progresso,
-    mensagemLyra: buildLyraMessage(missions),
+    mensagemLyra: buildLyraMessage(missions, context),
   };
 }
