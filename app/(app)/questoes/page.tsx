@@ -1,9 +1,10 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { salvarHistoricoQuestao } from "@/lib/questoes-history";
 import { salvarQuestaoErradaNoBanco } from "@/lib/questoes/integracao-banco-erros";
+import { finishMission, getMissionRoute } from "@/lib/engine";
 
 type Questao = {
   id: string;
@@ -42,11 +43,13 @@ const QUESTOES_BASE: Questao[] = [
 ];
 
 export default function QuestoesPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
 
   const materiaContexto = searchParams.get("materia") || "";
   const topicoContexto = searchParams.get("topico") || "";
   const origemContexto = searchParams.get("origem") || "";
+  const missionId = searchParams.get("missionId") || "";
   const [index, setIndex] = useState(0);
   const [resposta, setResposta] = useState<number | null>(null);
   const [corrigida, setCorrigida] = useState(false);
@@ -99,13 +102,34 @@ export default function QuestoesPage() {
     }
   }
 
-  function proxima() {
-    if (index < questoesFiltradas.length - 1) {
+  async function proxima() {
+    const ultimaQuestao = index >= questoesFiltradas.length - 1;
+
+    if (!ultimaQuestao) {
       setIndex((v) => v + 1);
-    } else {
-      setIndex(0);
+      setResposta(null);
+      setCorrigida(false);
+      return;
     }
 
+    if (missionId) {
+      const totalRespondidas = acertos + erros;
+
+      const engineResult = await finishMission({
+        missionId,
+        nota: `Questoes concluídas: ${totalRespondidas}. Acertos: ${acertos}. Erros: ${erros}.`,
+      });
+
+      if (engineResult.proxima) {
+        router.push(getMissionRoute(engineResult.proxima));
+        return;
+      }
+
+      router.push("/dashboard");
+      return;
+    }
+
+    setIndex(0);
     setResposta(null);
     setCorrigida(false);
   }
@@ -225,7 +249,7 @@ export default function QuestoesPage() {
               </button>
             ) : (
               <button type="button" onClick={proxima} className="cp-os-btn-primary">
-                Proxima questao
+                {index === questoesFiltradas.length - 1 && missionId ? "Concluir missao" : "Proxima questao"}
               </button>
             )}
           </div>
@@ -234,3 +258,6 @@ export default function QuestoesPage() {
     </main>
   );
 }
+
+
+

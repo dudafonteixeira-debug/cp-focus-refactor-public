@@ -36,7 +36,7 @@ export function getMissionRoute(
 
   switch (mission.categoria) {
     case "revisao":
-      return `/revisao-inteligente?${query}`;
+      return `/revisao-inteligente?${query}&auto=true`;
 
     case "questoes":
     case "recuperacao":
@@ -57,3 +57,4 @@ export function getMissionRoute(
       return `/modo-foco?missionId=${encodeURIComponent(mission.id)}&modo=descanso`;
   }
 }
+

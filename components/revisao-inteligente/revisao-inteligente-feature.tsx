@@ -1,6 +1,8 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import { finishMission, getMissionRoute } from "@/lib/engine";
 import { loadFase2Store, saveFase2Store } from "@/lib/fase2-storage";
 import { loadAppData } from "@/lib/app-storage";
 import {
@@ -16,6 +18,7 @@ import {
 import type { UiReview } from "@/lib/revisao-inteligente/types";
 
 export function RevisaoInteligenteFeature() {
+  const router = useRouter();
   // AUTO_START_REVIEW_FROM_DASHBOARD
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -244,7 +247,7 @@ export function RevisaoInteligenteFeature() {
     carregar();
   }
 
-  function responder(id: string, grade: number) {
+  async function responder(id: string, grade: number) {
     const atual = loadFase2Store();
     const now = new Date().toISOString();
 
@@ -277,6 +280,22 @@ export function RevisaoInteligenteFeature() {
     setAberta(null);
     setLembranca("");
     setMostrarConteudo(false);
+
+    const missionId = new URL(window.location.href).searchParams.get("missionId");
+
+    if (missionId) {
+      const engineResult = await finishMission({
+        missionId,
+        nota: `Revisao concluida com nota ${grade}/5.`,
+      });
+
+      if (engineResult.proxima) {
+        router.push(getMissionRoute(engineResult.proxima));
+        return;
+      }
+
+      router.push("/dashboard");
+    }
   }
 
   function desfazer(id: string) {
@@ -372,8 +391,8 @@ export function RevisaoInteligenteFeature() {
       <section className="mx-auto flex w-full max-w-[1480px] flex-col gap-8">
         <header className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.32em] text-fuchsia-200">🎯 Sistema de revisao</p>
-            <h1 className="mt-2 text-4xl font-black tracking-tight md:text-5xl">Revis&atilde;o Inteligente ✨</h1>
+            <p className="text-sm font-black uppercase tracking-[0.32em] text-fuchsia-200">ðŸŽ¯ Sistema de revisao</p>
+            <h1 className="mt-2 text-4xl font-black tracking-tight md:text-5xl">Revis&atilde;o Inteligente âœ¨</h1>
             <p className="mt-2 text-sm text-slate-300">Revise de forma inteligente e fortale&ccedil;a seus pontos fracos.</p>
           </div>
 
@@ -442,7 +461,7 @@ export function RevisaoInteligenteFeature() {
 
                   {fila.map((item) => (
                     <article key={item.id} className={`rounded-[1.8rem] border border-violet-300/20 bg-gradient-to-br from-[#11163a]/95 via-[#0b1029]/95 to-violet-950/25 p-6 shadow-xl shadow-violet-950/30 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:shadow-cyan-950/30 ${visual === "lista" ? "flex flex-col gap-4 xl:flex-row xl:items-center" : "space-y-4"}`}>
-                      <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-violet-600 via-fuchsia-600 to-indigo-600 text-2xl font-black shadow-lg shadow-fuchsia-950/40">📘</div>
+                      <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-violet-600 via-fuchsia-600 to-indigo-600 text-2xl font-black shadow-lg shadow-fuchsia-950/40">ðŸ“˜</div>
                       <div className="min-w-0 flex-1">
                         <h2 className="break-words text-xl font-black">{item.materia}</h2>
                         <p className="mt-1 text-sm text-slate-300">{item.topico}</p>
@@ -564,15 +583,15 @@ export function RevisaoInteligenteFeature() {
                   <div className="text-center"><p className="text-2xl font-black">{total}</p><p className="text-xs text-slate-400">Total</p></div>
                 </div>
                 <div className="space-y-3 text-sm">
-                  <p><span className="text-emerald-300">●</span> Boas/F&aacute;ceis: {boasTotal}</p>
-                  <p><span className="text-amber-300">●</span> M&eacute;dias: {sessions.filter((s: any) => Number(s.grade) === 3).length}</p>
-                  <p><span className="text-rose-300">●</span> Fracas: {sessions.filter((s: any) => Number(s.grade) <= 2).length}</p>
+                  <p><span className="text-emerald-300">â—</span> Boas/F&aacute;ceis: {boasTotal}</p>
+                  <p><span className="text-amber-300">â—</span> M&eacute;dias: {sessions.filter((s: any) => Number(s.grade) === 3).length}</p>
+                  <p><span className="text-rose-300">â—</span> Fracas: {sessions.filter((s: any) => Number(s.grade) <= 2).length}</p>
                 </div>
               </div>
             </section>
 
             <section className="rounded-[2rem] border border-cyan-300/30 bg-gradient-to-br from-[#082f49]/60 via-[#14183f] to-fuchsia-950/50 p-6 shadow-2xl shadow-fuchsia-950/40 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/30">
-              <h2 className="text-lg font-black">✦ IA do CP Focus</h2>
+              <h2 className="text-lg font-black">âœ¦ IA do CP Focus</h2>
               <p className="mt-4 text-sm leading-7 text-slate-200">{sugestao}</p>
             </section>
 
@@ -657,3 +676,6 @@ export function RevisaoInteligenteFeature() {
     </main>
   );
 }
+
+
+
