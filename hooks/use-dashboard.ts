@@ -11,31 +11,12 @@ import {
   calculateTodayAnalytics,
 } from "@/lib/dashboard/analytics";
 import type { DashboardTask } from "@/lib/dashboard/types";
-import { getTodayMissions } from "@/lib/engine";
+import { getMissionRoute, getTodayMissions } from "@/lib/engine";
 import { loadFase2Store } from "@/lib/fase2-storage";
 import {
   loadPlanningBrain,
   persistPlanoDia,
 } from "@/lib/planning-state";
-
-function buildTaskUrl(task: DashboardTask): string {
-  const materia = encodeURIComponent(task.materia || "");
-  const topico = encodeURIComponent(task.topico || "");
-
-  if (task.tipo === "Correcao") {
-    return `/questoes?materia=${materia}&topico=${topico}&origem=dashboard`;
-  }
-
-  if (task.tipo === "Revisao") {
-    return `/revisao-inteligente?materia=${materia}&topico=${topico}&origem=dashboard`;
-  }
-
-  if (task.materiaId && task.topicoId && task.subtopicoId) {
-    return `/materias/${task.materiaId}/${task.topicoId}/${task.subtopicoId}`;
-  }
-
-  return "/materias";
-}
 
 export function useDashboard() {
   const router = useRouter();
@@ -141,7 +122,7 @@ export function useDashboard() {
   const proximasMissoes = pendentes.slice(1, 5);
 
   const abrirTask = useCallback(
-    (task: DashboardTask) => router.push(buildTaskUrl(task)),
+    (task: DashboardTask) => router.push(getMissionRoute(task)),
     [router]
   );
 
@@ -198,5 +179,6 @@ export function useDashboard() {
     tasks,
   };
 }
+
 
 

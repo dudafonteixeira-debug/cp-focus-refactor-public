@@ -6,7 +6,8 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { addXp } from "@/lib/gamificacao";
 import { saveSessaoEstudo } from "@/lib/sessoes";
-import { loadPlanoDia, persistPlanoDia } from "@/lib/planning-state";
+import { loadPlanoDia } from "@/lib/planning-state";
+import { finishMission, getMissionRoute } from "@/lib/engine";
 
 function formatTime(seconds: number) {
   const min = Math.floor(seconds / 60);
@@ -25,6 +26,7 @@ export default function ModoFocoPage() {
   const [startedAt, setStartedAt] = useState<number | null>(null);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [xpInfo, setXpInfo] = useState<any>(null);
+  const [nextMission, setNextMission] = useState<any>(null);
 
   async function carregar() {
     const loaded = await loadPlanoDia<any>();
@@ -54,51 +56,17 @@ export default function ModoFocoPage() {
   const atual = pendentes[0] || null;
 
   const progresso = tasks.length ? Math.round((concluidas.length / tasks.length) * 100) : 0;
-
   function executarTarefa() {
-    if (atual?.tipo === "Correcao") {
-      router.push(`/questoes?materia=${encodeURIComponent(atual?.materia || "")}&topico=${encodeURIComponent(atual?.topico || "")}&origem=modo-foco`);
-      return;
-    }
-
-    if (atual?.tipo === "Revisao") {
-      router.push(`/revisao-inteligente?materia=${encodeURIComponent(atual?.materia || "")}&topico=${encodeURIComponent(atual?.topico || "")}&origem=modo-foco`);
-      return;
-    }
-
-    abrirMaterial();
-  }
-
-  function abrirMaterial() {
     if (!atual) return;
-
-    if (atual.materiaId && atual.topicoId && atual.subtopicoId) {
-      router.push(`/materias/${atual.materiaId}/${atual.topicoId}/${atual.subtopicoId}`);
-      return;
-    }
-
-    router.push("/materias");
+    router.push(getMissionRoute(atual));
   }
+
 
   async function concluirSessao() {
     if (!atual) {
       router.push("/dashboard");
       return;
     }
-
-    const updated = tasks.map((task) =>
-      task.id === atual.id
-        ? {
-            ...task,
-            concluida: true,
-            concluidaEm: new Date().toISOString(),
-            notaSessao: note,
-          }
-        : task
-    );
-
-    await persistPlanoDia(updated);
-    setTasks(updated);
 
     const segundosEstudados = Math.max(
       elapsedSeconds,
@@ -119,6 +87,14 @@ export default function ModoFocoPage() {
       createdAt: new Date().toISOString(),
     });
 
+    const engineResult = await finishMission({
+      missionId: atual.id,
+      nota: note,
+    });
+
+    setTasks(engineResult.missions);
+    setNextMission(engineResult.proxima);
+
     const game = addXp(40);
     setXpInfo(game);
     setRunning(false);
@@ -131,15 +107,12 @@ export default function ModoFocoPage() {
   async function continuarFluxo() {
     setDoneModal(false);
 
-    const next = (await loadPlanoDia<any>()).find((task: any) => !task.concluida);
-
-    if (!next) {
+    if (!nextMission) {
       router.push("/dashboard");
       return;
     }
 
-    void carregar();
-    setRunning(true);
+    router.push(getMissionRoute(nextMission));
   }
 
   if (!tasks.length) {
@@ -261,7 +234,7 @@ export default function ModoFocoPage() {
               Executar tarefa
             </button>
 
-            <button type="button" onClick={abrirMaterial} className="cp-os-btn-soft">
+            <button type="button" onClick={executarTarefa} className="cp-os-btn-soft">
               Abrir material
             </button>
 
@@ -354,5 +327,12 @@ export default function ModoFocoPage() {
     </main>
   );
 }
+
+
+
+
+
+
+
 
 

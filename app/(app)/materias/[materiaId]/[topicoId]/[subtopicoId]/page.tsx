@@ -5,7 +5,7 @@ import { salvarFlashcards } from "@/lib/flashcards-core";
 import { addXp } from "@/lib/gamificacao";
 import { salvarNaRevisaoInteligente } from "@/lib/revisao-inteligente-adapter";
 import { loadAppData, updateAppData } from "@/lib/app-storage";
-import { loadPlanoDia, persistPlanoDia } from "@/lib/planning-state";
+import { getMissionRoute, getTodayMissions, finishMission } from "@/lib/engine";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
@@ -143,39 +143,6 @@ export default function SubtopicoPage() {
 
     setStatus("Item excluido.");
   }
-  async function sincronizarPlanoDoDia() {
-    const tasks = await loadPlanoDia<any>();
-
-    const updated = tasks.map((task: any) => {
-      const mesmaMateria = String(task.materiaId || "") === materiaId;
-      const mesmoTopico = String(task.topicoId || "") === topicoId;
-      const mesmoSub = String(task.subtopicoId || "") === subtopicoId;
-
-      if (mesmaMateria && mesmoTopico && mesmoSub) {
-        return {
-          ...task,
-          concluida: true,
-          concluidaEm: new Date().toISOString(),
-        };
-      }
-
-      return task;
-    });
-
-    await persistPlanoDia(updated);
-  }
-
-  async function prepararProximoFluxo() {
-    const tasks = await loadPlanoDia<any>();
-
-    const feitas = tasks.filter((task: any) => task.concluida).length;
-    const total = tasks.length;
-    const proxima = tasks.find((task: any) => !task.concluida) || null;
-
-    setProximaTarefa(proxima);
-    setProgressoFluxo({ feitas, total });
-    setFluxoAberto(true);
-  }
 
   function abrirProximaTarefa() {
     if (!proximaTarefa) {
@@ -183,12 +150,7 @@ export default function SubtopicoPage() {
       return;
     }
 
-    if (proximaTarefa.materiaId && proximaTarefa.topicoId && proximaTarefa.subtopicoId) {
-      router.push(`/materias/${proximaTarefa.materiaId}/${proximaTarefa.topicoId}/${proximaTarefa.subtopicoId}`);
-      return;
-    }
-
-    router.push("/dashboard");
+    router.push(getMissionRoute(proximaTarefa));
   }
 
   async function marcarConcluido() {
@@ -198,15 +160,32 @@ export default function SubtopicoPage() {
       concluido: true,
       dataEstudo: new Date().toISOString(),
     }));
+    const engineBefore = await getTodayMissions();
 
-    await sincronizarPlanoDoDia();
+    const missionAtual = engineBefore.missions.find((mission) =>
+      String(mission.materiaId || "") === materiaId &&
+      String(mission.topicoId || "") === topicoId &&
+      String(mission.subtopicoId || "") === subtopicoId &&
+      !mission.concluida
+    );
+
+    const engineResult = missionAtual
+      ? await finishMission({ missionId: missionAtual.id })
+      : engineBefore;
+
     const gamificacao = await addXp(35);
     setXpGanho(35);
     setNivelAtual(gamificacao.nivel);
     setStreakAtual(gamificacao.streak);
 
-    await prepararProximoFluxo();
-    setStatus("Subtopico concluido e plano atualizado.");
+    setProximaTarefa(engineResult.proxima);
+    setProgressoFluxo({
+      feitas: engineResult.concluidas.length,
+      total: engineResult.missions.length,
+    });
+    setFluxoAberto(true);
+
+    setStatus("Subtopico concluido e fluxo recalculado pelo CP Focus.");
   }
 
   function salvarComoRevisao() {
@@ -481,6 +460,12 @@ export default function SubtopicoPage() {
     </main>
   );
 }
+
+
+
+
+
+
 
 
 
