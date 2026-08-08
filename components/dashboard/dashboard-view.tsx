@@ -5,6 +5,9 @@ import type { DashboardViewModel } from "@/lib/dashboard/types";
 import { DashboardEmptyState } from "@/components/dashboard/dashboard-empty-state";
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { DashboardMetrics } from "@/components/dashboard/dashboard-metrics";
+import { DashboardMissionCard } from "@/components/dashboard/dashboard-mission-card";
+import { DashboardNextMissions } from "@/components/dashboard/dashboard-next-missions";
+import { DashboardLyraCard } from "@/components/dashboard/dashboard-lyra-card";
 
 export function DashboardView({
   adaptiveRadar,
@@ -18,8 +21,10 @@ export function DashboardView({
   diaConcluido,
   error,
   materias,
+  mensagemLyra,
   pendentes,
   proxima,
+  proximasMissoes,
   revisoesPendentes: revisoesPendentesDashboard,
   semPlano,
   stats,
@@ -204,36 +209,21 @@ export function DashboardView({
                 </div>
 
                 {proxima ? (
-                  <article className="mb-5 rounded-[30px] border border-cyan-300/30 bg-cyan-400/10 p-5 shadow-[0_18px_70px_rgba(56,189,248,.14)]">
-                    <span className="cp-os-badge-green">Proxima tarefa</span>
-
-                    <h3 className="mt-3 text-3xl font-black text-white">
-                      {proxima.titulo}
-                    </h3>
-
-                    <p className="mt-2 text-sm text-slate-300">
-                      {proxima.materia} - {proxima.topico}
-                    </p>
-
-                    <p className="mt-2 text-xs text-cyan-100">
-                      {proxima.tipo} - {proxima.prioridade} - {proxima.minutos}min
-                    </p>
-
-                    <div className="mt-5 flex flex-wrap gap-3">
-                      <button type="button" onClick={() => executarTask(proxima)} className="cp-os-btn-primary">
-                        Executar tarefa
-                      </button>
-
-                      <button type="button" onClick={() => abrirTask(proxima)} className="cp-os-btn-soft">
-                        Abrir material
-                      </button>
-
-                      <button type="button" onClick={() => concluirTask(proxima.id)} className="cp-os-btn-focus">
-                        Marcar concluida
-                      </button>
-                    </div>
-                  </article>
+                  <div className="mb-5">
+                    <DashboardMissionCard
+                      mission={proxima}
+                      abrirTask={abrirTask}
+                      concluirTask={concluirTask}
+                    />
+                  </div>
                 ) : null}
+
+                <div className="mb-5">
+                  <DashboardNextMissions
+                    missions={proximasMissoes}
+                    abrirTask={abrirTask}
+                  />
+                </div>
 
                 <div className="overflow-x-auto pb-2">
                   <div className="grid min-w-[900px] grid-cols-6 gap-3">
@@ -347,26 +337,7 @@ export function DashboardView({
                 )}
               </div>
 
-              <aside className="rounded-[30px] border border-fuchsia-300/15 bg-white/[0.045] p-5">
-                <div className="flex items-center gap-3">
-                  <div className="grid h-12 w-12 place-items-center rounded-[20px] bg-gradient-to-br from-fuchsia-500 to-blue-600">
-                    *
-                  </div>
-
-                  <div>
-                    <p className="font-black text-white">Lyra</p>
-                    <p className="text-xs text-slate-400">orientacao rapida</p>
-                  </div>
-                </div>
-
-                <p className="mt-4 text-sm leading-6 text-slate-300">
-                  {semPlano
-                    ? "Gere um plano no Planejamento OS para ativar a execucao guiada."
-                    : diaConcluido
-                    ? "Dia finalizado. Voce pode revisar resultados ou recalcular um novo ciclo."
-                    : "Execute a primeira tarefa pendente. O sistema cuida da ordem."}
-                </p>
-              </aside>
+              <DashboardLyraCard mensagem={mensagemLyra} />
             </section>
           </>
         )}
@@ -374,6 +345,14 @@ export function DashboardView({
     </main>
   );
 }
+
+
+
+
+
+
+
+
 
 
 

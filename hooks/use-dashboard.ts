@@ -45,6 +45,7 @@ export function useDashboard() {
   const [fase2, setFase2] = useState<any>(null);
   const [sessoes, setSessoes] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [mensagemLyra, setMensagemLyra] = useState("");
 
   const carregar = useCallback(async () => {
     setError(null);
@@ -60,6 +61,7 @@ export function useDashboard() {
 
       setAppData(app);
       setTasks(engineResult.missions);
+      setMensagemLyra(engineResult.mensagemLyra);
       setBrain(planningBrain);
       setFase2(loadFase2Store());
       setSessoes(sessoesSalvas);
@@ -136,6 +138,7 @@ export function useDashboard() {
   const semPlano = !appVazio && tasks.length === 0;
   const diaConcluido = tasks.length > 0 && pendentes.length === 0;
   const proxima = pendentes[0] || null;
+  const proximasMissoes = pendentes.slice(1, 5);
 
   const abrirTask = useCallback(
     (task: DashboardTask) => router.push(buildTaskUrl(task)),
@@ -185,11 +188,15 @@ export function useDashboard() {
     diaConcluido,
     error,
     materias,
+    mensagemLyra,
     pendentes,
     proxima,
+    proximasMissoes,
     revisoesPendentes,
     semPlano,
     stats,
     tasks,
   };
 }
+
+

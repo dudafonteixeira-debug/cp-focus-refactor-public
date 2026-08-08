@@ -37,8 +37,10 @@ export type DashboardViewModel = {
   diaConcluido: boolean;
   error: string | null;
   materias: unknown[];
+  mensagemLyra: string;
   pendentes: DashboardTask[];
   proxima: DashboardTask | null;
+  proximasMissoes: DashboardTask[];
   revisoesPendentes: Fase2ReviewItem[];
   semPlano: boolean;
   stats: DashboardStats;
