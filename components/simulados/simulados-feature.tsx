@@ -8,6 +8,8 @@ import { SimuladosResult } from "@/components/simulados/simulados-result";
 import { DATA_KEYS } from "@/lib/data-access/keys";
 
 import { useEffect, useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { finishMission, getMissionRoute } from "@/lib/engine";
 import {
   MODELOS_SIMULADO_PROVA,
   corrigirSimuladoProva,
@@ -144,7 +146,11 @@ function salvarBancoErrosSimulado(simulado: any) {
   }
 }
 export function SimuladosFeature() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const missionId = searchParams.get("missionId") || "";
   const [simulado, setSimulado] = useState<SimuladoProva | null>(null);
+  const [nextMission, setNextMission] = useState<any>(null);
   const [modeloId, setModeloId] = useState(MODELOS_SIMULADO_PROVA[0]?.id || "");
   const [modoSelecionado, setModoSelecionado] = useState<Modo>("certo_errado");
   const [adaptativoAtivo, setAdaptativoAtivo] = useState(false);
@@ -205,6 +211,19 @@ export function SimuladosFeature() {
     return () => window.clearInterval(id);
   }, [running, finalizado, simulado]);
 
+  async function concluirMissaoDoSimulado(done: SimuladoProva) {
+    if (!missionId) return;
+
+    const resultadoFinal = corrigirSimuladoProva(done);
+
+    const engineResult = await finishMission({
+      missionId,
+      nota: `Simulado concluido com ${resultadoFinal.taxa}% de aproveitamento. Acertos: ${resultadoFinal.acertos}. Erros: ${resultadoFinal.erros}.`,
+    });
+
+    setNextMission(engineResult.proxima);
+  }
+
   async function finalizarAutomatico() {
     if (!simulado) return;
 
@@ -219,6 +238,7 @@ export function SimuladosFeature() {
 
     await salvarSimuladoProva(done);
     salvarBancoErrosSimulado(done);
+    await concluirMissaoDoSimulado(done);
   }
 
   async function gerarQuestoesMateria(
@@ -447,6 +467,7 @@ function responder(altIndex: number) {
   setSimulado(done);
   await salvarSimuladoProva(done);
   salvarBancoErrosSimulado(done);
+      await concluirMissaoDoSimulado(done);
   setRunning(false);
   setFinalizado(true);
 }
@@ -498,6 +519,18 @@ function responder(altIndex: number) {
               statusIA={statusIA}
             />) : finalizado && resultado ? (
           <SimuladosResult
+                continuarFluxo={
+                  missionId
+                    ? () => {
+                        if (nextMission) {
+                          router.push(getMissionRoute(nextMission));
+                          return;
+                        }
+
+                        router.push("/dashboard");
+                      }
+                    : undefined
+                }
               diagnostico={diagnosticoPosSimulado}
               formatTime={formatTime}
               novoSimulado={() => {
@@ -526,3 +559,9 @@ function responder(altIndex: number) {
     </main>
   );
 }
+
+
+
+
+
+

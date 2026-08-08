@@ -13,6 +13,7 @@ type SimuladosResultProps = {
   diagnostico: DiagnosticoPosSimulado | null;
   formatTime: (seconds: number) => string;
   novoSimulado: () => void;
+  continuarFluxo?: () => void;
   resultado: ResultadoSimulado;
   simulado: SimuladoProva;
 };
@@ -21,6 +22,7 @@ export function SimuladosResult({
   diagnostico,
   formatTime,
   novoSimulado,
+  continuarFluxo,
   resultado,
   simulado,
 }: SimuladosResultProps) {
@@ -159,6 +161,16 @@ export function SimuladosResult({
           Use este resultado como mapa de partida. Materias com menor taxa devem subir no planejamento, revisao e flashcards.
         </p>
 
+        {continuarFluxo ? (
+          <button
+            type="button"
+            onClick={continuarFluxo}
+            className="cp-os-btn-primary mt-5 w-full"
+          >
+            Continuar fluxo
+          </button>
+        ) : null}
+
         <button
           type="button"
           onClick={novoSimulado}
@@ -170,3 +182,5 @@ export function SimuladosResult({
     </section>
   );
 }
+
+

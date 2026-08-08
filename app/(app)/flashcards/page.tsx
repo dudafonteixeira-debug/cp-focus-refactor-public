@@ -1,7 +1,9 @@
-"use client";
+﻿"use client";
 
 import { todayKey as getTodayKey, toLocalDateKey } from "@/lib/date-utils";
 import { useEffect, useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { finishMission, getMissionRoute } from "@/lib/engine";
 import { listarFlashcards, salvarFlashcards } from "@/lib/flashcards-core";
 import { saveFlashcardsLegacy } from "@/lib/data-access/app-repository";
 
@@ -36,6 +38,11 @@ function labelNota(nota: Nota) {
 }
 
 export default function FlashcardsPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const missionId = searchParams.get("missionId") || "";
+  const materiaContexto = searchParams.get("materia") || "";
+  const topicoContexto = searchParams.get("topico") || "";
   const [cards, setCards] = useState<any[]>([]);
   const [frente, setFrente] = useState("");
   const [verso, setVerso] = useState("");
@@ -84,9 +91,27 @@ export default function FlashcardsPage() {
     });
   }, [cards]);
 
-  const cardsFiltrados = deckSelecionado
-    ? cards.filter((card) => `${card.materia || "Geral"}___${card.deck || "Principal"}` === deckSelecionado)
-    : cards;
+  const cardsFiltrados = cards.filter((card) => {
+    if (deckSelecionado) {
+      return `${card.materia || "Geral"}___${card.deck || "Principal"}` === deckSelecionado;
+    }
+
+    if (missionId && materiaContexto) {
+      const mesmaMateria = String(card.materia || "")
+        .toLowerCase()
+        .includes(materiaContexto.toLowerCase());
+
+      const mesmoTopico =
+        !topicoContexto ||
+        String(card.deck || "")
+          .toLowerCase()
+          .includes(topicoContexto.toLowerCase());
+
+      return mesmaMateria && mesmoTopico;
+    }
+
+    return true;
+  });
 
   const pendentes = cardsFiltrados.filter(
     (card) => String(card.proximaRevisao || todayKey()) <= todayKey()
@@ -175,6 +200,20 @@ export default function FlashcardsPage() {
       setIndex(0);
       setVirado(false);
       setStatus("Revisao finalizada.");
+
+      if (missionId) {
+        const engineResult = await finishMission({
+          missionId,
+          nota: `Flashcards concluidos. Ultima avaliacao: ${nota}.`,
+        });
+
+        if (engineResult.proxima) {
+          router.push(getMissionRoute(engineResult.proxima));
+          return;
+        }
+
+        router.push("/dashboard");
+      }
     }
   }
 
@@ -425,4 +464,9 @@ export default function FlashcardsPage() {
     </main>
   );
 }
+
+
+
+
+
 
