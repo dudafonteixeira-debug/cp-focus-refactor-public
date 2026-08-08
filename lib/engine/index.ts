@@ -10,4 +10,5 @@ export type {
 } from "@/lib/engine/types";
 export { buildEngineContext } from "@/lib/engine/context-engine";
 export { getMissionRoute } from "@/lib/engine/mission-router";
-export { finishMission, reopenMission } from "@/lib/engine/mission-lifecycle";
+export { finishMission, reopenMission, replanMission } from "@/lib/engine/mission-lifecycle";
+

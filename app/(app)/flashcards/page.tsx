@@ -3,7 +3,7 @@
 import { todayKey as getTodayKey, toLocalDateKey } from "@/lib/date-utils";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { finishMission, getMissionRoute } from "@/lib/engine";
+import { finishMission, getMissionRoute, replanMission } from "@/lib/engine";
 import { listarFlashcards, salvarFlashcards } from "@/lib/flashcards-core";
 import { saveFlashcardsLegacy } from "@/lib/data-access/app-repository";
 
@@ -53,6 +53,7 @@ export default function FlashcardsPage() {
   const [index, setIndex] = useState(0);
   const [virado, setVirado] = useState(false);
   const [status, setStatus] = useState("");
+  const [processingCompletion, setProcessingCompletion] = useState(false);
 
   async function carregar() {
     setCards(arr(await listarFlashcards()));
@@ -120,6 +121,31 @@ export default function FlashcardsPage() {
   const fila = modoRevisao ? pendentes : cardsFiltrados;
   const atual = fila[index] || null;
 
+  useEffect(() => {
+    if (!missionId) return;
+    if (fila.length > 0) return;
+
+    let ativo = true;
+
+    void replanMission(
+      missionId,
+      "Nao existem flashcards compativeis com esta missao no momento."
+    ).then((engineResult) => {
+      if (!ativo) return;
+
+      if (engineResult.proxima) {
+        router.replace(getMissionRoute(engineResult.proxima));
+        return;
+      }
+
+      router.replace("/dashboard");
+    });
+
+    return () => {
+      ativo = false;
+    };
+  }, [missionId, fila.length, router]);
+
   const stats = {
     total: cards.length,
     decks: decks.length,
@@ -171,6 +197,7 @@ export default function FlashcardsPage() {
   }
 
   async function avaliar(nota: Nota) {
+    if (processingCompletion) return;
     if (!atual) return;
 
     const next = cards.map((card) => {
@@ -202,6 +229,7 @@ export default function FlashcardsPage() {
       setStatus("Revisao finalizada.");
 
       if (missionId) {
+        setProcessingCompletion(true);
         const engineResult = await finishMission({
           missionId,
           nota: `Flashcards concluidos. Ultima avaliacao: ${nota}.`,
@@ -464,6 +492,9 @@ export default function FlashcardsPage() {
     </main>
   );
 }
+
+
+
 
 
 

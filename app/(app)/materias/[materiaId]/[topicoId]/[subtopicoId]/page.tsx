@@ -5,8 +5,8 @@ import { salvarFlashcards } from "@/lib/flashcards-core";
 import { addXp } from "@/lib/gamificacao";
 import { salvarNaRevisaoInteligente } from "@/lib/revisao-inteligente-adapter";
 import { loadAppData, updateAppData } from "@/lib/app-storage";
-import { getMissionRoute, getTodayMissions, finishMission } from "@/lib/engine";
-import { useParams, useRouter } from "next/navigation";
+import { finishMission, getMissionRoute, getTodayMissions, replanMission } from "@/lib/engine";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 function arr(value: any): any[] {
@@ -21,6 +21,8 @@ function uid() {
 
 export default function SubtopicoPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const missionId = searchParams.get("missionId") || "";
   const params = useParams<{ materiaId: string; topicoId: string; subtopicoId: string }>();
 
   const materiaId = String(params?.materiaId || "");
@@ -37,9 +39,11 @@ export default function SubtopicoPage() {
   const [xpGanho, setXpGanho] = useState(0);
   const [nivelAtual, setNivelAtual] = useState(1);
   const [streakAtual, setStreakAtual] = useState(0);
+  const [dadosCarregados, setDadosCarregados] = useState(false);
 
   function reload() {
     setAppData(loadAppData() || { materias: [] });
+    setDadosCarregados(true);
   }
 
   useEffect(() => {
@@ -57,6 +61,33 @@ export default function SubtopicoPage() {
   const subtopico = useMemo(() => {
     return arr(topico?.subtopicos).find((s: any) => String(s.id) === subtopicoId) || null;
   }, [topico, subtopicoId]);
+
+  useEffect(() => {
+    if (!dadosCarregados) return;
+    if (!missionId) return;
+    if (subtopico) return;
+
+    let ativo = true;
+
+    void replanMission(
+      missionId,
+      "O conteudo vinculado a esta missao nao esta mais disponivel."
+    ).then((engineResult) => {
+      if (!ativo) return;
+
+      if (engineResult.proxima) {
+        router.replace(getMissionRoute(engineResult.proxima));
+        return;
+      }
+
+      router.replace("/dashboard");
+    });
+
+    return () => {
+      ativo = false;
+    };
+  }, [dadosCarregados, missionId, subtopico, router]);
+
 
   useEffect(() => {
     if (!subtopico) return;
@@ -173,10 +204,12 @@ export default function SubtopicoPage() {
       ? await finishMission({ missionId: missionAtual.id })
       : engineBefore;
 
-    const gamificacao = await addXp(35);
-    setXpGanho(35);
-    setNivelAtual(gamificacao.nivel);
-    setStreakAtual(gamificacao.streak);
+    const gamificacao = missionAtual && "completionApplied" in engineResult && engineResult.completionApplied
+      ? await addXp(35)
+      : null;
+    setXpGanho(gamificacao ? 35 : 0);
+    if (gamificacao) setNivelAtual(gamificacao.nivel);
+    if (gamificacao) setStreakAtual(gamificacao.streak);
 
     setProximaTarefa(engineResult.proxima);
     setProgressoFluxo({
@@ -460,6 +493,11 @@ export default function SubtopicoPage() {
     </main>
   );
 }
+
+
+
+
+
 
 
 

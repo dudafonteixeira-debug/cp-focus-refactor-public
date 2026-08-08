@@ -42,7 +42,9 @@ export type DashboardViewModel = {
   proxima: DashboardTask | null;
   proximasMissoes: DashboardTask[];
   revisoesPendentes: Fase2ReviewItem[];
+  resumoDecisao: string;
   semPlano: boolean;
   stats: DashboardStats;
   tasks: DashboardTask[];
 };
+

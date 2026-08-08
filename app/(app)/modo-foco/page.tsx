@@ -73,20 +73,6 @@ export default function ModoFocoPage() {
       startedAt ? Math.round((Date.now() - startedAt) / 1000) : 0
     );
 
-    await saveSessaoEstudo({
-      id: `sessao-${Date.now()}`,
-      taskId: atual.id,
-      materia: atual.materia,
-      topico: atual.topico,
-      titulo: atual.titulo,
-      tipo: atual.tipo,
-      prioridade: atual.prioridade,
-      minutosPlanejados: atual.minutos,
-      segundosEstudados,
-      nota: note,
-      createdAt: new Date().toISOString(),
-    });
-
     const engineResult = await finishMission({
       missionId: atual.id,
       nota: note,
@@ -95,8 +81,25 @@ export default function ModoFocoPage() {
     setTasks(engineResult.missions);
     setNextMission(engineResult.proxima);
 
-    const game = addXp(40);
-    setXpInfo(game);
+    if (engineResult.completionApplied) {
+      await saveSessaoEstudo({
+        id: `sessao-${Date.now()}`,
+        taskId: atual.id,
+        materia: atual.materia,
+        topico: atual.topico,
+        titulo: atual.titulo,
+        tipo: atual.tipo,
+        prioridade: atual.prioridade,
+        minutosPlanejados: atual.minutos,
+        segundosEstudados,
+        nota: note,
+        createdAt: new Date().toISOString(),
+      });
+
+      const game = await addXp(40);
+      setXpInfo(game);
+    }
+
     setRunning(false);
     setNote("");
     setStartedAt(null);
@@ -327,6 +330,7 @@ export default function ModoFocoPage() {
     </main>
   );
 }
+
 
 
 

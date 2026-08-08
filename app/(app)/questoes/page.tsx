@@ -1,10 +1,10 @@
 ﻿"use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { salvarHistoricoQuestao } from "@/lib/questoes-history";
 import { salvarQuestaoErradaNoBanco } from "@/lib/questoes/integracao-banco-erros";
-import { finishMission, getMissionRoute } from "@/lib/engine";
+import { finishMission, getMissionRoute, replanMission } from "@/lib/engine";
 
 type Questao = {
   id: string;
@@ -55,6 +55,7 @@ export default function QuestoesPage() {
   const [corrigida, setCorrigida] = useState(false);
   const [acertos, setAcertos] = useState(0);
   const [erros, setErros] = useState(0);
+  const [processingCompletion, setProcessingCompletion] = useState(false);
 
   const questoesFiltradas = useMemo(() => {
     if (!materiaContexto) return QUESTOES_BASE;
@@ -67,6 +68,31 @@ export default function QuestoesPage() {
   }, [materiaContexto]);
 
   const questao = questoesFiltradas[index] || questoesFiltradas[0];
+
+  useEffect(() => {
+    if (!missionId) return;
+    if (questoesFiltradas.length > 0) return;
+
+    let ativo = true;
+
+    void replanMission(
+      missionId,
+      "Nao existem questoes compativeis com esta missao no momento."
+    ).then((engineResult) => {
+      if (!ativo) return;
+
+      if (engineResult.proxima) {
+        router.replace(getMissionRoute(engineResult.proxima));
+        return;
+      }
+
+      router.replace("/dashboard");
+    });
+
+    return () => {
+      ativo = false;
+    };
+  }, [missionId, questoesFiltradas.length, router]);
   const progresso = Math.round(((index + 1) / questoesFiltradas.length) * 100);
   const acertou = resposta === questao.correta;
 
@@ -103,6 +129,7 @@ export default function QuestoesPage() {
   }
 
   async function proxima() {
+    if (processingCompletion) return;
     const ultimaQuestao = index >= questoesFiltradas.length - 1;
 
     if (!ultimaQuestao) {
@@ -113,6 +140,7 @@ export default function QuestoesPage() {
     }
 
     if (missionId) {
+      setProcessingCompletion(true);
       const totalRespondidas = acertos + erros;
 
       const engineResult = await finishMission({
@@ -258,6 +286,9 @@ export default function QuestoesPage() {
     </main>
   );
 }
+
+
+
 
 
 

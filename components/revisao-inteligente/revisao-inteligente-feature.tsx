@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { finishMission, getMissionRoute } from "@/lib/engine";
+import { finishMission, getMissionRoute, replanMission } from "@/lib/engine";
 import { loadFase2Store, saveFase2Store } from "@/lib/fase2-storage";
 import { loadAppData } from "@/lib/app-storage";
 import {
@@ -46,6 +46,7 @@ export function RevisaoInteligenteFeature() {
   const [aberta, setAberta] = useState<UiReview | null>(null);
   const [lembranca, setLembranca] = useState("");
   const [mostrarConteudo, setMostrarConteudo] = useState(false);
+  const [processingCompletion, setProcessingCompletion] = useState(false);
   const [manualAberto, setManualAberto] = useState(false);
   const [manualTitulo, setManualTitulo] = useState("");
   const [manualTexto, setManualTexto] = useState("");
@@ -88,6 +89,34 @@ export function RevisaoInteligenteFeature() {
 
     return lista;
   }, [reviews, materiaFiltro, topicoFiltro, ordem]);
+
+useEffect(() => {
+  const params = new URL(window.location.href).searchParams;
+  const missionId = params.get("missionId");
+
+  if (!missionId) return;
+  if (fila.length > 0) return;
+
+  let ativo = true;
+
+  void replanMission(
+    missionId,
+    "Nao existe revisao disponivel para esta missao no momento."
+  ).then((engineResult) => {
+    if (!ativo) return;
+
+    if (engineResult.proxima) {
+      router.replace(getMissionRoute(engineResult.proxima));
+      return;
+    }
+
+    router.replace("/dashboard");
+  });
+
+  return () => {
+    ativo = false;
+  };
+}, [fila.length, router]);
 
   const concluidas = useMemo(() => {
     return reviews
@@ -248,6 +277,7 @@ export function RevisaoInteligenteFeature() {
   }
 
   async function responder(id: string, grade: number) {
+  if (processingCompletion) return;
     const atual = loadFase2Store();
     const now = new Date().toISOString();
 
@@ -284,6 +314,7 @@ export function RevisaoInteligenteFeature() {
     const missionId = new URL(window.location.href).searchParams.get("missionId");
 
     if (missionId) {
+      setProcessingCompletion(true);
       const engineResult = await finishMission({
         missionId,
         nota: `Revisao concluida com nota ${grade}/5.`,
@@ -676,6 +707,9 @@ export function RevisaoInteligenteFeature() {
     </main>
   );
 }
+
+
+
 
 
 

@@ -1,17 +1,5 @@
 ﻿import type { EngineMission } from "@/lib/engine/types";
 
-function studyRoute(mission: EngineMission): string {
-  if (
-    mission.materiaId &&
-    mission.topicoId &&
-    mission.subtopicoId
-  ) {
-    return `/materias/${mission.materiaId}/${mission.topicoId}/${mission.subtopicoId}`;
-  }
-
-  return "/materias";
-}
-
 function queryContext(mission: EngineMission): string {
   const params = new URLSearchParams();
 
@@ -27,6 +15,21 @@ function queryContext(mission: EngineMission): string {
   params.set("missionId", mission.id);
 
   return params.toString();
+}
+
+function studyRoute(
+  mission: EngineMission,
+  query: string
+): string {
+  if (
+    mission.materiaId &&
+    mission.topicoId &&
+    mission.subtopicoId
+  ) {
+    return `/materias/${mission.materiaId}/${mission.topicoId}/${mission.subtopicoId}?${query}`;
+  }
+
+  return `/materias?${query}`;
 }
 
 export function getMissionRoute(
@@ -51,10 +54,11 @@ export function getMissionRoute(
     case "estudo":
     case "leitura":
     case "anotacao":
-      return studyRoute(mission);
+      return studyRoute(mission, query);
 
     case "descanso":
-      return `/modo-foco?missionId=${encodeURIComponent(mission.id)}&modo=descanso`;
+      return `/modo-foco?missionId=${encodeURIComponent(
+        mission.id
+      )}&modo=descanso`;
   }
 }
-

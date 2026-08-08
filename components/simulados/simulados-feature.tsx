@@ -151,6 +151,7 @@ export function SimuladosFeature() {
   const missionId = searchParams.get("missionId") || "";
   const [simulado, setSimulado] = useState<SimuladoProva | null>(null);
   const [nextMission, setNextMission] = useState<any>(null);
+  const [processingCompletion, setProcessingCompletion] = useState(false);
   const [modeloId, setModeloId] = useState(MODELOS_SIMULADO_PROVA[0]?.id || "");
   const [modoSelecionado, setModoSelecionado] = useState<Modo>("certo_errado");
   const [adaptativoAtivo, setAdaptativoAtivo] = useState(false);
@@ -212,6 +213,8 @@ export function SimuladosFeature() {
   }, [running, finalizado, simulado]);
 
   async function concluirMissaoDoSimulado(done: SimuladoProva) {
+    if (processingCompletion) return;
+    setProcessingCompletion(true);
     if (!missionId) return;
 
     const resultadoFinal = corrigirSimuladoProva(done);
@@ -559,6 +562,7 @@ function responder(altIndex: number) {
     </main>
   );
 }
+
 
 
 

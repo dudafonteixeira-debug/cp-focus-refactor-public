@@ -1,4 +1,5 @@
 ﻿import { buildEngineContext } from "@/lib/engine/context-engine";
+import { explainDayDecision, explainMissionDecision } from "@/lib/engine/decision-explainer";
 import { generateAutomaticTasks } from "@/lib/engine/generator/mission-generator";
 import {
   getNextMission,
@@ -41,7 +42,9 @@ function normalizeMission(
   return {
     ...task,
     categoria: inferCategory(task),
-    status: task.concluida ? "concluida" : "pendente",
+    status: task.concluida
+      ? "concluida"
+      : task.statusEngine || "pendente",
     origem: inferOrigin(task),
     ordem: index + 1,
     sourceId: task.sourceId,
@@ -109,10 +112,17 @@ export async function getTodayMissions(
 
   const normalized = tasks.map(normalizeMission);
 
-  const missions = selectMissionsForToday(
+  const missionsBase = selectMissionsForToday(
     normalized,
     context
   );
+
+  const missions = missionsBase.map((mission) => ({
+    ...mission,
+    explicacaoDecisao: explainMissionDecision(mission, context),
+  }));
+
+  const resumoDecisao = explainDayDecision(missions, context);
 
   const pendentes = missions.filter(
     (mission) => mission.status !== "concluida"
@@ -153,5 +163,10 @@ export async function getTodayMissions(
       missions,
       context
     ),
+    resumoDecisao,
   };
 }
+
+
+
+

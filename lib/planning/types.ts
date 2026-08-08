@@ -31,6 +31,11 @@ export type PlanoTask = {
   score: number;
   minutos: number;
   concluida: boolean;
+  concluidaEm?: string;
+  notaSessao?: string;
+  statusEngine?: "pendente" | "em_execucao" | "pausada" | "concluida" | "reagendada" | "cancelada";
+  reagendadaEm?: string;
+  motivoReagendamento?: string;
   motivo: string;
   errosDetectados?: number;
   adaptativoNivel?: string;
@@ -64,4 +69,6 @@ export type PlanningViewModel = {
   updateMateria: (materiaId: string, patch: Partial<BrainMateria>) => void;
   adicionarMateriaManual: () => Promise<void>;
 };
+
+
 

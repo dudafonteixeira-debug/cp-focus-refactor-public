@@ -44,6 +44,7 @@ export type EngineMission = PlanoTask & {
   concluidoEm?: string;
   sourceId?: string;
   sourceType?: string;
+  explicacaoDecisao?: string;
 };
 
 export type EngineContext = {
@@ -69,4 +70,6 @@ export type EngineResult = {
   minutosPendentes: number;
   progresso: number;
   mensagemLyra: string;
+  resumoDecisao?: string;
 };
+

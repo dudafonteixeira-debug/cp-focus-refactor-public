@@ -74,7 +74,7 @@ export function DashboardMissionCard({
         </p>
 
         <p className="mt-2 text-sm leading-6 text-slate-200">
-          {mission.motivo || "Esta e a proxima acao recomendada para sua rotina de hoje."}
+          {mission.explicacaoDecisao || mission.motivo || "Esta e a proxima acao recomendada para sua rotina de hoje."}
         </p>
       </div>
 
@@ -98,3 +98,4 @@ export function DashboardMissionCard({
     </article>
   );
 }
+

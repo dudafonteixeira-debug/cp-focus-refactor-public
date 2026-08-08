@@ -26,6 +26,7 @@ export function DashboardView({
   proxima,
   proximasMissoes,
   revisoesPendentes: revisoesPendentesDashboard,
+  resumoDecisao,
   semPlano,
   stats,
   tasks,
@@ -337,7 +338,7 @@ export function DashboardView({
                 )}
               </div>
 
-              <DashboardLyraCard mensagem={mensagemLyra} />
+              <DashboardLyraCard mensagem={resumoDecisao || mensagemLyra} />
             </section>
           </>
         )}
@@ -345,6 +346,9 @@ export function DashboardView({
     </main>
   );
 }
+
+
+
 
 
 

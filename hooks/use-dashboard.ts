@@ -27,6 +27,7 @@ export function useDashboard() {
   const [sessoes, setSessoes] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [mensagemLyra, setMensagemLyra] = useState("");
+  const [resumoDecisao, setResumoDecisao] = useState("");
 
   const carregar = useCallback(async () => {
     setError(null);
@@ -43,6 +44,7 @@ export function useDashboard() {
       setAppData(app);
       setTasks(engineResult.missions);
       setMensagemLyra(engineResult.mensagemLyra);
+      setResumoDecisao(engineResult.resumoDecisao || engineResult.mensagemLyra);
       setBrain(planningBrain);
       setFase2(loadFase2Store());
       setSessoes(sessoesSalvas);
@@ -174,11 +176,13 @@ export function useDashboard() {
     proxima,
     proximasMissoes,
     revisoesPendentes,
+    resumoDecisao,
     semPlano,
     stats,
     tasks,
   };
 }
+
 
 
 
