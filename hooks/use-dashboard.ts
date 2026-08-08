@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -11,9 +11,9 @@ import {
   calculateTodayAnalytics,
 } from "@/lib/dashboard/analytics";
 import type { DashboardTask } from "@/lib/dashboard/types";
+import { getTodayMissions } from "@/lib/engine";
 import { loadFase2Store } from "@/lib/fase2-storage";
 import {
-  loadPlanoDia,
   loadPlanningBrain,
   persistPlanoDia,
 } from "@/lib/planning-state";
@@ -51,14 +51,15 @@ export function useDashboard() {
 
     try {
       const app = loadAppData();
-      const [plano, planningBrain, sessoesSalvas] = await Promise.all([
-        loadPlanoDia<DashboardTask>(),
+
+      const [engineResult, planningBrain, sessoesSalvas] = await Promise.all([
+        getTodayMissions(),
         loadPlanningBrain<any>(null),
         getSessoesEstudo<any[]>([]),
       ]);
 
       setAppData(app);
-      setTasks(plano);
+      setTasks(engineResult.missions);
       setBrain(planningBrain);
       setFase2(loadFase2Store());
       setSessoes(sessoesSalvas);
@@ -72,6 +73,7 @@ export function useDashboard() {
     void carregar();
 
     const atualizar = () => void carregar();
+
     window.addEventListener("focus", atualizar);
     window.addEventListener(
       "cp-focus-sessoes-updated",
@@ -87,23 +89,31 @@ export function useDashboard() {
     };
   }, [carregar]);
 
-  const materias = useMemo(() => asArray<any>(appData?.materias), [appData]);
+  const materias = useMemo(
+    () => asArray<any>(appData?.materias),
+    [appData]
+  );
+
   const pendentes = useMemo(
-    () => tasks.filter((task: DashboardTask) => !task.concluida),
+    () => tasks.filter((task) => !task.concluida),
     [tasks]
   );
+
   const concluidas = useMemo(
-    () => tasks.filter((task: DashboardTask) => task.concluida),
+    () => tasks.filter((task) => task.concluida),
     [tasks]
   );
+
   const stats = useMemo(
     () => calculateDashboardStats(materias, tasks),
     [materias, tasks]
   );
+
   const analyticsHoje = useMemo(
     () => calculateTodayAnalytics(sessoes),
     [sessoes]
   );
+
   const revisoesPendentes = useMemo(
     () =>
       asArray<any>(fase2?.reviews)
@@ -111,6 +121,7 @@ export function useDashboard() {
         .slice(0, 3),
     [fase2]
   );
+
   const adaptiveRadar = useMemo(
     () =>
       calcularAdaptiveScores({
@@ -120,6 +131,7 @@ export function useDashboard() {
       }).slice(0, 6),
     [appData, fase2, sessoes]
   );
+
   const appVazio = materias.length === 0;
   const semPlano = !appVazio && tasks.length === 0;
   const diaConcluido = tasks.length > 0 && pendentes.length === 0;
@@ -140,11 +152,15 @@ export function useDashboard() {
   const concluirTask = useCallback(
     async (taskId: string) => {
       const anterior = tasks;
-      const atualizadas = tasks.map((task: DashboardTask) =>
-        task.id === taskId ? { ...task, concluida: !task.concluida } : task
+
+      const atualizadas = tasks.map((task) =>
+        task.id === taskId
+          ? { ...task, concluida: !task.concluida }
+          : task
       );
 
       setTasks(atualizadas);
+
       try {
         await persistPlanoDia(atualizadas);
       } catch (cause) {

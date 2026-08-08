@@ -1,18 +1,8 @@
-﻿export type DashboardTask = {
-  id: string;
-  materiaId?: string | number;
-  topicoId?: string | number;
-  subtopicoId?: string | number;
-  materia: string;
-  topico: string;
-  titulo: string;
-  tipo: "Estudo" | "Revisao" | "Correcao";
-  prioridade: "Alta" | "Media" | "Baixa";
-  score: number;
-  minutos: number;
-  concluida: boolean;
-  motivo: string;
-};
+﻿import type { EngineMission } from "@/lib/engine";
+import type { AdaptiveMateriaScore } from "@/lib/adaptive/engine";
+import type { Fase2ReviewItem } from "@/lib/fase2-types";
+
+export type DashboardTask = EngineMission;
 
 export type DashboardAnalytics = {
   minutosEstudadosHoje: number;
@@ -29,9 +19,6 @@ export type DashboardStats = {
   minutosTotais: number;
   minutosFeitos: number;
 };
-
-import type { AdaptiveMateriaScore } from "@/lib/adaptive/engine";
-import type { Fase2ReviewItem } from "@/lib/fase2-types";
 
 export type DashboardPlanningBrain = {
   concurso?: string;
