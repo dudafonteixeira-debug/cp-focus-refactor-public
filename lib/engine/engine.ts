@@ -1,4 +1,5 @@
 ﻿import { buildEngineContext } from "@/lib/engine/context-engine";
+import { generateAutomaticTasks } from "@/lib/engine/generator/mission-generator";
 import {
   getNextMission,
   selectMissionsForToday,
@@ -8,14 +9,29 @@ import type {
   EngineMission,
   EngineResult,
   MissionCategory,
+  MissionOrigin,
 } from "@/lib/engine/types";
-import { loadPlanoDia } from "@/lib/planning-state";
+import {
+  loadPlanoDia,
+  persistPlanoDia,
+} from "@/lib/planning-state";
 import type { PlanoTask } from "@/lib/planning/types";
 
 function inferCategory(task: PlanoTask): MissionCategory {
+  const generated = task.categoriaGerada as MissionCategory | undefined;
+
+  if (generated) return generated;
+
   if (task.tipo === "Revisao") return "revisao";
   if (task.tipo === "Correcao") return "recuperacao";
+
   return "estudo";
+}
+
+function inferOrigin(task: PlanoTask): MissionOrigin {
+  const generated = task.origemGerada as MissionOrigin | undefined;
+
+  return generated || "planejamento";
 }
 
 function normalizeMission(
@@ -26,8 +42,10 @@ function normalizeMission(
     ...task,
     categoria: inferCategory(task),
     status: task.concluida ? "concluida" : "pendente",
-    origem: "planejamento",
+    origem: inferOrigin(task),
     ordem: index + 1,
+    sourceId: task.sourceId,
+    sourceType: task.sourceType,
   };
 }
 
@@ -40,23 +58,32 @@ function buildLyraMessage(
   );
 
   if (!missions.length) {
-    return "Seu dia ainda nao foi planejado. Vou organizar suas proximas missoes.";
+    return "Seu dia ainda nao possui missoes. Vou organizar seu ciclo de estudos.";
   }
 
   if (!pendentes.length) {
     return "Missoes concluidas. Seu ciclo de estudos de hoje foi finalizado.";
   }
 
+  const automaticas = pendentes.filter(
+    (mission) => mission.origem !== "planejamento"
+  );
+
   const critica = context.radar?.find(
     (item) => item.nivel === "critica"
   );
 
-  if (critica) {
-    return `Hoje vamos dar atencao especial a ${critica.materia}, que aparece como materia critica no seu desempenho recente.`;
+  if (critica && automaticas.length) {
+    return `Reorganizei seu dia com base no desempenho recente. ${critica.materia} precisa de atencao especial e ${automaticas.length} missao(oes) foram inseridas automaticamente.`;
+  }
+
+  if (automaticas.length) {
+    return `Identifiquei necessidades no seu historico e inseri ${automaticas.length} missao(oes) automaticamente na rotina de hoje.`;
   }
 
   const minutos = pendentes.reduce(
-    (total, mission) => total + Number(mission.minutos || 0),
+    (total, mission) =>
+      total + Number(mission.minutos || 0),
     0
   );
 
@@ -68,7 +95,18 @@ export async function getTodayMissions(
 ): Promise<EngineResult> {
   const context = await buildEngineContext(input);
 
-  const tasks = await loadPlanoDia<PlanoTask>();
+  let tasks = await loadPlanoDia<PlanoTask>();
+
+  const automaticTasks = generateAutomaticTasks(
+    context,
+    tasks
+  );
+
+  if (automaticTasks.length) {
+    tasks = [...tasks, ...automaticTasks];
+    await persistPlanoDia(tasks);
+  }
+
   const normalized = tasks.map(normalizeMission);
 
   const missions = selectMissionsForToday(
@@ -85,17 +123,21 @@ export async function getTodayMissions(
   );
 
   const minutosPlanejados = missions.reduce(
-    (total, mission) => total + Number(mission.minutos || 0),
+    (total, mission) =>
+      total + Number(mission.minutos || 0),
     0
   );
 
   const minutosPendentes = pendentes.reduce(
-    (total, mission) => total + Number(mission.minutos || 0),
+    (total, mission) =>
+      total + Number(mission.minutos || 0),
     0
   );
 
   const progresso = missions.length
-    ? Math.round((concluidas.length / missions.length) * 100)
+    ? Math.round(
+        (concluidas.length / missions.length) * 100
+      )
     : 0;
 
   return {
@@ -107,6 +149,9 @@ export async function getTodayMissions(
     minutosPlanejados,
     minutosPendentes,
     progresso,
-    mensagemLyra: buildLyraMessage(missions, context),
+    mensagemLyra: buildLyraMessage(
+      missions,
+      context
+    ),
   };
 }

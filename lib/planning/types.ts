@@ -1,4 +1,4 @@
-export type Prioridade = "Alta" | "Media" | "Baixa";
+﻿export type Prioridade = "Alta" | "Media" | "Baixa";
 export type TipoTask = "Estudo" | "Revisao" | "Correcao";
 
 export type BrainMateria = {
@@ -34,6 +34,10 @@ export type PlanoTask = {
   motivo: string;
   errosDetectados?: number;
   adaptativoNivel?: string;
+  categoriaGerada?: string;
+  origemGerada?: string;
+  sourceId?: string;
+  sourceType?: string;
 };
 
 export type PlanningViewModel = {
@@ -60,3 +64,4 @@ export type PlanningViewModel = {
   updateMateria: (materiaId: string, patch: Partial<BrainMateria>) => void;
   adicionarMateriaManual: () => Promise<void>;
 };
+

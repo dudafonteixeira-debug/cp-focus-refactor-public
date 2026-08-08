@@ -1,6 +1,9 @@
-﻿import type { EngineContext, EngineMission } from "@/lib/engine/types";
+﻿import type {
+  EngineContext,
+  EngineMission,
+} from "@/lib/engine/types";
 import { calculateMissionScore } from "@/lib/engine/rules/mission-score";
-import { balanceMissions } from "@/lib/engine/rules/balance-rule";
+import { applyRoutinePolicy } from "@/lib/engine/rules/routine-policy";
 
 export function sortMissions(
   missions: EngineMission[],
@@ -11,32 +14,29 @@ export function sortMissions(
       calculateMissionScore(b, context) -
       calculateMissionScore(a, context);
 
-    if (difference !== 0) return difference;
+    if (difference !== 0) {
+      return difference;
+    }
 
     return a.ordem - b.ordem;
   });
 }
 
-export function selectMissionsForToday(
+function fitMissionsIntoAvailableTime(
   missions: EngineMission[],
   context: EngineContext
 ): EngineMission[] {
-  const sorted = sortMissions(
-    missions.filter((mission) => mission.status !== "cancelada"),
-    context
+  const limite = Number(
+    context.tempoDisponivelMinutos || 0
   );
 
-  const limite = Number(context.tempoDisponivelMinutos || 0);
+  if (!limite) return missions;
 
-  if (!limite) {
-    return balanceMissions(sorted);
-  }
-
-  const concluidas = sorted.filter(
+  const concluidas = missions.filter(
     (mission) => mission.status === "concluida"
   );
 
-  const pendentes = sorted.filter(
+  const pendentes = missions.filter(
     (mission) => mission.status !== "concluida"
   );
 
@@ -44,12 +44,22 @@ export function selectMissionsForToday(
   let minutos = 0;
 
   for (const mission of pendentes) {
-    const duracao = Math.max(1, Number(mission.minutos || 0));
+    const duracao = Math.max(
+      1,
+      Number(mission.minutos || 0)
+    );
 
-    if (
-      minutos + duracao <= limite ||
-      selecionadas.length === 0
-    ) {
+    if (minutos + duracao <= limite) {
+      selecionadas.push(mission);
+      minutos += duracao;
+      continue;
+    }
+
+    /*
+     * Se nenhuma missao couber integralmente,
+     * preservamos ao menos a mais importante.
+     */
+    if (!selecionadas.length) {
       selecionadas.push(mission);
       minutos += duracao;
     }
@@ -57,8 +67,34 @@ export function selectMissionsForToday(
 
   return [
     ...concluidas,
-    ...balanceMissions(selecionadas),
+    ...selecionadas,
   ];
+}
+
+export function selectMissionsForToday(
+  missions: EngineMission[],
+  context: EngineContext
+): EngineMission[] {
+  const validas = missions.filter(
+    (mission) =>
+      mission.status !== "cancelada" &&
+      mission.status !== "reagendada"
+  );
+
+  const sorted = sortMissions(
+    validas,
+    context
+  );
+
+  const balanced = applyRoutinePolicy(
+    sorted,
+    context
+  );
+
+  return fitMissionsIntoAvailableTime(
+    balanced,
+    context
+  );
 }
 
 export function getNextMission(
@@ -67,8 +103,12 @@ export function getNextMission(
   return (
     missions.find(
       (mission) =>
-        mission.status === "em_execucao" ||
+        mission.status === "em_execucao"
+    ) ||
+    missions.find(
+      (mission) =>
         mission.status === "pendente"
-    ) || null
+    ) ||
+    null
   );
 }

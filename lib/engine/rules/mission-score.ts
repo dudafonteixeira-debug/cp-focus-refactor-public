@@ -1,4 +1,5 @@
 ﻿import type { EngineContext, EngineMission } from "@/lib/engine/types";
+import { getAdaptivePriorityWeight } from "@/lib/engine/rules/adaptive-priority";
 import { getAdaptiveWeight } from "@/lib/engine/rules/adaptive-rule";
 import { getEnergyWeight } from "@/lib/engine/rules/energy-rule";
 import {
@@ -19,6 +20,7 @@ export function calculateMissionScore(
     getEnergyWeight(mission, context) +
     getRecoveryWeight(mission, context) +
     getReviewWeight(mission, context) +
+    getAdaptivePriorityWeight(mission, context) +
     Number(mission.score || 0)
   );
 }
